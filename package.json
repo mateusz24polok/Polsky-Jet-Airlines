@@ -11,7 +11,7 @@
   "scripts": {
     "server:clear": "rimraf dist",
     "server:build": "npm run server:clear && tsc",
-    "start": "npm run server:build && node server/dist/server.js",
+    "server:start": "npm run server:build && node server/dist/server.js",
     "server:dev": "nodemon --exec ts-node server/src/server.ts --watch src",
     "postinstall": "npm run server:build"
   },
