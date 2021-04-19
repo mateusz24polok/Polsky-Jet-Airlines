@@ -2,7 +2,12 @@
   "name": "polsky-jet-page",
   "version": "0.0.1",
   "description": "Project of fake airlines Polsky Jet page with system of tickets reservation",
-  "main": "server/server.js",
+  "main": "server/dist/server",
+  "typings": "server/dist/server",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "server:clear": "rimraf dist",
     "server:build": "npm run server:clear && tsc",
