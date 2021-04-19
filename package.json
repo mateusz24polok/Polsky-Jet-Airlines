@@ -1,0 +1,21 @@
+{
+  "name": "polsky-jet-page",
+  "version": "0.0.1",
+  "description": "Project of fake airlines Polsky Jet page with system of tickets reservation",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "airlines",
+    "travel",
+    "polsky",
+    "jet",
+    "hotels",
+    "cars",
+    "flight",
+    "ticket"
+  ],
+  "author": "Mateusz Polok",
+  "license": "ISC"
+}
