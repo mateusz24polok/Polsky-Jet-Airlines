@@ -1,12 +1,14 @@
 import { Request, Response, NextFunction } from "express";
+import { airportModel } from "../models/airportModel";
 
-export const getAirports = (req: Request, res: Response): void => {
+export const getAirports = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const airports = await airportModel.find();
+
   res.status(200).json({
-    tours: [
-      { id: 0, airport: "London" },
-      { id: 1, airport: "Warsaw" },
-      { id: 2, airport: "Barcelona" },
-    ],
+    status: "success",
+    data: airports,
   });
-  res.end();
 };
