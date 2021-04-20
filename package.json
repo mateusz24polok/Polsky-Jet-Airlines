@@ -1,7 +1,7 @@
 {
-  "name": "polsky-jet-page",
+  "name": "polsky-jet-server",
   "version": "0.0.1",
-  "description": "Project of fake airlines Polsky Jet page with system of tickets reservation",
+  "description": "Project of server app for fake airlines Polsky Jet page with system of tickets reservation",
   "main": "server/dist/server",
   "typings": "server/dist/server",
   "engines": {
@@ -13,10 +13,14 @@
     "server:build": "npm run server:clear && tsc",
     "server:start": "npm run server:build && node server/dist/server.js",
     "server:dev": "nodemon --exec ts-node server/src/server.ts --watch src",
+    "client:build": "cd client && npm run build",
+    "client:start": "cd client && npm start",
+    "app:dev": "concurrently \"npm run server:dev\" \"npm run client:start\"",
     "postinstall": "npm run server:build"
   },
   "keywords": [
     "airlines",
+    "airports",
     "travel",
     "polsky",
     "jet",
