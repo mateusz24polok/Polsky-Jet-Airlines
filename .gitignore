@@ -3,3 +3,5 @@ coverage
 build
 coverage
 .vscode
+dist
+*.env
