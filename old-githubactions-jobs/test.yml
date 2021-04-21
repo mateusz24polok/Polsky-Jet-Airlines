@@ -1,0 +1,33 @@
+#  Name of workflow
+name: Test workflow
+
+# Trigger workflow on all pull requests
+on:
+  push:
+    branches:
+      - "**"
+
+# Jobs to carry out
+jobs:
+  cypress-run:
+    # Operating system to run job on
+    runs-on: ubuntu-latest
+    # Steps in job
+    steps:
+      # Get code from repo
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Install NodeJS
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      # Install dependiences in root
+      - run: npm install
+      # Install dependiences in client directory
+      - run: cd client && npm install
+      # Build the app using cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run server:dev, npm run client:start

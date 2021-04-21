@@ -1,0 +1,49 @@
+# Name of workflow
+name: E2E Tests & Deploy workflow
+
+# When workflow is triggered
+on:
+  push:
+    branches:
+      - "**"
+
+# Jobs to carry out
+jobs:
+  # Cypress Test
+  cypress-run-and-deploy:
+    # Operating system to run job on
+    runs-on: ubuntu-latest
+    # Steps in job
+    steps:
+      # Get code from repo
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Install NodeJS
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+        # Install dependiences in root 
+      - run: npm install
+      # Install dependiences in client directory
+      - run: npm install
+        working-directory: client
+      # Build the app using cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run server:dev, npm run client:start
+      # Build the client app 
+      - run: npm run build --if-present
+        working-directory: client
+      # Deploy to Netlify using our dev secrets
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: deploy --dir=client/build --prod
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+
+  
