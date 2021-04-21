@@ -79,7 +79,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "cd .. && npm run cypress:headless && npm run test"
+      "pre-push": "npm run test"
     }
   }
 }
