@@ -25,10 +25,5 @@ jobs:
       - run: npm install
       - run: cd client && npm install
       - run: npm run server:dev &
+      - run: npm run cypress:headless
       # Build the app using cypress
-      - name: Cypress run
-        uses: cypress-io/github-action@v1
-        with:
-          start: npm run client:start
-          wait-on: http://localhost:3000
-          browser: chrome
