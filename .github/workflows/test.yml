@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm install
+      - run: cd client && npm install
       - run: npm run server:dev &
       # Build the app using cypress
       - name: Cypress run
