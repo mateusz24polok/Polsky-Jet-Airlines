@@ -22,7 +22,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
+      # Install dependiences in root
       - run: npm install
+      # Install dependiences in client directory
       - run: cd client && npm install
       # Build the app using cypress
       - name: Cypress run
