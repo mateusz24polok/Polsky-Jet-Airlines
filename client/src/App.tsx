@@ -6,6 +6,7 @@ const App: React.FC = () => {
     <header>
       <h1 data-testid="header__title">{title}</h1>
       <h2>{process.env.name}</h2>
+      <h3>Another h3 text</h3>
     </header>
   );
 };
