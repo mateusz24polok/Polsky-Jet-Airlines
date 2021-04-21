@@ -5,7 +5,7 @@ name: Test workflow
 on:
   pull_request:
     branches:
-      -"**"
+      - "**"
 
 # Jobs to carry out
 jobs:
