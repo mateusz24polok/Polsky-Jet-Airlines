@@ -18,6 +18,8 @@
     "client:lint": "cd client && npm run lint",
     "client:format": "cd client && npm run format",
     "app:dev": "concurrently \"npm run server:dev\" \"npm run client:start\"",
+    "cypress": "concurrently \"npm run app:dev\" \"cypress open\"",
+    "cypress:headless": "concurrently \"npm run app:dev\" \"cypress run --browser chrome --headless\"",
     "postinstall": "npm run server:build"
   },
   "keywords": [
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.0.2",
+    "cypress": "^7.1.0",
     "nodemon": "^2.0.7",
     "ts-node": "^9.1.1"
   }
