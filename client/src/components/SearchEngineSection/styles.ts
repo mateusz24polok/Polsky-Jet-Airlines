@@ -3,7 +3,7 @@ import { R } from "../../../res/res";
 
 export const useStyles = makeStyles({
   root: {
-    backgroundImage: `url(${R.images.FlightSearchEngineBackground})`,
+    backgroundImage: `url(${R.images.backgrounds.FlightSearchEngineSectionBackground})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",

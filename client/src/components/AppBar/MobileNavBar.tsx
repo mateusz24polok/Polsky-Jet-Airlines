@@ -48,7 +48,9 @@ export const MobileNavBar = (): JSX.Element => {
                 <IconButton edge="start" className={classes.menuButton}>
                   <img
                     src={
-                      smallMatches ? R.images.LogoFullSmall : R.images.ImageLogo
+                      smallMatches
+                        ? R.images.logo.LogoFullSmall
+                        : R.images.logo.ImageLogo
                     }
                     alt="Logo"
                     height={50}

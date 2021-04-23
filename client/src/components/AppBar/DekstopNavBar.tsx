@@ -37,7 +37,7 @@ export const DesktopNavBar = (): JSX.Element => {
                 color="inherit"
                 aria-label="menu"
               >
-                <img src={R.images.LogoFullSmall} alt="Logo" height={50} />
+                <img src={R.images.logo.LogoFullSmall} alt="Logo" height={50} />
               </IconButton>
             </Grid>
             <Grid item>
