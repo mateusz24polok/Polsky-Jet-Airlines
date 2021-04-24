@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
@@ -10,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { mockDiscounts } from "../../../res/mocks/fligthsDiscounts";
+import { mockDiscounts } from "../../../res/data/fligthsDiscounts";
 
 export const DiscountSection: React.FC = () => {
   const classes = useStyles();
@@ -69,7 +68,6 @@ export const DiscountSection: React.FC = () => {
           ))}
         </Grid>
       </Box>
-      <Button>Więcej promocyjncyh lotów</Button>
     </section>
   );
 };
