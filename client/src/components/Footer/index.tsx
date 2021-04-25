@@ -104,7 +104,7 @@ export const Footer: React.FC = () => {
   );
 
   return (
-    <footer className={classes.footer}>
+    <footer className={classes.footer} data-testid="footer">
       <Grid container justify="space-between" wrap="nowrap">
         {renderLeftSideFooter()}
         {renderMiddleSideFooter()}

@@ -26,7 +26,7 @@ export const MobileNavBar = (): JSX.Element => {
   };
 
   return (
-    <MuiAppBar position="fixed" className={classes.root}>
+    <MuiAppBar position="fixed" className={classes.root} data-testid="app-bar">
       <Toolbar>
         <Grid container direction="column">
           <Grid

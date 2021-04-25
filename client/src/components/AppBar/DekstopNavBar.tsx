@@ -14,7 +14,7 @@ import { R } from "../../../res/res";
 export const DesktopNavBar = (): JSX.Element => {
   const classes = useStyles();
   return (
-    <MuiAppBar className={classes.root} position="static">
+    <MuiAppBar className={classes.root} position="static" data-testid="app-bar">
       <Toolbar>
         <Grid
           container
