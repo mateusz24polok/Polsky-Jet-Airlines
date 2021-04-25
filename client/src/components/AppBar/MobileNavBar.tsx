@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar as MuiAppBar,
   Toolbar,
@@ -19,7 +19,7 @@ export const MobileNavBar = (): JSX.Element => {
 
   const smallMatches = useSmallBrekpointMatches();
 
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);

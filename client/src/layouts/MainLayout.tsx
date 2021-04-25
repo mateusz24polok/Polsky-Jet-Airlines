@@ -7,7 +7,7 @@ import { SearchEngine } from "../components/SearchEngine";
 import { DiscountSection } from "../components/DiscountSection";
 import { AboutUsSection } from "../components/AboutUsSection";
 import { CustomersOpinionSection } from "../components/CustomersOpionSection";
-import { Footer } from "../components/Footer";
+import { Footer } from "@components/Footer";
 
 export const MainLayout: React.FC = () => {
   return (

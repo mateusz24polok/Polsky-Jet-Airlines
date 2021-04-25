@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
+import { aboutUs } from "@data/aboutUs";
 import { useStyles } from "./styles";
-import { aboutUs } from "../../../res/data/aboutUs";
 
 export const AboutUsSection: React.FC = () => {
   const classes = useStyles();
