@@ -3,7 +3,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.brandPallete.brandBlack,
+    backgroundColor: theme.palette.brandBlack,
   },
   menuButton: {
     marginRight: theme.spacing(1),
@@ -12,6 +12,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
   divider: {
-    backgroundColor: theme.palette.brandPallete.brandWhite,
+    backgroundColor: theme.palette.brandWhite,
   },
 }));
