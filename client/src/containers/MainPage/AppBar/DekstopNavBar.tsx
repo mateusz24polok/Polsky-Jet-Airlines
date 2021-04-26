@@ -1,13 +1,12 @@
 import React from "react";
 import {
-  Button,
-  Divider,
   Grid,
   IconButton,
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import { LoginBar } from "@components/LoginBar";
 import { R } from "@resources/res";
 import { useStyles } from "./styles";
 
@@ -62,17 +61,7 @@ export const DesktopNavBar = (): JSX.Element => {
             </Grid>
           </Grid>
           <Grid item xs={2} container justify="flex-end" alignItems="center">
-            <Grid item>
-              <Button color="inherit">Login</Button>
-            </Grid>
-            <Divider
-              orientation="vertical"
-              flexItem
-              className={classes.divider}
-            />
-            <Grid item>
-              <Button color="inherit">SignUp</Button>
-            </Grid>
+            <LoginBar />
           </Grid>
         </Grid>
       </Toolbar>

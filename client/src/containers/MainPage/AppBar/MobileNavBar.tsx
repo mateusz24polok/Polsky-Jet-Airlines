@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Box,
-  Button,
   Collapse,
   Grid,
   IconButton,
@@ -9,7 +8,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { LoginBar } from "@components/LoginBar";
 import { R } from "@resources/res";
 import { useSmallBrekpointMatches } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
@@ -58,25 +57,8 @@ export const MobileNavBar = (): JSX.Element => {
                 </IconButton>
               </Grid>
             </Grid>
-            <Grid
-              item
-              sm={6}
-              xs={10}
-              container
-              justify="flex-end"
-              alignItems="center"
-            >
-              <Grid item>
-                <Button color="inherit">Login</Button>
-              </Grid>
-              <Grid item>
-                <Button color="inherit">SignUp</Button>
-              </Grid>
-              <Grid item>
-                <IconButton onClick={handleExpandClick}>
-                  <MenuIcon style={{ color: "white" }} />
-                </IconButton>
-              </Grid>
+            <Grid item sm={6} xs={10}>
+              <LoginBar isMobileView onMenuIconClick={handleExpandClick} />
             </Grid>
           </Grid>
           <Grid item>
