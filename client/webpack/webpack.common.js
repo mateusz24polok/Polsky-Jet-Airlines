@@ -6,6 +6,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
+      "@appTypes": path.resolve(__dirname, "../src/types"),
       "@components": path.resolve(__dirname, "../src/components"),
       "@containers": path.resolve(__dirname, "../src/containers"),
       "@data": path.resolve(__dirname, "../res/data"),
@@ -13,7 +14,6 @@ module.exports = {
       "@pages": path.resolve(__dirname, "../src/pages"),
       "@resources": path.resolve(__dirname, "../res"),
       "@services": path.resolve(__dirname, "../src/services"),
-      "@types": path.resolve(__dirname, "../src/types"),
       "@utils": path.resolve(__dirname, "../src/utils"),
     },
   },

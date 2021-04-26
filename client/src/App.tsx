@@ -1,12 +1,15 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core";
-import { theme } from "../res/theme";
-import { AppLayout } from "./layouts/AppLayout";
+import { AppLayout } from "@layouts/AppLayout";
+import { theme } from "@resources/theme";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <AppLayout />
+      <BrowserRouter>
+        <AppLayout />
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

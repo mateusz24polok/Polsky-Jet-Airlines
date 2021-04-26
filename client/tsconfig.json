@@ -19,6 +19,7 @@
     // "checkJs": true /* Report errors in .js files. Works in tandem with allowJs. */,
     "baseUrl": "./",
     "paths": {
+      "@appTypes/*": ["src/types/*"],
       "@components/*": ["src/components/*"],
       "@containers/*": ["src/containers/*"],
       "@data/*": ["res/data/*"],
@@ -26,9 +27,8 @@
       "@pages/*": ["src/pages/*"],
       "@resources/*": ["res/*"],
       "@services/*": ["src/services/*"],
-      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src/**/*", "importJestDOM.ts", "webpack/**/*"]
+  "include": ["src/**/*", "res/**/*", "importJestDOM.ts", "webpack/**/*"]
 }

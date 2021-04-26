@@ -40,9 +40,9 @@ export const mockDiscounts: FlightDiscount[] = [
   },
   {
     cityFrom: "Katowice",
-    cityTo: "Berlin",
-    price: 200,
-    image: R.images.cities.BerlinPhoto,
+    cityTo: "Paryż",
+    price: 300,
+    image: R.images.cities.ParisPhoto,
   },
   {
     cityFrom: "Katowice",
