@@ -6,10 +6,11 @@ import {
   IconButton,
   AppBar as MuiAppBar,
   Toolbar,
-  Typography,
 } from "@material-ui/core";
 import { LoginBar } from "@components/LoginBar";
+import { NavList } from "@components/NavList";
 import { R } from "@resources/res";
+import { navRoutes } from "@resources/res.routes";
 import { useSmallBrekpointMatches } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
@@ -70,26 +71,7 @@ export const MobileNavBar = (): JSX.Element => {
                   alignItems="center"
                   spacing={1}
                 >
-                  <Grid item>
-                    <Typography variant="h6" className={classes.title}>
-                      Loty
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6" className={classes.title}>
-                      Hotele
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6" className={classes.title}>
-                      Samochody
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6" className={classes.title}>
-                      O nas
-                    </Typography>
-                  </Grid>
+                  <NavList navRoutes={navRoutes} />
                 </Grid>
               </Box>
             </Collapse>

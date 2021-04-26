@@ -4,10 +4,11 @@ import {
   IconButton,
   AppBar as MuiAppBar,
   Toolbar,
-  Typography,
 } from "@material-ui/core";
 import { LoginBar } from "@components/LoginBar";
+import { NavList } from "@components/NavList";
 import { R } from "@resources/res";
+import { navRoutes } from "@resources/res.routes";
 import { useStyles } from "./styles";
 
 export const DesktopNavBar = (): JSX.Element => {
@@ -39,26 +40,7 @@ export const DesktopNavBar = (): JSX.Element => {
                 <img src={R.images.logo.LogoFullSmall} alt="Logo" height={50} />
               </IconButton>
             </Grid>
-            <Grid item>
-              <Typography variant="h6" className={classes.title}>
-                Loty
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h6" className={classes.title}>
-                Hotele
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h6" className={classes.title}>
-                Samochody
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h6" className={classes.title}>
-                O nas
-              </Typography>
-            </Grid>
+            <NavList navRoutes={navRoutes} />
           </Grid>
           <Grid item xs={2} container justify="flex-end" alignItems="center">
             <LoginBar />

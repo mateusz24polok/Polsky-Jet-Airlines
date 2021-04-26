@@ -2,16 +2,10 @@ import { Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
 
-export const routes: Route[] = [
+export const navRoutes: Route[] = [
   {
     id: "home",
     path: routesPaths.home,
-    label: "Loty",
-    component: HomePage,
-  },
-  {
-    id: "flights",
-    path: routesPaths.flights,
     label: "Loty",
     component: HomePage,
   },

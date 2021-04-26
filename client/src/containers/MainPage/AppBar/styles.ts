@@ -8,9 +8,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   menuButton: {
     marginRight: theme.spacing(1),
   },
-  title: {
-    flexGrow: 1,
-  },
   divider: {
     backgroundColor: theme.palette.brandWhite,
   },

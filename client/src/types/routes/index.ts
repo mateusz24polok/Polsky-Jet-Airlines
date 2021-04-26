@@ -4,8 +4,8 @@ export interface Route {
   label?: string;
   component:
     | React.ComponentClass<unknown>
-    | React.ComponentClass<unknown, any>
-    | React.FC<any>
+    | React.ComponentClass<unknown, unknown>
+    | React.FC<unknown>
     | JSX.Element;
   exact?: boolean;
   disable?: boolean;
