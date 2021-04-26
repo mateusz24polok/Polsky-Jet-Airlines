@@ -9,9 +9,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { mockDiscounts } from "../../../res/data/fligthsDiscounts";
+import { mockDiscounts } from "../../../../res/data/fligthsDiscounts";
 
-export const DiscountSection: React.FC = () => {
+export const Discounts: React.FC = () => {
   const classes = useStyles();
   return (
     <section className={classes.root}>

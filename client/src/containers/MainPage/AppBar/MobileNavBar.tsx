@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useStyles } from "./styles";
-import { R } from "../../../res/res";
-import { useSmallBrekpointMatches } from "../../utils/mediaQuerriesUtils";
+import { R } from "../../../../res/res";
+import { useSmallBrekpointMatches } from "../../../utils/mediaQuerriesUtils";
 
 export const MobileNavBar = (): JSX.Element => {
   const classes = useStyles();

@@ -20,7 +20,14 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@data/*": ["res/data/*"]
+      "@containers/*": ["src/containers/*"],
+      "@data/*": ["res/data/*"],
+      "@layouts": ["src/layouts/*"],
+      "@pages": ["src/pages/*"],
+      "@resources": ["res/*"],
+      "@services": ["src/services/*"],
+      "@types": ["src/types/*"],
+      "@utils": ["src/utils/*"]
     }
   },
   "include": ["src/**/*", "importJestDOM.ts", "webpack/**/*"]

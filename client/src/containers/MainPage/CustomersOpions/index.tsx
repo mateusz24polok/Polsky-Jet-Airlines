@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { R } from "../../../res/res";
-import { customersOpinion } from "../../../res/data/customersOpinion";
+import { R } from "../../../../res/res";
+import { customersOpinion } from "../../../../res/data/customersOpinion";
 
-export const CustomersOpinionSection: React.FC = () => {
+export const CustomersOpinions: React.FC = () => {
   const classes = useStyles();
   return (
     <section className={classes.root}>

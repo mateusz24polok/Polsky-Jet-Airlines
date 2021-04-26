@@ -7,7 +7,14 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
       "@components": path.resolve(__dirname, "../src/components"),
+      "@containers": path.resolve(__dirname, "../src/containers"),
       "@data": path.resolve(__dirname, "../res/data"),
+      "@layouts": path.resolve(__dirname, "../src/layouts"),
+      "@pages": path.resolve(__dirname, "../src/pages"),
+      "@resources": path.resolve(__dirname, "../res"),
+      "@services": path.resolve(__dirname, "../src/services"),
+      "@types": path.resolve(__dirname, "../src/types"),
+      "@utils": path.resolve(__dirname, "../src/utils"),
     },
   },
   module: {

@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import { aboutUs } from "@data/aboutUs";
 import { useStyles } from "./styles";
 
-export const AboutUsSection: React.FC = () => {
+export const AboutUs: React.FC = () => {
   const classes = useStyles();
   return (
     <section className={classes.root}>

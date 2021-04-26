@@ -9,7 +9,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { R } from "../../../res/res";
+import { R } from "../../../../res/res";
 
 export const DesktopNavBar = (): JSX.Element => {
   const classes = useStyles();
