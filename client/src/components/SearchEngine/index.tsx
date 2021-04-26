@@ -1,5 +1,4 @@
 import React from "react";
-import { useStyles } from "./styles";
 import {
   Box,
   Button,
@@ -18,12 +17,13 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
+import { ComboBox } from "@components/shared/ComboBox";
 import DateFnsUtils from "@date-io/date-fns";
-import { ComboBox } from "../shared/ComboBox";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import { useStyles } from "./styles";
 // import { Formik, Form as FormikForm, Field } from "formik";
 // import { TextField } from "formik-material-ui";
 // import { DatePicker } from "formik-material-ui-pickers";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 const renderTitle = (): JSX.Element => (
   <Box mb={2}>

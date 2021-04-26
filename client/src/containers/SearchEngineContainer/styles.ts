@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { R } from "../../../res/res";
+import { R } from "@resources/res";
 
 export const useStyles = makeStyles({
   root: {

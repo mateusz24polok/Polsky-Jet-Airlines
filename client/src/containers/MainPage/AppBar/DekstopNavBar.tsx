@@ -1,15 +1,15 @@
 import React from "react";
 import {
+  Button,
+  Divider,
+  Grid,
+  IconButton,
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
-  Button,
-  IconButton,
-  Grid,
-  Divider,
 } from "@material-ui/core";
+import { R } from "@resources/res";
 import { useStyles } from "./styles";
-import { R } from "../../../../res/res";
 
 export const DesktopNavBar = (): JSX.Element => {
   const classes = useStyles();

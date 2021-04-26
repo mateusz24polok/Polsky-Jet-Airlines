@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
+import { customersOpinion } from "@data/customersOpinion";
+import { R } from "@resources/res";
 import { useStyles } from "./styles";
-import { R } from "../../../../res/res";
-import { customersOpinion } from "../../../../res/data/customersOpinion";
 
 export const CustomersOpinions: React.FC = () => {
   const classes = useStyles();

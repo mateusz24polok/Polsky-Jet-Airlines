@@ -2,14 +2,14 @@ import React from "react";
 import {
   Box,
   Card,
+  CardActionArea,
   CardContent,
   CardMedia,
-  CardActionArea,
   Grid,
   Typography,
 } from "@material-ui/core";
+import { mockDiscounts } from "@data/fligthsDiscounts";
 import { useStyles } from "./styles";
-import { mockDiscounts } from "../../../../res/data/fligthsDiscounts";
 
 export const Discounts: React.FC = () => {
   const classes = useStyles();

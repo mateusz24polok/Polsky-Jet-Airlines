@@ -5,7 +5,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import YouTubeIcon from "@material-ui/icons/YouTube";
-import { ContactData } from "../../../../res/data/contact";
+import { ContactData } from "@data/contact";
 import { useStyles } from "./styles";
 
 export const Footer: React.FC = () => {

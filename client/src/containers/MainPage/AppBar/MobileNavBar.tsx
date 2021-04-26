@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import {
+  Box,
+  Button,
+  Collapse,
+  Grid,
+  IconButton,
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
-  Button,
-  IconButton,
-  Grid,
-  Collapse,
-  Box,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { R } from "@resources/res";
+import { useSmallBrekpointMatches } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
-import { R } from "../../../../res/res";
-import { useSmallBrekpointMatches } from "../../../utils/mediaQuerriesUtils";
 
 export const MobileNavBar = (): JSX.Element => {
   const classes = useStyles();

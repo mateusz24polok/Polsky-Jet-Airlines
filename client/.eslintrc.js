@@ -36,6 +36,16 @@ module.exports = {
     "react/jsx-uses-react": "warn",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/imports-first": ["error", "absolute-first"],
+    "sort-imports": [
+      "error",
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        allowSeparatedGroups: false,
+      },
+    ],
   },
   env: {
     browser: true,
