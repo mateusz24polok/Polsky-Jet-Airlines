@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
+import { AboutUsFeature } from "@components/AboutUsFeature/";
 import { aboutUs } from "@data/aboutUs";
 import { useStyles } from "./styles";
 
@@ -16,32 +17,8 @@ export const AboutUs: React.FC = () => {
       <Box>
         <Grid container>
           {aboutUs.featureInfoDetails.map(infoDetail => (
-            <Grid
-              container
-              item
-              xs={2}
-              direction="column"
-              alignItems="center"
-              key={infoDetail.info}
-            >
-              <Grid item>
-                <img
-                  width={100}
-                  height={100}
-                  src={infoDetail.icon}
-                  alt={`${infoDetail.amount} ${infoDetail.info}`}
-                />
-              </Grid>
-              <Grid item>
-                <Typography align="center" variant="h5">
-                  {infoDetail.amount}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography align="center" variant="subtitle1">
-                  {infoDetail.info}
-                </Typography>
-              </Grid>
+            <Grid key={infoDetail.id} item xs={2}>
+              <AboutUsFeature featureDetails={infoDetail} />
             </Grid>
           ))}
         </Grid>

@@ -18,7 +18,7 @@ export interface Props {
   image: Image;
   price: Money;
   flightJourneyVariant?: FlightJourneyVariants;
-  mediaHeight?: number;
+  mediaHeight?: number | string;
 }
 
 export const FlightDiscountCard: React.FC<Props> = props => {
