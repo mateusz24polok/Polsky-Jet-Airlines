@@ -10,6 +10,7 @@ module.exports = {
       "@components": path.resolve(__dirname, "../src/components"),
       "@containers": path.resolve(__dirname, "../src/containers"),
       "@data": path.resolve(__dirname, "../res/data"),
+      "@images": path.resolve(__dirname, "../res/images"),
       "@layouts": path.resolve(__dirname, "../src/layouts"),
       "@pages": path.resolve(__dirname, "../src/pages"),
       "@resources": path.resolve(__dirname, "../res"),

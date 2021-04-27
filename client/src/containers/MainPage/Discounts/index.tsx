@@ -1,69 +1,34 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
+import { FlightDiscountCard } from "@components/FlightDiscountCard";
 import { mockDiscounts } from "@data/fligthsDiscounts";
+import { Currency } from "@appTypes/shared/money";
 import { useStyles } from "./styles";
 
-export const Discounts: React.FC = () => {
+interface Props {
+  discountSectionTitle: string;
+}
+
+export const Discounts: React.FC<Props> = ({ discountSectionTitle }) => {
   const classes = useStyles();
   return (
     <section className={classes.root}>
       <Typography variant="h2" align="center">
-        Promocyjne Loty
+        {discountSectionTitle}
       </Typography>
       <Box mt={2} p={4}>
         <Grid container spacing={4}>
           {mockDiscounts.map(flight => (
             <Grid key={flight.cityTo} item md={4} sm={6} xs={12}>
-              <Card>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={flight.image}
-                    title={`Leć do ${flight.cityTo}`}
-                  />
-                  <CardContent>
-                    <Grid container justify="space-between" wrap="nowrap">
-                      <Grid item xs={8}>
-                        <Typography gutterBottom variant="h6">
-                          {flight.cityTo}
-                        </Typography>
-                        <Typography gutterBottom variant="subtitle1">
-                          Wylot z: {flight.cityFrom}
-                        </Typography>
-                        <Typography variant="subtitle2">
-                          Lot w jedną stronę
-                        </Typography>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={4}
-                        container
-                        direction="column"
-                        justify="space-between"
-                      >
-                        <Grid item>
-                          <Typography gutterBottom align="right" variant="h6">
-                            Cena
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography align="right" variant="h5">
-                            {flight.price} PLN
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <FlightDiscountCard
+                destinationCity={flight.cityTo}
+                startingCity={flight.cityFrom}
+                image={flight.image}
+                price={{
+                  value: flight.price,
+                  currency: Currency.PLN,
+                }}
+              />
             </Grid>
           ))}
         </Grid>

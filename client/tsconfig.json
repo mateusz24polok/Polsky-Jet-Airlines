@@ -23,6 +23,7 @@
       "@components/*": ["src/components/*"],
       "@containers/*": ["src/containers/*"],
       "@data/*": ["res/data/*"],
+      "@images/*": ["res/images/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
       "@resources/*": ["res/*"],

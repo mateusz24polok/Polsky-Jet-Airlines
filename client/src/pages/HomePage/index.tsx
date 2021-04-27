@@ -14,7 +14,7 @@ export const HomePage: React.FC = () => {
         <SearchEngine />
       </SearchEngineContainer>
       <Box paddingX={theme.spacing(2)}>
-        <Discounts />
+        <Discounts discountSectionTitle="Promocyjne Loty" />
         <Divider />
         <AboutUs />
         <Divider />

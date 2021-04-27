@@ -1,63 +1,65 @@
-import FlightSearchEngineSectionBackground from "./images/flight_search_engine_background.jpg";
+import { Image } from "@appTypes/shared/image";
 
-import LogoFullBig from "./images/logo/full_logo_big.png";
-import LogoFullSmall from "./images/logo/full_logo_small.png";
-import ImageLogo from "./images/logo/image_logo.png";
-import SignLogo from "./images/logo/sign_logo.png";
+import FlightSearchEngineSectionBackground from "@images/flight_search_engine_background.jpg";
 
-import BerlinPhoto from "./images/cities/Berlin.jpg";
-import BrusselsPhoto from "./images/cities/Brussels.jpg";
-import LondonPhoto from "./images/cities/London.jpg";
-import MilanPhoto from "./images/cities/Milan.jpg";
-import OsloPhoto from "./images/cities/Oslo.jpg";
-import ParisPhoto from "./images/cities/Paris.jpg";
+import LogoFullBig from "@images/logo/full_logo_big.png";
+import LogoFullSmall from "@images/logo/full_logo_small.png";
+import ImageLogo from "@images/logo/image_logo.png";
+import SignLogo from "@images/logo/sign_logo.png";
 
-import FlightIcon from "./images/icons/featureIcons/Flight_Icon.png";
-import AirplaneIcon from "./images/icons/featureIcons/Airplane_Icon.png";
-import CitiesIcon from "./images/icons/featureIcons/Cities_Icon.png";
-import TicketIcon from "./images/icons/featureIcons/Ticket_Icon.png";
-import WorkersIcon from "./images/icons/featureIcons/Workers_Icon.png";
-import CustomersIcon from "./images/icons/featureIcons/Client_Icon.png";
+import BerlinPhoto from "@images/cities/Berlin.jpg";
+import BrusselsPhoto from "@images/cities/Brussels.jpg";
+import LondonPhoto from "@images/cities/London.jpg";
+import MilanPhoto from "@images/cities/Milan.jpg";
+import OsloPhoto from "@images/cities/Oslo.jpg";
+import ParisPhoto from "@images/cities/Paris.jpg";
 
-import ManIcon from "./images/icons/customersIcons/man_light_skin_tone_icon.png";
-import MaNJudgeIcon from "./images/icons/customersIcons/man_judge_light_skin_tone_icon.png";
-import WomanOfficeWorkerIcon from "./images/icons/customersIcons/woman_office_worker_icon.png";
+import FlightIcon from "@images/icons/featureIcons/Flight_Icon.png";
+import AirplaneIcon from "@images/icons/featureIcons/Airplane_Icon.png";
+import CitiesIcon from "@images/icons/featureIcons/Cities_Icon.png";
+import TicketIcon from "@images/icons/featureIcons/Ticket_Icon.png";
+import WorkersIcon from "@images/icons/featureIcons/Workers_Icon.png";
+import CustomersIcon from "@images/icons/featureIcons/Client_Icon.png";
+
+import ManIcon from "@images/icons/customersIcons/man_light_skin_tone_icon.png";
+import MaNJudgeIcon from "@images/icons/customersIcons/man_judge_light_skin_tone_icon.png";
+import WomanOfficeWorkerIcon from "@images/icons/customersIcons/woman_office_worker_icon.png";
 
 import OpionIcon from "./images/icons/opinion_icon.png";
 
 export interface Images {
   backgrounds: {
-    readonly FlightSearchEngineSectionBackground: string;
+    readonly FlightSearchEngineSectionBackground: Image;
   };
   logo: {
-    readonly LogoFullBig: string;
-    readonly LogoFullSmall: string;
-    readonly ImageLogo: string;
-    readonly SignLogo: string;
+    readonly LogoFullBig: Image;
+    readonly LogoFullSmall: Image;
+    readonly ImageLogo: Image;
+    readonly SignLogo: Image;
   };
   cities: {
-    readonly BerlinPhoto: string;
-    readonly BrusselsPhoto: string;
-    readonly LondonPhoto: string;
-    readonly MilanPhoto: string;
-    readonly OsloPhoto: string;
-    readonly ParisPhoto: string;
+    readonly BerlinPhoto: Image;
+    readonly BrusselsPhoto: Image;
+    readonly LondonPhoto: Image;
+    readonly MilanPhoto: Image;
+    readonly OsloPhoto: Image;
+    readonly ParisPhoto: Image;
   };
   feautreIcons: {
-    readonly Flight: string;
-    readonly Tickets: string;
-    readonly Places: string;
-    readonly Customers: string;
-    readonly Airplanes: string;
-    readonly Workers: string;
+    readonly Flight: Image;
+    readonly Tickets: Image;
+    readonly Places: Image;
+    readonly Customers: Image;
+    readonly Airplanes: Image;
+    readonly Workers: Image;
   };
   customersIcons: {
-    readonly Andrzej: string;
-    readonly Zbyszek: string;
-    readonly Ewa: string;
+    readonly Andrzej: Image;
+    readonly Zbyszek: Image;
+    readonly Ewa: Image;
   };
   utilIcons: {
-    readonly OpionIcon: string;
+    readonly OpionIcon: Image;
   };
 }
 
