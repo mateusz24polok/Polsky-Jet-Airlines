@@ -3,7 +3,7 @@ import { Box, Divider } from "@material-ui/core";
 import { SearchEngineContainer } from "@containers/SearchEngineContainer";
 import { Discounts } from "@containers/MainPage/Discounts";
 import { AboutUs } from "@containers/MainPage/AboutUs";
-import { CustomersOpinions } from "@containers/MainPage/CustomersOpions";
+import { CustomersOpinions } from "@containers/MainPage/CustomersOpinions";
 import { SearchEngine } from "@components/SearchEngine";
 import { theme } from "@resources/theme";
 
@@ -18,7 +18,7 @@ export const HomePage: React.FC = () => {
         <Divider />
         <AboutUs />
         <Divider />
-        <CustomersOpinions />
+        <CustomersOpinions customersOpionsTitle="Klienci o Polsky Jet" />
       </Box>
     </>
   );

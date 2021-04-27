@@ -9,9 +9,5 @@ export const useStyles = makeStyles((theme: Theme) =>
     title: {
       marginBottom: theme.spacing(2),
     },
-    optionGrid: {
-      marginBottom: "auto",
-      marginTop: theme.spacing(2),
-    },
   }),
 );

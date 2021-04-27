@@ -25,7 +25,7 @@ import ManIcon from "@images/icons/customersIcons/man_light_skin_tone_icon.png";
 import MaNJudgeIcon from "@images/icons/customersIcons/man_judge_light_skin_tone_icon.png";
 import WomanOfficeWorkerIcon from "@images/icons/customersIcons/woman_office_worker_icon.png";
 
-import OpionIcon from "./images/icons/opinion_icon.png";
+import OpinionIcon from "./images/icons/opinion_icon.png";
 
 export interface Images {
   backgrounds: {
@@ -59,7 +59,7 @@ export interface Images {
     readonly Ewa: Image;
   };
   utilIcons: {
-    readonly OpionIcon: Image;
+    readonly OpinionIcon: Image;
   };
 }
 
@@ -93,6 +93,6 @@ export const images: Images = {
     Ewa: WomanOfficeWorkerIcon,
   },
   utilIcons: {
-    OpionIcon,
+    OpinionIcon,
   },
 };

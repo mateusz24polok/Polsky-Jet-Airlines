@@ -12,3 +12,11 @@ export interface AboutUs {
   primaryInfo: string;
   featureInfoDetails: FeatureInfoDetail[];
 }
+
+export interface Customer {
+  id: number;
+  name: string;
+  residenceCity: string;
+  icon: Image;
+  opinion: string;
+}
