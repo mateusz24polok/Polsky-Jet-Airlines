@@ -2,6 +2,9 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Props } from "./";
 
 export const useStyles = makeStyles((theme: Theme) => ({
+  customerGridContainer: {
+    height: "100%",
+  },
   customerElementGrid: {
     marginBottom: "auto",
     marginTop: theme.spacing(2),

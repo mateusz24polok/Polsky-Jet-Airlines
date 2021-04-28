@@ -17,6 +17,7 @@ export const CustomerOpinion: React.FC<Props> = props => {
   const classes = useStyles(props);
   return (
     <Grid
+      className={classes.customerGridContainer}
       container
       direction="column"
       justify="space-between"
