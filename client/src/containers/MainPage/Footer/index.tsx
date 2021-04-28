@@ -5,10 +5,13 @@ import { ContactFooter } from "@components/mainPage/footer/ContactFooter";
 import { SocialMediaFooter } from "@components/mainPage/footer/SocialMediaFooter";
 import { ContactData } from "@data/contact";
 import { FooterSocialMedia } from "@data/socialMedia";
+import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
 export const Footer: React.FC = () => {
   const classes = useStyles();
+
+  const mediumBreakpointsMatches = useMediumBrekpointMatchesUp();
 
   const renderLeftSideFooter = (): JSX.Element => (
     <CompanyInfoFooter
@@ -36,7 +39,12 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className={classes.footer} data-testid="footer">
-      <Grid container justify="space-between" wrap="nowrap">
+      <Grid
+        container
+        justify="space-between"
+        direction={mediumBreakpointsMatches ? "row" : "column"}
+        wrap="nowrap"
+      >
         {renderLeftSideFooter()}
         {renderMiddleSideFooter()}
         {renderRightSideFooter()}

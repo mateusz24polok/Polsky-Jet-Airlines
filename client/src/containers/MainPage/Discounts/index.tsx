@@ -17,9 +17,9 @@ export const Discounts: React.FC<Props> = ({ discountSectionTitle }) => {
         {discountSectionTitle}
       </Typography>
       <Box mt={2} p={4}>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justify="center">
           {mockDiscounts.map(flight => (
-            <Grid key={flight.cityTo} item md={4} sm={6} xs={12}>
+            <Grid key={flight.cityTo} item lg={4} md={6} sm={12}>
               <FlightDiscountCard
                 destinationCity={flight.cityTo}
                 startingCity={flight.cityFrom}
