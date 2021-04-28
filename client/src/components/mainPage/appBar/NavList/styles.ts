@@ -4,7 +4,7 @@ export const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
   },
-  link: {
+  routerLink: {
     color: "inherit",
     textDecoration: "none",
   },
