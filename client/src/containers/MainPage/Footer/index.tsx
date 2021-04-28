@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { SocialMediaFooter } from "@components/SocialMediaFooter";
+import { ContactFooter } from "@components/ContactFooter";
 import { ContactData } from "@data/contact";
 import { FooterSocialMedia } from "@data/socialMedia";
 import { useStyles } from "./styles";
@@ -34,23 +35,11 @@ export const Footer: React.FC = () => {
   );
 
   const renderMiddleSideFooter = (): JSX.Element => (
-    <Grid item container direction="column" alignItems="center">
-      <Grid item>
-        <Typography variant="h5" className={classes.footerTitleTypography}>
-          Kontakt:
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography className={classes.brandDetailsTypography}>
-          {ContactData.email}
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography className={classes.brandDetailsTypography}>
-          {ContactData.phoneNumber}
-        </Typography>
-      </Grid>
-    </Grid>
+    <ContactFooter
+      title="Kontakt:"
+      email={ContactData.email}
+      phoneNumber={ContactData.phoneNumber}
+    />
   );
 
   const renderRightSideFooter = (): JSX.Element => (

@@ -1,15 +1,6 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  footer: {
-    backgroundColor: theme.palette.brandBlack,
-    paddingLeft: theme.spacing(8),
-    paddingRight: theme.spacing(8),
-  },
-  brandNameTypography: {
-    color: theme.palette.brandWhite,
-    fontFamily: "Bangers",
-  },
   brandDetailsTypography: {
     color: theme.palette.footerGray,
     fontFamily: "Bangers",
@@ -19,8 +10,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.footerBlue,
     textTransform: "uppercase",
     fontFamily: "Bangers",
-  },
-  logoGridContainer: {
-    paddingRight: theme.spacing(3),
   },
 }));

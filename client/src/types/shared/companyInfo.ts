@@ -13,6 +13,15 @@ export interface AboutUs {
   featureInfoDetails: FeatureInfoDetail[];
 }
 
+export interface Contact {
+  brandName: string;
+  city: string;
+  street: string;
+  phoneNumber: string;
+  email: string;
+  brandLogo: Image;
+}
+
 export interface Customer {
   id: number;
   name: string;
