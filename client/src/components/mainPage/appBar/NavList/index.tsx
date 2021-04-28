@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import { Route } from "@appTypes/routes";
 import { useStyles } from "./styles";
@@ -13,9 +14,11 @@ export const NavList: React.FC<Props> = ({ navRoutes }) => {
     <>
       {navRoutes.map(route => (
         <Grid key={route.id} item>
-          <Typography variant="h6" className={classes.title}>
-            {route.label}
-          </Typography>
+          <Link className={classes.link} to={route.path}>
+            <Typography variant="h6" className={classes.title}>
+              {route.label}
+            </Typography>
+          </Link>
         </Grid>
       ))}
     </>

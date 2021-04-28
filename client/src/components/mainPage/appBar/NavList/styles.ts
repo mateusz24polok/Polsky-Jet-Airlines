@@ -4,4 +4,8 @@ export const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
   },
+  link: {
+    color: "inherit",
+    textDecoration: "none",
+  },
 }));

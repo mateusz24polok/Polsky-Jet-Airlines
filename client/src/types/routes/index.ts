@@ -2,7 +2,7 @@ export interface Route {
   id: string;
   path: string;
   label?: string;
-  component:
+  component?:
     | React.ComponentClass<unknown>
     | React.ComponentClass<unknown, unknown>
     | React.FC<unknown>
