@@ -1,4 +1,4 @@
-import { images, Images } from "./res.images";
+import { Images, images } from "@resources/res.images";
 
 interface Resources {
   images: Images;

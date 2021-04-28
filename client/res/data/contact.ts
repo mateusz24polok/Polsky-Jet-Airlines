@@ -1,13 +1,5 @@
-import { R } from "../res";
-
-interface Contact {
-  brandName: string;
-  city: string;
-  street: string;
-  phoneNumber: string;
-  email: string;
-  brandLogo: string;
-}
+import { R } from "@resources/res";
+import { Contact } from "@appTypes/shared/companyInfo";
 
 export const ContactData: Contact = {
   brandName: "Polsky Jet",
