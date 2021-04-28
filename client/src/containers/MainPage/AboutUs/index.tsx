@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { AboutUsFeature } from "@components/AboutUsFeature/";
+import { AboutUsFeature } from "@components/mainPage/aboutUs/AboutUsFeature";
 import { aboutUs } from "@data/aboutUs";
 import { useStyles } from "./styles";
 

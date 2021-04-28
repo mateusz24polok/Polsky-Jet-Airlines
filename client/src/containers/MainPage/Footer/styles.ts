@@ -6,21 +6,4 @@ export const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: theme.spacing(8),
     paddingRight: theme.spacing(8),
   },
-  brandNameTypography: {
-    color: theme.palette.brandWhite,
-    fontFamily: "Bangers",
-  },
-  brandDetailsTypography: {
-    color: theme.palette.footerGray,
-    fontFamily: "Bangers",
-  },
-  footerTitleTypography: {
-    paddingTop: theme.spacing(2),
-    color: theme.palette.footerBlue,
-    textTransform: "uppercase",
-    fontFamily: "Bangers",
-  },
-  logoGridContainer: {
-    paddingRight: theme.spacing(3),
-  },
 }));

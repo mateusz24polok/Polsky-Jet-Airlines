@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { FlightDiscountCard } from "@components/FlightDiscountCard";
+import { FlightDiscountCard } from "@components/discount/FlightDiscountCard";
 import { mockDiscounts } from "@data/fligthsDiscounts";
 import { Currency } from "@appTypes/shared/money";
 import { useStyles } from "./styles";

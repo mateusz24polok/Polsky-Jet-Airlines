@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Props } from "./";
+import { Props } from ".";
 
 export const useStyles = makeStyles(() => ({
   image: {

@@ -5,8 +5,8 @@ import {
   AppBar as MuiAppBar,
   Toolbar,
 } from "@material-ui/core";
-import { LoginBar } from "@components/LoginBar";
-import { NavList } from "@components/NavList";
+import { LoginBar } from "@components/mainPage/appBar/LoginBar";
+import { NavList } from "@components/mainPage/appBar/NavList";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { useStyles } from "./styles";

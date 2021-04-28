@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Footer } from "@containers/MainPage/Footer";
-import { AppBar } from "@containers/MainPage/AppBar";
+import { Footer } from "@containers/mainPage/Footer";
+import { AppBar } from "@containers/mainPage/AppBar";
 import { navRoutes } from "@resources/res.routes";
 
 export const AppLayout: React.FC = () => {

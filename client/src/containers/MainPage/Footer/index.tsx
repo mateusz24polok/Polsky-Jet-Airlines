@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import { CompanyInfoFooter } from "@components/CompanyInfoFooter";
-import { ContactFooter } from "@components/ContactFooter";
-import { SocialMediaFooter } from "@components/SocialMediaFooter";
+import { CompanyInfoFooter } from "@components/mainPage/footer/CompanyInfoFooter";
+import { ContactFooter } from "@components/mainPage/footer/ContactFooter";
+import { SocialMediaFooter } from "@components/mainPage/footer/SocialMediaFooter";
 import { ContactData } from "@data/contact";
 import { FooterSocialMedia } from "@data/socialMedia";
 import { useStyles } from "./styles";

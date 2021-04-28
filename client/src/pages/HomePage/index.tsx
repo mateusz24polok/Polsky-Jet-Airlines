@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Divider } from "@material-ui/core";
 import { SearchEngineContainer } from "@containers/SearchEngineContainer";
-import { Discounts } from "@containers/MainPage/Discounts";
-import { AboutUs } from "@containers/MainPage/AboutUs";
-import { CustomersOpinions } from "@containers/MainPage/CustomersOpinions";
+import { Discounts } from "@containers/mainPage/Discounts";
+import { AboutUs } from "@containers/mainPage/AboutUs";
+import { CustomersOpinions } from "@containers/mainPage/CustomersOpinions";
 import { SearchEngine } from "@components/SearchEngine";
 import { theme } from "@resources/theme";
 

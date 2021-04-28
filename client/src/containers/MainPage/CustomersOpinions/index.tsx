@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { CustomerOpinion } from "@components/CustomerOpinion";
+import { CustomerOpinion } from "@components/mainPage/customers/CustomerOpinion";
 import { customers } from "@data/customers";
 import { useStyles } from "./styles";
 
