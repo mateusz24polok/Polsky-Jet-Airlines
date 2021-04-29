@@ -17,4 +17,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: (props: Props) => props.customerIconWidth || 80,
     height: (props: Props) => props.customerIconHeight || 80,
   },
+  customerIconHorizontal: {
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
+  mobileOpinionTypography: {
+    maxWidth: "360px",
+    marginBottom: theme.spacing(3),
+  },
 }));
