@@ -7,15 +7,23 @@ import { AboutUs } from "@containers/mainPage/AboutUs";
 import { CustomersOpinions } from "@containers/mainPage/CustomersOpinions";
 import { SearchEngine } from "@components/SearchEngine";
 import { executeScroll } from "@utils/eventsUtils";
-import { useLargeBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import {
+  useLargeBrekpointMatchesUp,
+  useSmallBrekpointMatchesUp,
+} from "@utils/mediaQuerriesUtils";
 
 export const HomePage: React.FC = () => {
   const location = useLocation();
   const myRef = useRef<HTMLElement>(null);
 
   const largeBreakpointMatches = useLargeBrekpointMatchesUp();
+  const smallBreakpointMatches = useSmallBrekpointMatchesUp();
 
-  const homePageContentMargin = largeBreakpointMatches ? 16 : 8;
+  const desktopHomePageContentPadding = largeBreakpointMatches ? 16 : 8;
+
+  const homePageContentPadding = smallBreakpointMatches
+    ? desktopHomePageContentPadding
+    : 2;
 
   useEffect(() => {
     if (location.pathname === "/aboutUs") {
@@ -28,7 +36,7 @@ export const HomePage: React.FC = () => {
       <SearchEngineContainer>
         <SearchEngine />
       </SearchEngineContainer>
-      <Box paddingX={homePageContentMargin}>
+      <Box paddingX={homePageContentPadding}>
         <Discounts discountSectionTitle="Promocyjne Loty" />
         <Divider />
         <AboutUs sectionRef={myRef} />
