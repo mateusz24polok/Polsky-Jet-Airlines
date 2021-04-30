@@ -5,6 +5,10 @@ const airportSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  airport: {
+    type: String,
+    required: true,
+  },
   terminals: {
     type: [String],
     required: true,
