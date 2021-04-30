@@ -1,16 +1,31 @@
 import { Theme, useMediaQuery } from "@material-ui/core";
 
-export const useExtraSmallBrekpointMatches = () =>
+export const useExtraSmallBrekpointMatchesUp = (): boolean =>
   useMediaQuery((theme: Theme) => theme.breakpoints.up("xs"));
 
-export const useSmallBrekpointMatches = (): boolean =>
+export const useSmallBrekpointMatchesUp = (): boolean =>
   useMediaQuery((theme: Theme) => theme.breakpoints.up("sm"));
 
-export const useMediumBrekpointMatches = () =>
+export const useMediumBrekpointMatchesUp = (): boolean =>
   useMediaQuery((theme: Theme) => theme.breakpoints.up("md"));
 
-export const useLargeBrekpointMatches = () =>
+export const useLargeBrekpointMatchesUp = (): boolean =>
   useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
 
-export const useExtraLargeBrekpointMatches = () =>
+export const useExtraLargeBrekpointMatchesUp = (): boolean =>
   useMediaQuery((theme: Theme) => theme.breakpoints.up("xl"));
+
+export const useExtraSmallBrekpointMatchesDown = (): boolean =>
+  useMediaQuery((theme: Theme) => theme.breakpoints.down("xs"));
+
+export const useSmallBrekpointMatchesDown = (): boolean =>
+  useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+
+export const useMediumBrekpointMatchesDown = (): boolean =>
+  useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+
+export const useLargeBrekpointMatchesDown = (): boolean =>
+  useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
+
+export const useExtraLargeBrekpointMatchesDown = (): boolean =>
+  useMediaQuery((theme: Theme) => theme.breakpoints.down("xl"));

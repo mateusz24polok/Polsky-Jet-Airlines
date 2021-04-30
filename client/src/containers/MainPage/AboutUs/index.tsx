@@ -21,7 +21,7 @@ export const AboutUs: React.FC<Props> = ({ sectionRef }) => {
       <Box>
         <Grid container>
           {aboutUs.featureInfoDetails.map(infoDetail => (
-            <Grid key={infoDetail.id} item xs={2}>
+            <Grid key={infoDetail.id} item md={2} sm={4} xs={6}>
               <AboutUsFeature featureDetails={infoDetail} />
             </Grid>
           ))}

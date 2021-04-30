@@ -11,13 +11,13 @@ import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
-import { useSmallBrekpointMatches } from "@utils/mediaQuerriesUtils";
+import { useSmallBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
 export const MobileNavBar = (): JSX.Element => {
   const classes = useStyles();
 
-  const smallMatches = useSmallBrekpointMatches();
+  const smallMatches = useSmallBrekpointMatchesUp();
 
   const [isExpanded, setIsExpanded] = useState(false);
 
