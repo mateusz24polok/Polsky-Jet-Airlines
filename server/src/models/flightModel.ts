@@ -22,9 +22,24 @@ const flightSchema = new mongoose.Schema({
   },
   tickets: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Ticket",
+      status: {
+        type: String,
+        enum: ["OPEN", "CLOSED", "BLOCKED", "WITHDRAWN"],
+        required: true,
+      },
+      price: {
+        value: { type: Number, required: true, min: 0 },
+        currency: { type: String, required: true, enum: ["PLN", "EUR", "USD"] },
+      },
+      class: {
+        type: String,
+        required: true,
+        enum: ["ECONOMY", "STANDARD", "PREMIUM"],
+      },
+      airplanePosition: {
+        type: String,
+        required: true,
+      },
     },
   ],
   estimatedFlightTime: {

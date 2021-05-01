@@ -5,7 +5,9 @@ import { catchAsync } from "../utils/catchAsync";
 
 export const getFlights = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const flights = await Flight.find();
+    const flights = await Flight.find()
+      .populate("startingAirport")
+      .populate("destinationAirport");
 
     if (!flights) {
       return next(new AppError("Couldn't find any flights", 404));
