@@ -1,6 +1,8 @@
-import express, { Express } from "express";
+import express, { Express, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { airportsRouter } from "./routes/airportRoutes";
+import { AppError } from "./utils/AppError";
+import { globalErrorHandler } from "./utils/globalErrorHandler";
 
 export const app: Express = express();
 
@@ -12,3 +14,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/airports", airportsRouter);
+
+app.all("*", (req: Request, res: Response, next: NextFunction) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+app.use(globalErrorHandler);

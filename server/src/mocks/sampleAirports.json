@@ -1,0 +1,42 @@
+[
+  {
+    "city": "Katowice",
+    "country": "Poland",
+    "continent": "Europe",
+    "airport": "Pyżowice",
+    "airportKey": "KATPYŻ01",
+    "terminals": ["A11", "B35", "C31"],
+    "startingPoint": true,
+    "destinationPoint": false
+  },
+  {
+    "city": "Atlanta",
+    "country": "USA",
+    "continent": "North America",
+    "airport": "Hartsfield-Jackson",
+    "airportKey": "ATLHTJ01",
+    "terminals": ["A11", "B35", "C31", "D2", "E54", "F77"],
+    "startingPoint": false,
+    "destinationPoint": true
+  },
+  {
+    "city": "Tokio",
+    "country": "Japan",
+    "continent": "Asia",
+    "airport": "Haneda",
+    "airportKey": "TOKHAN01",
+    "terminals": ["A1", "B2", "C3", "D4", "E5"],
+    "startingPoint": false,
+    "destinationPoint": true
+  },
+  {
+    "city": "Chicago",
+    "country": "USA",
+    "continent": "North America",
+    "airport": "O'Hare",
+    "airportKey": "CHIOHR01",
+    "terminals": ["A0", "A1", "A2"],
+    "startingPoint": false,
+    "destinationPoint": true
+  }
+]

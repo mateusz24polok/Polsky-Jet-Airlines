@@ -20,7 +20,9 @@
     "app:dev": "concurrently \"npm run server:dev\" \"npm run client:start\"",
     "cypress": "concurrently \"npm run app:dev\" \"cypress open\"",
     "cypress:headless": "concurrently \"npm run app:dev\" \"cypress run --browser chrome --headless\"",
-    "postinstall": "npm run server:build"
+    "postinstall": "npm run server:build",
+    "db:airports-clear": "cd server && cd src && cd utils && cd devScripts && node airportsDBScript.js --clear",
+    "db:airports-fill": "cd server && cd src && cd utils && cd devScripts && node airportsDBScript.js --fill"
   },
   "keywords": [
     "airlines",
