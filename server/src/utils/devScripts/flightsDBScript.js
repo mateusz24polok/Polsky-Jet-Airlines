@@ -8,6 +8,59 @@ dotenv.config({
   path: path.join(__dirname, "./../../config.env"),
 });
 
+const airportSchema = new mongoose.Schema({
+  city: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  continent: {
+    type: String,
+    enum: [
+      "Europe",
+      "North America",
+      "South America",
+      "Asia",
+      "Australia",
+      "Africa",
+    ],
+  },
+  airport: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  airportKey: {
+    type: String,
+    required: true,
+    unique: true,
+    minLength: 6,
+  },
+  terminals: {
+    type: [String],
+    required: true,
+  },
+  startingPoint: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  destinationPoint: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+});
+
+airportSchema.statics.findCityById = function (id) {
+  return this.findById(id).select("city -_id").distinct("city").exec();
+};
+
+const Airport = mongoose.model("Airport", airportSchema);
+
 const flightSchema = new mongoose.Schema({
   status: {
     type: String,
@@ -19,11 +72,13 @@ const flightSchema = new mongoose.Schema({
     required: true,
     ref: "Airport",
   },
+  startingCity: String,
   destinationAirport: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "Airport",
   },
+  destinationCity: String,
   startingDate: {
     type: Date,
     required: true,
@@ -56,6 +111,19 @@ const flightSchema = new mongoose.Schema({
   },
 });
 
+//DOCUMENT MIDDLEWARE - ASSING STARTING AND DESTINATION CITY TO SEPARATE FIELDS
+flightSchema.pre("save", async function (next) {
+  const startingcityArray = await Airport.findCityById(this.startingAirport);
+  const destinationCityArray = await Airport.findCityById(
+    this.destinationAirport
+  );
+  const startingCity = startingcityArray[0];
+  const destinationCity = destinationCityArray[0];
+  this.startingCity = startingCity;
+  this.destinationCity = destinationCity;
+  next();
+});
+
 const Flight = mongoose.model("Flight", flightSchema);
 
 const clearFlightsDbsDocument = async () => {
@@ -72,7 +140,7 @@ const clearFlightsDbsDocument = async () => {
 const fillFlightsDbsDocument = async () => {
   try {
     console.log("Filling flights Document has been started now");
-    await Flight.insertMany(sampleFlightsJSON);
+    await Flight.create(sampleFlightsJSON);
     console.log("Filling flights Document has been finished right now");
   } catch (err) {
     console.log(err);

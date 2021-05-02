@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Model, Document, Schema } from "mongoose";
 
-const ticketSchema = new mongoose.Schema({
+const ticketSchema: Schema = new Schema({
   status: {
     type: String,
     enum: ["OPEN", "CLOSED", "BLOCKED", "WITHDRAWN"],
@@ -22,4 +22,39 @@ const ticketSchema = new mongoose.Schema({
   },
 });
 
-export const Ticket = mongoose.model("Ticket", ticketSchema);
+enum Currency {
+  PLN = "PLN",
+  EUR = "EUR",
+  USD = "USD",
+}
+interface Money {
+  value: number;
+  currency: Currency;
+}
+
+enum TicketStatus {
+  OPEN = "OPEN",
+  CLOSED = "CLOSED",
+  BLOCKED = "BLOCKED",
+  WITHDRAWN = "WITHDRAWN",
+}
+
+enum TicketClass {
+  ECONOMY = "ECONOMY",
+  STANDARD = "STANDARD",
+  PREMIUM = "PREMIUM",
+}
+
+export interface ITicket {
+  status: TicketStatus;
+  price: Money;
+  class: TicketClass;
+  airplanePosition: string;
+}
+
+interface TicketBaseDocument extends ITicket, Document {}
+
+export const Ticket = mongoose.model<
+  TicketBaseDocument,
+  Model<TicketBaseDocument>
+>("Ticket", ticketSchema);

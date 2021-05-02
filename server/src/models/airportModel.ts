@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Model, Types, Document, Schema } from "mongoose";
 
-const airportSchema = new mongoose.Schema({
+const airportSchema: Schema = new Schema({
   city: {
     type: String,
     required: true,
@@ -47,4 +47,44 @@ const airportSchema = new mongoose.Schema({
   },
 });
 
-export const Airport = mongoose.model("Airport", airportSchema);
+enum Continent {
+  EUROPE = "Europe",
+  NORTH_AMERICA = "North America",
+  SOUTH_AMERICA = "South America",
+  ASIA = "Asia",
+  AUSTRALIA = "Australia",
+  AFRICA = "Africa",
+}
+
+interface IAirport {
+  city: string;
+  country: string;
+  continent: Continent;
+  airport: string;
+  airportKey: string;
+  terminals: Array<string>;
+  startingPoint: boolean;
+  destinationPoint: boolean;
+}
+
+export interface AirportBaseDocument extends IAirport, Document {
+  terminals: Types.Array<string>;
+}
+
+export interface AirportModel extends Model<AirportBaseDocument> {
+  findCityById(id: string): Promise<Array<string>>;
+}
+
+//STATIC METHODS
+
+airportSchema.statics.findCityById = function (
+  this: Model<AirportBaseDocument>,
+  id: string
+): Promise<Array<string>> {
+  return this.findById(id).select("city -_id").distinct("city").exec();
+};
+
+export const Airport = mongoose.model<AirportBaseDocument, AirportModel>(
+  "Airport",
+  airportSchema
+);

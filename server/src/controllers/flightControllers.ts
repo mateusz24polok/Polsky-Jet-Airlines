@@ -1,11 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import { Flight } from "../models/flightModel";
+import { ApiFeatures } from "../utils/ApiFeatures";
 import { AppError } from "../utils/AppError";
 import { catchAsync } from "../utils/catchAsync";
 
 export const getFlights = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const flights = await Flight.find()
+    const features = new ApiFeatures(Flight.find(), req.query).filter();
+    const flights = await features.query
       .populate("startingAirport")
       .populate("destinationAirport");
 
