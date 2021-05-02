@@ -19,7 +19,6 @@ export const getAirports = catchAsync(
 
 export const createAirports = catchAsync(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    console.log("Wchodzi");
     const newAirports = await Airport.insertMany(req.body);
     res.status(201).json({
       status: "success",

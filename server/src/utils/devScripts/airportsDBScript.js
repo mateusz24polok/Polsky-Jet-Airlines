@@ -55,6 +55,10 @@ const airportSchema = new mongoose.Schema({
   },
 });
 
+airportSchema.statics.findCityById = async function (this, id) {
+  return this.findById(id).select("city -_id").distinct("city").exec();
+};
+
 const Airport = mongoose.model("Airport", airportSchema);
 
 const clearAirportsDbsDocument = async () => {

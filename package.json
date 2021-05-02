@@ -12,7 +12,7 @@
     "server:clear": "rimraf dist",
     "server:build": "npm run server:clear && tsc",
     "server:start": "npm run server:build && node server/dist/server.js",
-    "server:dev": "nodemon --exec ts-node server/src/server.ts --watch src",
+    "server:dev": "nodemon --exec ts-node server/src/server.ts --watch server/src",
     "client:build": "cd client && npm run build",
     "client:start": "cd client && npm start",
     "client:lint": "cd client && npm run lint",
@@ -22,7 +22,9 @@
     "cypress:headless": "concurrently \"npm run app:dev\" \"cypress run --browser chrome --headless\"",
     "postinstall": "npm run server:build",
     "db:airports-clear": "cd server && cd src && cd utils && cd devScripts && node airportsDBScript.js --clear",
-    "db:airports-fill": "cd server && cd src && cd utils && cd devScripts && node airportsDBScript.js --fill"
+    "db:airports-fill": "cd server && cd src && cd utils && cd devScripts && node airportsDBScript.js --fill",
+    "db:flights-clear": "cd server && cd src && cd utils && cd devScripts && node flightsDBScript.js --clear",
+    "db:flights-fill": "cd server && cd src && cd utils && cd devScripts && node flightsDBScript.js --fill"
   },
   "keywords": [
     "airlines",
@@ -40,6 +42,7 @@
   "dependencies": {
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
+    "@types/mongoose": "^5.10.5",
     "@types/node": "^14.14.41",
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
