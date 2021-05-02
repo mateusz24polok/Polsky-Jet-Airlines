@@ -2,19 +2,28 @@ import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Divider } from "@material-ui/core";
 import { SearchEngineContainer } from "@containers/SearchEngineContainer";
-import { Discounts } from "@containers/mainPage/Discounts";
-import { AboutUs } from "@containers/mainPage/AboutUs";
-import { CustomersOpinions } from "@containers/mainPage/CustomersOpinions";
+import { Discounts } from "@containers/MainPage/Discounts";
+import { AboutUs } from "@containers/MainPage/AboutUs";
+import { CustomersOpinions } from "@containers/MainPage/CustomersOpinions";
 import { SearchEngine } from "@components/SearchEngine";
 import { executeScroll } from "@utils/eventsUtils";
 import {
   useLargeBrekpointMatchesUp,
   useSmallBrekpointMatchesUp,
 } from "@utils/mediaQuerriesUtils";
+import { getFlightsService } from "@services/flights";
 
 export const HomePage: React.FC = () => {
   const location = useLocation();
   const myRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    getFlightsService()
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const largeBreakpointMatches = useLargeBrekpointMatchesUp();
   const smallBreakpointMatches = useSmallBrekpointMatchesUp();
