@@ -22,3 +22,8 @@ export interface Flight {
   ticket: Array<Ticket>;
   estimatedFlightTime: number;
 }
+
+export interface FlightServiceResponse {
+  data: Array<Flight>;
+  flightsCount: number;
+}

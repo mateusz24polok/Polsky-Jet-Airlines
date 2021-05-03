@@ -49,6 +49,7 @@
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@redux-saga/types": "^1.1.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.5",
