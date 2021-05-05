@@ -3,10 +3,60 @@ import { Flight } from "../models/flightModel";
 import { ApiFeatures } from "../utils/ApiFeatures";
 import { AppError } from "../utils/AppError";
 import { catchAsync } from "../utils/catchAsync";
+import {
+  GetFlightsModifiedQueryParams,
+  GetFlightsRequestQueryParams,
+} from "./types";
 
 export const getFlights = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const features = new ApiFeatures(Flight.find(), req.query).filter();
+    const requestQueryParams = req.query as GetFlightsRequestQueryParams;
+
+    if (
+      requestQueryParams.flightDateFrom &&
+      requestQueryParams.flightDateTo &&
+      requestQueryParams.flightDateFrom > requestQueryParams.flightDateTo
+    ) {
+      return next(
+        new AppError("FlightDateFrom cannot be bigger than FlightDateTo", 400)
+      );
+    }
+
+    if (
+      requestQueryParams.startingCity &&
+      requestQueryParams.destinationCity &&
+      requestQueryParams.startingCity === requestQueryParams.destinationCity
+    ) {
+      return next(
+        new AppError(
+          "Starting flight city cannot be the same as destination city",
+          400
+        )
+      );
+    }
+    const modifiedQueryParams: GetFlightsModifiedQueryParams = {
+      ...requestQueryParams,
+      startingDate: {
+        gte: requestQueryParams.flightDateFrom || undefined,
+        lte: requestQueryParams.flightDateTo || undefined,
+      },
+    };
+
+    if (
+      !modifiedQueryParams.flightDateFrom &&
+      !modifiedQueryParams.flightDateTo
+    )
+      delete modifiedQueryParams.startingDate;
+    if (modifiedQueryParams.flightDateFrom)
+      delete modifiedQueryParams.flightDateFrom;
+    if (modifiedQueryParams.flightDateTo)
+      delete modifiedQueryParams.flightDateTo;
+
+    console.log(modifiedQueryParams);
+    const features = new ApiFeatures(
+      Flight.find(),
+      modifiedQueryParams as Record<string, unknown>
+    ).filter();
     const flights = await features.query
       .populate("startingAirport")
       .populate("destinationAirport");

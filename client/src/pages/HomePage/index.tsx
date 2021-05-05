@@ -31,7 +31,7 @@ export const HomePage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchFlights());
-  }, []);
+  }, [dispatch]);
 
   console.log(everyFlight);
   console.log("flight to tokio", flightsToTokio);
