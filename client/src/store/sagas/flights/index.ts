@@ -11,11 +11,13 @@ import {
   fetchFlightsSuccess,
 } from "@store/slices/flights";
 import { getFlightsService } from "@services/flights";
-import { FlightServiceResponse } from "@appTypes/flight";
+import { FlightServiceResponse, FlightsSearchFilters } from "@appTypes/flight";
 
-function* flightsSagaWorker(): Generator<
+function* flightsSagaWorker(
+  fetchFlightAction: ReturnType<typeof fetchFlights>,
+): Generator<
   | void
-  | CallEffect<FlightServiceResponse>
+  | CallEffect<FlightServiceResponse | FlightsSearchFilters>
   | PutEffect<{
       payload: FlightServiceResponse;
       type: string;
@@ -25,12 +27,11 @@ function* flightsSagaWorker(): Generator<
   FlightServiceResponse
 > {
   try {
-    yield console.log("You're now in Saga");
     const flightsResponse: FlightServiceResponse = yield call(
       getFlightsService,
+      fetchFlightAction.payload,
     );
     yield put(fetchFlightsSuccess(flightsResponse));
-    yield console.log(flightsResponse);
   } catch (error) {
     yield put(fetchFlightsError());
   }

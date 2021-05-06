@@ -10,5 +10,5 @@ export const prepareQueryParamsURLFromObject = (
   if (baseURL) {
     return `${baseURL}?${queryParamsURL}`;
   }
-  return queryParamsURL;
+  return `?${queryParamsURL}`;
 };

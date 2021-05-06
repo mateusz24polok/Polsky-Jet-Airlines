@@ -1,12 +1,16 @@
 import axios from "axios";
+import { FlightsSearchFilters } from "@appTypes/flight";
+import { prepareQueryParamsURLFromObject } from "@utils/urlUtils";
 
 const airportsAxiosInstance = axios.create({
   baseURL: `${process.env.api as string}/api/v1/airports`,
 });
 
-export const getAirportService = async () => {
+export const getAirportService = async (filters?: FlightsSearchFilters) => {
   try {
-    const tours = await airportsAxiosInstance.get("/");
+    //Spread filters object in the argument to fit the type for FlightsSearchFilters
+    const url = filters ? prepareQueryParamsURLFromObject({ ...filters }) : "/";
+    const tours = await airportsAxiosInstance.get(url);
     return tours.data as string[];
   } catch (err) {
     console.log(err);

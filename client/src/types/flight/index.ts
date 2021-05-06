@@ -27,3 +27,10 @@ export interface FlightServiceResponse {
   data: Array<Flight>;
   flightsCount: number;
 }
+
+export interface FlightsSearchFilters {
+  startingCity: string;
+  destinationCity: string;
+  flightDateFrom: Date | string;
+  flightDateTo: Date | string;
+}

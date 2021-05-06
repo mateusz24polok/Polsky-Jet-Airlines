@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   Button,
@@ -18,6 +18,7 @@ import * as Yup from "yup";
 import DateFnsUtils from "@date-io/date-fns";
 import { OptionFormItem } from "@appTypes/shared/form";
 import {
+  fetchFlights,
   selectDestinationAirportCities,
   selectStartingAirportCities,
 } from "@store/slices/flights";
@@ -231,6 +232,7 @@ const FlightSearchSchema = Yup.object().shape({
 
 export const SearchEngine: React.FC = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const startingAirportCityOptions: OptionFormItem[] = useSelector(
     selectStartingAirportCities,
@@ -265,10 +267,19 @@ export const SearchEngine: React.FC = () => {
         validationSchema={FlightSearchSchema}
         onSubmit={values => {
           console.log({
-            ...values,
             startingCity: values.startingCity.value,
             destinationCity: values.destinationCity.value,
+            flightDateFrom: values.flightDateFrom.toISOString(),
+            flightDateTo: values.flightDateTo.toISOString(),
           });
+          dispatch(
+            fetchFlights({
+              startingCity: values.startingCity.value,
+              destinationCity: values.destinationCity.value,
+              flightDateFrom: values.flightDateFrom.toISOString(),
+              flightDateTo: values.flightDateTo.toISOString(),
+            }),
+          );
         }}
       >
         {({ submitForm, errors }) => (

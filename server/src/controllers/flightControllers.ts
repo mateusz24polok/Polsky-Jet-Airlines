@@ -52,7 +52,6 @@ export const getFlights = catchAsync(
     if (modifiedQueryParams.flightDateTo)
       delete modifiedQueryParams.flightDateTo;
 
-    console.log(modifiedQueryParams);
     const features = new ApiFeatures(
       Flight.find(),
       modifiedQueryParams as Record<string, unknown>

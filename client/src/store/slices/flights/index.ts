@@ -1,5 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Flight, FlightServiceResponse } from "@appTypes/flight";
+import {
+  Flight,
+  FlightServiceResponse,
+  FlightsSearchFilters,
+} from "@appTypes/flight";
 import { RootState } from "@store/setupStore";
 
 interface FlightsState {
@@ -20,7 +24,11 @@ export const flightsSlice = createSlice({
   name: "flights",
   initialState,
   reducers: {
-    fetchFlights: (state: FlightsState) => {
+    fetchFlights: (
+      state: FlightsState,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<FlightsSearchFilters>,
+    ) => {
       state.isProgress = true;
       state.isError = false;
     },
