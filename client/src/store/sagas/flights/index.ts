@@ -29,7 +29,7 @@ function* flightsSagaWorker(
   try {
     const flightsResponse: FlightServiceResponse = yield call(
       getFlightsService,
-      fetchFlightAction.payload,
+      fetchFlightAction?.payload,
     );
     yield put(fetchFlightsSuccess(flightsResponse));
   } catch (error) {

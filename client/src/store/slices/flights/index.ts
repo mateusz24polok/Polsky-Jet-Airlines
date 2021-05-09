@@ -27,7 +27,7 @@ export const flightsSlice = createSlice({
     fetchFlights: (
       state: FlightsState,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      action: PayloadAction<FlightsSearchFilters>,
+      action: PayloadAction<FlightsSearchFilters | undefined>,
     ) => {
       state.isProgress = true;
       state.isError = false;

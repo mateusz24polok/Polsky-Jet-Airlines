@@ -1,7 +1,7 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 import { R } from "@resources/res";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundImage: `url(${R.images.backgrounds.FlightSearchEngineSectionBackground})`,
     backgroundRepeat: "no-repeat",
@@ -10,6 +10,10 @@ export const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: 50,
+    padding: 0,
+
+    [theme.breakpoints.up("md")]: {
+      padding: 50,
+    },
   },
-});
+}));

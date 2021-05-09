@@ -6,7 +6,7 @@ import { SearchEngineContainer } from "@containers/SearchEngineContainer";
 import { Discounts } from "@containers/MainPage/Discounts";
 import { AboutUs } from "@containers/MainPage/AboutUs";
 import { CustomersOpinions } from "@containers/MainPage/CustomersOpinions";
-import { SearchEngine } from "@components/SearchEngine";
+import { FlightSearchForm } from "@components/FlightSearchForm";
 import { executeScroll } from "@utils/eventsUtils";
 import {
   useLargeBrekpointMatchesUp,
@@ -54,7 +54,7 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <SearchEngineContainer>
-        <SearchEngine />
+        <FlightSearchForm />
       </SearchEngineContainer>
       <Box paddingX={homePageContentPadding}>
         <Discounts discountSectionTitle="Promocyjne Loty" />

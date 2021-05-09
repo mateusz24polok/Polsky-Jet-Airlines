@@ -3,7 +3,10 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import { FlightDiscountCard } from "@components/discount/FlightDiscountCard";
 import { mockDiscounts } from "@data/fligthsDiscounts";
 import { Currency } from "@appTypes/shared/money";
-import { useSmallBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import {
+  useMediumBrekpointMatchesUp,
+  useSmallBrekpointMatchesUp,
+} from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
 interface Props {
@@ -14,10 +17,14 @@ export const Discounts: React.FC<Props> = ({ discountSectionTitle }) => {
   const classes = useStyles();
 
   const smallBreakpointsMatches = useSmallBrekpointMatchesUp();
+  const mediumBreakpointsMatches = useMediumBrekpointMatchesUp();
 
   return (
     <section className={classes.root}>
-      <Typography variant="h2" align="center">
+      <Typography
+        variant={mediumBreakpointsMatches ? "h2" : "h4"}
+        align="center"
+      >
         {discountSectionTitle}
       </Typography>
       <Box mt={2} p={4}>
