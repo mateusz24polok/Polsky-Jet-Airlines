@@ -1,29 +1,40 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Divider } from "@material-ui/core";
 import { SearchEngineContainer } from "@containers/SearchEngineContainer";
 import { Discounts } from "@containers/MainPage/Discounts";
 import { AboutUs } from "@containers/MainPage/AboutUs";
 import { CustomersOpinions } from "@containers/MainPage/CustomersOpinions";
-import { SearchEngine } from "@components/SearchEngine";
+import { FlightSearchForm } from "@components/FlightSearchForm";
 import { executeScroll } from "@utils/eventsUtils";
 import {
   useLargeBrekpointMatchesUp,
   useSmallBrekpointMatchesUp,
 } from "@utils/mediaQuerriesUtils";
-import { getFlightsService } from "@services/flights";
+import {
+  fetchFlights,
+  selectFlights,
+  selectFlightsToChosenCity,
+} from "@store/slices/flights";
+import { RootState } from "@store/setupStore";
 
 export const HomePage: React.FC = () => {
   const location = useLocation();
   const myRef = useRef<HTMLElement>(null);
 
+  const dispatch = useDispatch();
+  const everyFlight = useSelector(selectFlights);
+  const flightsToTokio = useSelector((state: RootState) =>
+    selectFlightsToChosenCity(state, "Tokio"),
+  );
+
   useEffect(() => {
-    getFlightsService()
-      .then(data => {
-        console.log(data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    dispatch(fetchFlights());
+  }, [dispatch]);
+
+  console.log(everyFlight);
+  console.log("flight to tokio", flightsToTokio);
 
   const largeBreakpointMatches = useLargeBrekpointMatchesUp();
   const smallBreakpointMatches = useSmallBrekpointMatchesUp();
@@ -43,7 +54,7 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <SearchEngineContainer>
-        <SearchEngine />
+        <FlightSearchForm />
       </SearchEngineContainer>
       <Box paddingX={homePageContentPadding}>
         <Discounts discountSectionTitle="Promocyjne Loty" />

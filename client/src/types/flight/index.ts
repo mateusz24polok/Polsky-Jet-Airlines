@@ -1,5 +1,6 @@
 import { Ticket } from "@appTypes/ticket";
 import { Airport } from "@appTypes/airport";
+import { OptionFormItem } from "@appTypes/shared/form";
 
 export enum FlightJourneyVariants {
   ONE_WAY = "Lot w jedną stronę",
@@ -26,4 +27,18 @@ export interface Flight {
 export interface FlightServiceResponse {
   data: Array<Flight>;
   flightsCount: number;
+}
+
+export interface FlightsSearchFilters {
+  startingCity: string;
+  destinationCity: string;
+  flightDateFrom: Date | string;
+  flightDateTo: Date | string;
+}
+
+export interface FlightsSearchFormFiltersValues {
+  startingCity: OptionFormItem;
+  destinationCity: OptionFormItem;
+  flightDateFrom: Date;
+  flightDateTo: Date;
 }

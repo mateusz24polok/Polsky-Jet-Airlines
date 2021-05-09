@@ -26,7 +26,7 @@ export const theme = createMuiTheme({
     brandBlack: "#040809",
     brandOrange: "#e26023",
     brandWhite: "#eaf4f3",
-    searchEngineBackground: "rgba(222, 222, 222, 0.7)",
+    searchEngineBackground: "rgba(180, 180, 180, 0.75)",
     socialMediaIconsAzure: "#7fb9de",
     footerBlue: "#005489",
     footerGray: "#5a6163",

@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json({ limit: "10kb" }));
 
 app.get("/", (req, res) => {
-  res.send("<h1>Main Page from API</h1>");
+  res.send("This is PolskyJet Airlines API");
 });
 
 app.use("/api/v1/airports", airportsRouter);
