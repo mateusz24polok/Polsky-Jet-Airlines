@@ -14,6 +14,7 @@ export enum FlightStatus {
 }
 
 export interface Flight {
+  _id: string;
   status: FlightStatus;
   startingAirport: Airport;
   startingCity: string;
