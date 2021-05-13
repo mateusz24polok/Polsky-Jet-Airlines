@@ -8,6 +8,7 @@ import {
 } from "@store/slices/flights";
 import { prepareObjectFromQueryParamsURL } from "@utils/urlUtils";
 import { FlightsSearchFilters } from "@appTypes/flight";
+import { FlightListContainer } from "@containers/FlightListContainer";
 import { FlightListItem } from "@components/FlightListItem";
 
 export const FlightsResultPage: React.FC = () => {
@@ -48,13 +49,13 @@ export const FlightsResultPage: React.FC = () => {
   const renderLoadingView = (): JSX.Element => <h2>Ładowanie wyników...</h2>;
 
   return (
-    <>
+    <FlightListContainer>
       <h1>New page with flight results</h1>
       {isProgress
         ? renderLoadingView()
         : flights.length > 0
         ? renderFlightsList()
         : renderFallbackView()}
-    </>
+    </FlightListContainer>
   );
 };

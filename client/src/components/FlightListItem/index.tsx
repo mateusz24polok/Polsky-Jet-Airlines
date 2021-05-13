@@ -127,11 +127,11 @@ export const FlightListItem = () => {
   return (
     <Paper className={classes.paper}>
       <Grid container justify="space-around" alignItems="center" wrap="nowrap">
-        <Grid item xs={9}>
+        <Grid item xs={10}>
           <FlightListItemDetails />
         </Grid>
         <Divider orientation="vertical" variant="fullWidth" />
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <FlightListItemActions />
         </Grid>
       </Grid>
