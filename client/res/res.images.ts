@@ -25,7 +25,9 @@ import ManIcon from "@images/icons/customersIcons/man_light_skin_tone_icon.png";
 import MaNJudgeIcon from "@images/icons/customersIcons/man_judge_light_skin_tone_icon.png";
 import WomanOfficeWorkerIcon from "@images/icons/customersIcons/woman_office_worker_icon.png";
 
-import OpinionIcon from "./images/icons/opinion_icon.png";
+import OpinionIcon from "@images/icons/opinion_icon.png";
+import AirplaneIconBlack from "@images/icons/airplane_icon.png";
+import RightArrowIcon from "@images/icons/right_arrow_icon.png";
 
 export interface Images {
   backgrounds: {
@@ -60,6 +62,8 @@ export interface Images {
   };
   utilIcons: {
     readonly OpinionIcon: Image;
+    readonly AirplaneIconBlack: Image;
+    readonly RightArrowIcon: Image;
   };
 }
 
@@ -94,5 +98,7 @@ export const images: Images = {
   },
   utilIcons: {
     OpinionIcon,
+    AirplaneIconBlack,
+    RightArrowIcon,
   },
 };

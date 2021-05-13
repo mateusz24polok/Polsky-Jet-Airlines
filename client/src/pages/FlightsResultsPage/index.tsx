@@ -8,6 +8,7 @@ import {
 } from "@store/slices/flights";
 import { prepareObjectFromQueryParamsURL } from "@utils/urlUtils";
 import { FlightsSearchFilters } from "@appTypes/flight";
+import { FlightListItem } from "@components/FlightListItem";
 
 export const FlightsResultPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,18 +26,20 @@ export const FlightsResultPage: React.FC = () => {
         flightsSearchFiltersFromURLQueryParams as FlightsSearchFilters,
       ),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location]);
 
   console.log(flights);
 
   const renderFlightsList = (): JSX.Element => (
     <ul>
-      {flights.map(flight => (
+      <FlightListItem />
+      {/* {flights.map(flight => (
         <li key={flight._id}>
           Lot z {flight.startingCity} do {flight.destinationCity} dnia:{" "}
           {flight.startingDate}
         </li>
-      ))}
+      ))} */}
     </ul>
   );
 
