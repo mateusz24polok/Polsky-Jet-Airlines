@@ -24,14 +24,7 @@ export const DesktopNavBar = (): JSX.Element => {
           alignItems="center"
           wrap="nowrap"
         >
-          <Grid
-            item
-            xs={10}
-            spacing={4}
-            container
-            justify="flex-start"
-            alignItems="center"
-          >
+          <Grid item xs={10} container justify="flex-start" alignItems="center">
             <Grid item>
               <Link to={routesPaths.home}>
                 <IconButton

@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.brandBlack,
   },
   menuButton: {
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(3),
   },
   divider: {
     backgroundColor: theme.palette.brandWhite,
