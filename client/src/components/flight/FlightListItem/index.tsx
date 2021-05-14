@@ -1,7 +1,7 @@
 import React from "react";
-import { Divider, Grid, Paper } from "@material-ui/core";
-import { FlightListItemActions } from "@components/FlightListItemActions";
-import { FlightListItemDetails } from "@components/FlightListItemDetails";
+import { Box, Divider, Grid, Paper } from "@material-ui/core";
+import { FlightListItemActions } from "@components/flight/FlightListItemActions";
+import { FlightListItemDetails } from "@components/flight/FlightListItemDetails";
 import { useStyles } from "./styles";
 
 // const flight = {
@@ -132,7 +132,9 @@ export const FlightListItem = () => {
         </Grid>
         <Divider orientation="vertical" variant="fullWidth" />
         <Grid item xs={2}>
-          <FlightListItemActions />
+          <Box className={classes.actionsBox} ml={2}>
+            <FlightListItemActions />
+          </Box>
         </Grid>
       </Grid>
     </Paper>

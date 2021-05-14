@@ -6,7 +6,7 @@ import { SearchEngineContainer } from "@containers/SearchEngineContainer";
 import { Discounts } from "@containers/MainPage/Discounts";
 import { AboutUs } from "@containers/MainPage/AboutUs";
 import { CustomersOpinions } from "@containers/MainPage/CustomersOpinions";
-import { FlightSearchForm } from "@components/FlightSearchForm";
+import { FlightSearchForm } from "@components/flight/FlightSearchForm";
 import { executeScroll } from "@utils/eventsUtils";
 import {
   useLargeBrekpointMatchesUp,

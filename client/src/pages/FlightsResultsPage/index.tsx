@@ -9,7 +9,7 @@ import {
 import { prepareObjectFromQueryParamsURL } from "@utils/urlUtils";
 import { FlightsSearchFilters } from "@appTypes/flight";
 import { FlightListContainer } from "@containers/FlightListContainer";
-import { FlightListItem } from "@components/FlightListItem";
+import { FlightListItem } from "@components/flight/FlightListItem";
 
 export const FlightsResultPage: React.FC = () => {
   const dispatch = useDispatch();
