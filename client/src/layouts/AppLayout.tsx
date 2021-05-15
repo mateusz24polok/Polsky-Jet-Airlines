@@ -1,20 +1,40 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { Footer } from "@containers/MainPage/Footer";
 import { AppBar } from "@containers/MainPage/AppBar";
 import { routes } from "@resources/res.routes";
+import { routesPaths } from "@resources/res.routesPaths";
+import { theme } from "@resources/theme";
 import { useStyles } from "./styles";
 
 export const AppLayout: React.FC = () => {
+  const [contentBackgroundColor, setContentBackgroundColor] = useState<
+    React.CSSProperties["color"]
+  >("white");
   const classes = useStyles();
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case routesPaths.searchedFlightsList:
+        setContentBackgroundColor(theme.palette.brandOrange);
+        break;
+      default:
+        setContentBackgroundColor("white");
+    }
+  }, [location.pathname]);
 
   return (
     <Grid className={classes.root} container direction="column" wrap="nowrap">
       <Grid item className={classes.appBar}>
         <AppBar />
       </Grid>
-      <Grid item className={classes.content}>
+      <Grid
+        item
+        style={{ backgroundColor: contentBackgroundColor }}
+        className={classes.content}
+      >
         <Switch>
           {routes.map(route => (
             <Route

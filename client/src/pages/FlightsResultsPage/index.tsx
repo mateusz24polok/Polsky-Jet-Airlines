@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 import {
   fetchFlights,
   selectFlights,
@@ -10,8 +11,10 @@ import { prepareObjectFromQueryParamsURL } from "@utils/urlUtils";
 import { FlightsSearchFilters } from "@appTypes/flight";
 import { FlightListContainer } from "@containers/FlightListContainer";
 import { FlightListItem } from "@components/flight/FlightListItem";
+import { useStyles } from "./styles";
 
 export const FlightsResultPage: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
   const flightsSearchFiltersFromURLQueryParams = prepareObjectFromQueryParamsURL(
@@ -30,10 +33,8 @@ export const FlightsResultPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location]);
 
-  console.log(flights);
-
   const renderFlightsList = (): JSX.Element => (
-    <ul>
+    <>
       <FlightListItem />
       {/* {flights.map(flight => (
         <li key={flight._id}>
@@ -41,7 +42,7 @@ export const FlightsResultPage: React.FC = () => {
           {flight.startingDate}
         </li>
       ))} */}
-    </ul>
+    </>
   );
 
   const renderFallbackView = (): JSX.Element => <h2>Brak wyników</h2>;
@@ -50,7 +51,9 @@ export const FlightsResultPage: React.FC = () => {
 
   return (
     <FlightListContainer>
-      <h1>New page with flight results</h1>
+      <Typography className={classes.title} variant="h4" align="center">
+        New page with flight results
+      </Typography>
       {isProgress
         ? renderLoadingView()
         : flights.length > 0

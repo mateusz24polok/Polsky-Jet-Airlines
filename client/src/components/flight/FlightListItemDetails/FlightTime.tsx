@@ -26,7 +26,7 @@ export const FlightTime: React.FC<Props> = ({ flightTime }) => {
       <img
         src={R.images.utilIcons.AirplaneIconBlack}
         alt="Airplane Logo"
-        height={40}
+        height={30}
       />
       <Typography variant="h6" style={{ marginTop: "20px" }}>
         Czas lotu: {flightTime}
