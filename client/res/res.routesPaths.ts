@@ -5,6 +5,7 @@ export interface RoutesPaths {
   hotels: string;
   cars: string;
   aboutUs: string;
+  searchedFlightsList: string;
 }
 
 export const routesPaths: RoutesPaths = {
@@ -14,4 +15,5 @@ export const routesPaths: RoutesPaths = {
   hotels: "/hotels",
   cars: "/cars",
   aboutUs: "/aboutUs",
+  searchedFlightsList: "/flights",
 };

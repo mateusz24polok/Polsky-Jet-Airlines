@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   Box,
   Button,
@@ -17,14 +18,18 @@ import {
 } from "formik-material-ui-lab";
 import { DatePicker } from "formik-material-ui-pickers";
 import * as Yup from "yup";
+import { routesPaths } from "@resources/res.routesPaths";
 import {
-  fetchFlights,
   selectDestinationAirportCities,
   selectStartingAirportCities,
 } from "@store/slices/flights";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import { prepareQueryParamsURLFromObject } from "@utils/urlUtils";
 import { OptionFormItem } from "@appTypes/shared/form";
-import { FlightsSearchFormFiltersValues } from "@appTypes/flight";
+import {
+  FlightsSearchFilters,
+  FlightsSearchFormFiltersValues,
+} from "@appTypes/flight";
 import { prepareFlightsSearchFilters } from "./helpers";
 import { useStyles } from "./styles";
 
@@ -53,7 +58,7 @@ const FlightSearchSchema = Yup.object().shape({
 
 export const FlightSearchForm: React.FC = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const history = useHistory();
 
   const mediumMediaQuerryBreakpointMatches = useMediumBrekpointMatchesUp();
 
@@ -78,6 +83,15 @@ export const FlightSearchForm: React.FC = () => {
     flightDateTo: new Date(new Date().getTime() + 72 * 60 * 60 * 1000),
   };
 
+  const goToTheFlightList = (flightsQueryParams: FlightsSearchFilters) => {
+    history.push(
+      prepareQueryParamsURLFromObject(
+        { ...flightsQueryParams },
+        routesPaths.searchedFlightsList,
+      ),
+    );
+  };
+
   const renderTitle = (): JSX.Element => (
     <Box mb={2}>
       <Typography
@@ -97,7 +111,7 @@ export const FlightSearchForm: React.FC = () => {
         initialValues={formInitialValues}
         validationSchema={FlightSearchSchema}
         onSubmit={values => {
-          dispatch(fetchFlights(prepareFlightsSearchFilters(values)));
+          goToTheFlightList(prepareFlightsSearchFilters(values));
         }}
       >
         {({ handleReset, submitForm, errors, initialValues, values }) => (
@@ -213,7 +227,7 @@ export const FlightSearchForm: React.FC = () => {
                       disabled={Object.keys(errors).length > 0}
                       onClick={submitForm}
                     >
-                      Szukaj loty
+                      Wyszukaj loty
                     </Button>
                   </Grid>
                 </Grid>

@@ -12,3 +12,21 @@ export const prepareQueryParamsURLFromObject = (
   }
   return `?${queryParamsURL}`;
 };
+
+export const prepareObjectFromQueryParamsURL = (url: string) => {
+  if (url.startsWith("?")) {
+    const queryParams = url.slice(1).split("&");
+    const queryParamsObject = queryParams.reduce(
+      (previousValue, currentValue) => {
+        const currentObjectEntry = currentValue.split("=");
+        return {
+          ...previousValue,
+          [currentObjectEntry[0]]: currentObjectEntry[1],
+        };
+      },
+      {},
+    );
+    return queryParamsObject;
+  }
+  return {};
+};

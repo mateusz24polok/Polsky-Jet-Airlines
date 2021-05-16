@@ -9,4 +9,5 @@ export interface Route {
     | JSX.Element;
   exact?: boolean;
   disable?: boolean;
+  appBarElement?: boolean;
 }

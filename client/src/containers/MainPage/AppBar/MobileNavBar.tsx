@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Box,
   Collapse,
@@ -11,6 +12,7 @@ import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
+import { routesPaths } from "@resources/res.routesPaths";
 import { useSmallBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
@@ -45,17 +47,19 @@ export const MobileNavBar = (): JSX.Element => {
               alignItems="center"
             >
               <Grid item>
-                <IconButton edge="start" className={classes.menuButton}>
-                  <img
-                    src={
-                      smallMatches
-                        ? R.images.logo.LogoFullSmall
-                        : R.images.logo.ImageLogo
-                    }
-                    alt="Logo"
-                    height={50}
-                  />
-                </IconButton>
+                <Link to={routesPaths.home}>
+                  <IconButton edge="start" className={classes.menuButton}>
+                    <img
+                      src={
+                        smallMatches
+                          ? R.images.logo.LogoFullSmall
+                          : R.images.logo.ImageLogo
+                      }
+                      alt="Logo"
+                      height={50}
+                    />
+                  </IconButton>
+                </Link>
               </Grid>
             </Grid>
             <Grid item sm={6} xs={10}>

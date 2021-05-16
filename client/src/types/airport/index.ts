@@ -8,6 +8,7 @@ export enum Continent {
 }
 
 export interface Airport {
+  _id: string;
   city: string;
   country: string;
   continent: Continent;
