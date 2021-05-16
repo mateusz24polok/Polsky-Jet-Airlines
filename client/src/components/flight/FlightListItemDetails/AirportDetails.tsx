@@ -2,8 +2,10 @@ import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { Image } from "@appTypes/shared/image";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import { useLargeBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 
 interface Props {
+  date: string;
   time: string;
   city: string;
   airport: string;
@@ -18,23 +20,35 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export const AirportDetails: React.FC<Props> = ({
+  date,
   time,
   city,
   airport,
   photo,
 }) => {
   const classes = useStyles();
+  const largeMediaBreakpointMatches = useLargeBrekpointMatchesUp();
+
+  const renderDetailsText = (): JSX.Element => {
+    return (
+      <>
+        <Typography variant="h6">{city}</Typography>
+        <Typography variant="h6">
+          {date} {time}
+        </Typography>
+        <Typography variant="subtitle1">{airport}</Typography>
+      </>
+    );
+  };
+
   return (
     <Grid container direction="row" alignItems="center">
-      <Grid item>
-        <img className={classes.photo} src={photo} alt={city} height={120} />
-      </Grid>
-      <Grid item>
-        <Typography variant="h5">
-          {time} {city}
-        </Typography>
-        <Typography variant="h6">{airport}</Typography>
-      </Grid>
+      {largeMediaBreakpointMatches && (
+        <Grid item>
+          <img className={classes.photo} src={photo} alt={city} height={120} />
+        </Grid>
+      )}
+      <Grid item>{renderDetailsText()}</Grid>
     </Grid>
   );
 };

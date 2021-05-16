@@ -6,7 +6,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: theme.spacing(4),
   },
   actionsBox: {
-    borderLeft: "1px solid",
-    borderColor: theme.palette.footerGray,
+    [theme.breakpoints.up("md")]: {
+      borderLeft: "1px solid",
+      borderColor: theme.palette.footerGray,
+    },
   },
 }));

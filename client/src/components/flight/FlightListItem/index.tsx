@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, Divider, Grid, Paper } from "@material-ui/core";
+import { Box, Grid, Paper } from "@material-ui/core";
 import { FlightListItemActions } from "@components/flight/FlightListItemActions";
 import { FlightListItemDetails } from "@components/flight/FlightListItemDetails";
+import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import { Currency } from "@appTypes/shared/money";
 import { useStyles } from "./styles";
 
 // const flight = {
@@ -124,19 +126,45 @@ import { useStyles } from "./styles";
 
 export const FlightListItem = () => {
   const classes = useStyles();
+  const mediumMediaBreakpointMatches = useMediumBrekpointMatchesUp();
+
+  const renderDesktopView = (): JSX.Element => (
+    <Grid container justify="space-around" alignItems="center" wrap="nowrap">
+      <Grid item xs={10}>
+        <FlightListItemDetails />
+      </Grid>
+      <Grid item xs={2}>
+        <Box className={classes.actionsBox} pl={1} ml={2}>
+          <FlightListItemActions
+            price={{ value: 960, currency: Currency.PLN }}
+          />
+        </Box>
+      </Grid>
+    </Grid>
+  );
+
+  const rednerMobileView = (): JSX.Element => (
+    <Grid
+      container
+      direction="column"
+      justify="space-around"
+      alignItems="center"
+      wrap={mediumMediaBreakpointMatches ? "nowrap" : "wrap"}
+    >
+      <FlightListItemDetails />
+      <Box
+        className={classes.actionsBox}
+        pl={mediumMediaBreakpointMatches ? 1 : 0}
+        ml={mediumMediaBreakpointMatches ? 2 : 0}
+      >
+        <FlightListItemActions price={{ value: 960, currency: Currency.PLN }} />
+      </Box>
+    </Grid>
+  );
+
   return (
     <Paper className={classes.paper}>
-      <Grid container justify="space-around" alignItems="center" wrap="nowrap">
-        <Grid item xs={10}>
-          <FlightListItemDetails />
-        </Grid>
-        <Divider orientation="vertical" variant="fullWidth" />
-        <Grid item xs={2}>
-          <Box className={classes.actionsBox} ml={2}>
-            <FlightListItemActions />
-          </Box>
-        </Grid>
-      </Grid>
+      {mediumMediaBreakpointMatches ? renderDesktopView() : rednerMobileView()}
     </Paper>
   );
 };

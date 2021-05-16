@@ -28,6 +28,7 @@ import WomanOfficeWorkerIcon from "@images/icons/customersIcons/woman_office_wor
 import OpinionIcon from "@images/icons/opinion_icon.png";
 import AirplaneIconBlack from "@images/icons/airplane_icon.png";
 import RightArrowIcon from "@images/icons/right_arrow_icon.png";
+import DownArrowIcon from "@images/icons/down_arrow_icon.png";
 
 export interface Images {
   backgrounds: {
@@ -64,6 +65,7 @@ export interface Images {
     readonly OpinionIcon: Image;
     readonly AirplaneIconBlack: Image;
     readonly RightArrowIcon: Image;
+    readonly DownArrowIcon: Image;
   };
 }
 
@@ -100,5 +102,6 @@ export const images: Images = {
     OpinionIcon,
     AirplaneIconBlack,
     RightArrowIcon,
+    DownArrowIcon,
   },
 };
