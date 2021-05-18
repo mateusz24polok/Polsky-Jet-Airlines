@@ -6,6 +6,7 @@ const flightSchema: Schema = new Schema({
     type: String,
     enum: ["OPEN", "CANCELLED", "CLOSED"],
     required: true,
+    default: "OPEN",
   },
   startingAirport: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,6 +23,12 @@ const flightSchema: Schema = new Schema({
   startingDate: {
     type: Date,
     required: true,
+    validate: {
+      validator: function (val: Date): Boolean {
+        return val.getTime() > new Date().getTime();
+      },
+      message: "Starting Date of flight must be greater than today",
+    },
   },
   tickets: [
     {
@@ -102,7 +109,12 @@ interface FlightBaseDocument extends IFlight, Document {
   ticket: Types.Array<Ticket>;
 }
 
-//DOCUMENT MIDDLEWARE - ASSING STARTING AND DESTINATION CITY TO SEPARATE FIELDS
+flightSchema.pre(/^find/, function (this: any, next) {
+  this.find({ startingDate: { $gte: new Date() } });
+  next();
+});
+
+//DOCUMENT MIDDLEWARE - ASSIGN STARTING AND DESTINATION CITY TO SEPARATE FIELDS
 flightSchema.pre<FlightBaseDocument>("save", async function (next) {
   const startingcityArray = await Airport.findCityById(this.startingAirport);
   const destinationCityArray = await Airport.findCityById(
