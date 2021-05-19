@@ -66,6 +66,7 @@ const flightSchema = new mongoose.Schema({
     type: String,
     enum: ["OPEN", "CANCELLED", "CLOSED"],
     required: true,
+    default: "OPEN",
   },
   startingAirport: {
     type: mongoose.Schema.Types.ObjectId,
@@ -82,29 +83,33 @@ const flightSchema = new mongoose.Schema({
   startingDate: {
     type: Date,
     required: true,
-  },
-  tickets: [
-    {
-      status: {
-        type: String,
-        enum: ["OPEN", "CLOSED", "BLOCKED", "WITHDRAWN"],
-        required: true,
+    validate: {
+      validator: function (val) {
+        return val.getTime() > new Date().getTime();
       },
-      price: {
-        value: { type: Number, required: true, min: 0 },
-        currency: { type: String, required: true, enum: ["PLN", "EUR", "USD"] },
-      },
-      class: {
-        type: String,
-        required: true,
-        enum: ["ECONOMY", "STANDARD", "PREMIUM"],
-      },
-      airplanePosition: {
-        type: String,
-        required: true,
-      },
+      message: "Starting Date of flight must be greater than today",
     },
-  ],
+  },
+  ticketsLeft: {
+    economy: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 30,
+    },
+    standard: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 30,
+    },
+    premium: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 30,
+    },
+  },
   estimatedFlightTime: {
     type: Number,
     required: true,
