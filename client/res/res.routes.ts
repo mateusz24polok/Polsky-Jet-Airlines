@@ -2,6 +2,7 @@ import { Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
+import { ManagementPage } from "@pages/ManagementPage";
 
 export const routes: Route[] = [
   {
@@ -33,9 +34,16 @@ export const routes: Route[] = [
     appBarElement: true,
   },
   {
-    id: "searchefFlightsList",
+    id: "searchFlightsList",
     path: routesPaths.searchedFlightsList,
     component: FlightsResultPage,
+  },
+  {
+    id: "management",
+    path: routesPaths.management,
+    label: "Zarządzaj",
+    component: ManagementPage,
+    appBarElement: true,
   },
 ];
 

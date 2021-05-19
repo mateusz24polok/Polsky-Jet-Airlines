@@ -1,11 +1,12 @@
 export interface RoutesPaths {
-  root: string;
-  home: string;
-  flights: string;
-  hotels: string;
-  cars: string;
-  aboutUs: string;
-  searchedFlightsList: string;
+  readonly root: string;
+  readonly home: string;
+  readonly flights: string;
+  readonly hotels: string;
+  readonly cars: string;
+  readonly aboutUs: string;
+  readonly searchedFlightsList: string;
+  readonly management: string;
 }
 
 export const routesPaths: RoutesPaths = {
@@ -16,4 +17,5 @@ export const routesPaths: RoutesPaths = {
   cars: "/cars",
   aboutUs: "/aboutUs",
   searchedFlightsList: "/flights",
+  management: "/management",
 };
