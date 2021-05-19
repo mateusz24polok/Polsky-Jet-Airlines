@@ -30,28 +30,26 @@ const flightSchema: Schema = new Schema({
       message: "Starting Date of flight must be greater than today",
     },
   },
-  tickets: [
-    {
-      status: {
-        type: String,
-        enum: ["OPEN", "CLOSED", "BLOCKED", "WITHDRAWN"],
-        required: true,
-      },
-      price: {
-        value: { type: Number, required: true, min: 0 },
-        currency: { type: String, required: true, enum: ["PLN", "EUR", "USD"] },
-      },
-      class: {
-        type: String,
-        required: true,
-        enum: ["ECONOMY", "STANDARD", "PREMIUM"],
-      },
-      airplanePosition: {
-        type: String,
-        required: true,
-      },
+  ticketsLeft: {
+    economy: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 30,
     },
-  ],
+    standard: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 30,
+    },
+    premium: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 30,
+    },
+  },
   estimatedFlightTime: {
     type: Number,
     required: true,
@@ -64,34 +62,41 @@ enum FlightStatus {
   CLOSED = "CLOSED",
 }
 
-enum Currency {
-  PLN = "PLN",
-  EUR = "EUR",
-  USD = "USD",
-}
-interface Money {
-  value: number;
-  currency: Currency;
-}
+// enum Currency {
+//   PLN = "PLN",
+//   EUR = "EUR",
+//   USD = "USD",
+// }
+// interface Money {
+//   value: number;
+//   currency: Currency;
+// }
 
-enum TicketStatus {
-  OPEN = "OPEN",
-  CLOSED = "CLOSED",
-  BLOCKED = "BLOCKED",
-  WITHDRAWN = "WITHDRAWN",
-}
+//WITHDRAWN FROM APP
+// enum TicketStatus {
+//   OPEN = "OPEN",
+//   CLOSED = "CLOSED",
+//   BLOCKED = "BLOCKED",
+//   WITHDRAWN = "WITHDRAWN",
+// }
 
-enum TicketClass {
-  ECONOMY = "ECONOMY",
-  STANDARD = "STANDARD",
-  PREMIUM = "PREMIUM",
-}
+// enum TicketClass {
+//   ECONOMY = "ECONOMY",
+//   STANDARD = "STANDARD",
+//   PREMIUM = "PREMIUM",
+// }
 
-interface Ticket {
-  status: TicketStatus;
-  price: Money;
-  class: TicketClass;
-  airplanePosition: string;
+// interface Ticket {
+//   status: TicketStatus;
+//   price: Money;
+//   class: TicketClass;
+//   airplanePosition: string;
+// }
+
+interface TicketsLeft {
+  economy: number;
+  standard: number;
+  premium: number;
 }
 
 interface IFlight {
@@ -101,15 +106,17 @@ interface IFlight {
   destinationAirport: AirportBaseDocument["_id"];
   destinationCity: string;
   startingDate: Date;
-  ticket: Array<Ticket>;
+  ticketsLeft: TicketsLeft;
   estimatedFlightTime: number;
 }
 
-interface FlightBaseDocument extends IFlight, Document {
-  ticket: Types.Array<Ticket>;
-}
+// interface FlightBaseDocument extends IFlight, Document {
+//   ticket: Types.Array<Ticket>;
+// }
 
-flightSchema.pre(/^find/, function (this: any, next) {
+interface FlightBaseDocument extends IFlight, Document {}
+
+flightSchema.pre(/^find/, function (this: Model<any>, next) {
   this.find({ startingDate: { $gte: new Date() } });
   next();
 });
