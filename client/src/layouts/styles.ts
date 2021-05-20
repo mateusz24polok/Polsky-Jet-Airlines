@@ -6,6 +6,7 @@ export const useStyles = makeStyles({
   },
   content: {
     flexGrow: 1,
+    position: "relative",
   },
   appBar: {
     flexGrow: 0,
