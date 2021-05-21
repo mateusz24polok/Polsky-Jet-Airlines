@@ -14,7 +14,10 @@ export const NavList: React.FC<Props> = ({ navRoutes }) => {
     <>
       {navRoutes.map(route => (
         <Grid key={route.id} item>
-          <Link className={classes.routerLink} to={route.path}>
+          <Link
+            className={classes.routerLink}
+            to={route.nestedRoutes ? `${route.path}/` : route.path}
+          >
             <Typography variant="h6" className={classes.title}>
               {route.label}
             </Typography>

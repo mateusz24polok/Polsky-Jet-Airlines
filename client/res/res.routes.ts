@@ -1,8 +1,12 @@
-import { Route } from "@appTypes/routes";
+import { NestedRoute, Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
+import { AirportsDetailsTable } from "@components/management/AirportsDetailsTable";
+import { NewAirportForm } from "@components/management/NewAirportForm";
+import { FlightsDetailsTable } from "@components/management/FlightsDetailsTable";
+import { NewFlightForm } from "@components/management/NewFlightForm";
 
 export const routes: Route[] = [
   {
@@ -44,7 +48,35 @@ export const routes: Route[] = [
     label: "Zarządzaj",
     component: ManagementPage,
     appBarElement: true,
+    nestedRoutes: [
+      {
+        id: "airportsDetailsManagement",
+        path: routesPaths.managementAirportsDetails,
+        exact: true,
+        component: AirportsDetailsTable,
+      },
+      {
+        id: "newAirportManagement",
+        path: routesPaths.managementNewAirport,
+        exact: true,
+        component: NewAirportForm,
+      },
+      {
+        id: "flightsDetailsManagement",
+        path: routesPaths.managementFlightsDetails,
+        exact: true,
+        component: FlightsDetailsTable,
+      },
+      {
+        id: "newFlightManagement",
+        path: routesPaths.managementNewFlight,
+        exact: true,
+        component: NewFlightForm,
+      },
+    ],
   },
 ];
 
 export const navRoutes: Route[] = routes.filter(route => route.appBarElement);
+export const managementRoutes: NestedRoute[] =
+  routes.filter(route => route.id === "management")[0].nestedRoutes || [];

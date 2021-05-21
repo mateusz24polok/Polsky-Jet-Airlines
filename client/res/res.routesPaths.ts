@@ -7,6 +7,10 @@ export interface RoutesPaths {
   readonly aboutUs: string;
   readonly searchedFlightsList: string;
   readonly management: string;
+  readonly managementAirportsDetails: string;
+  readonly managementNewAirport: string;
+  readonly managementFlightsDetails: string;
+  readonly managementNewFlight: string;
 }
 
 export const routesPaths: RoutesPaths = {
@@ -18,4 +22,8 @@ export const routesPaths: RoutesPaths = {
   aboutUs: "/aboutUs",
   searchedFlightsList: "/flights",
   management: "/management",
+  managementAirportsDetails: "/management/airports",
+  managementNewAirport: "/management/new-airport",
+  managementFlightsDetails: "/management/flights",
+  managementNewFlight: "/management/new-flight",
 };

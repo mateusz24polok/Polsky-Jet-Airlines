@@ -39,7 +39,11 @@ export const AppLayout: React.FC = () => {
           {routes.map(route => (
             <Route
               key={route.id}
-              path={route.path}
+              path={
+                route.nestedRoutes && route.nestedRoutes?.length > 0
+                  ? `${route.path}/*`
+                  : route.path
+              }
               component={route.component as React.FC<unknown>}
               exact={true}
             />
