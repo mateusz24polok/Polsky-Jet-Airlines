@@ -18,3 +18,8 @@ export interface Airport {
   startingPoint: boolean;
   destinationPoint: boolean;
 }
+
+export interface AirportServiceResponse {
+  status: string;
+  data: Array<Airport>;
+}
