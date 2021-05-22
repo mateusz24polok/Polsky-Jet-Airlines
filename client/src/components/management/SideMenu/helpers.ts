@@ -26,3 +26,16 @@ export const setMenuStateAfterButtonMenuItemClick = (
     };
   });
 };
+
+export const getInitialMenuChoicePath = (
+  menuInitialData: CollapsibleMenuItemInterface[],
+): string => {
+  const buttonMenuItems = menuInitialData.flatMap(
+    menuItem => menuItem.children,
+  );
+  const chosenMenuItem = buttonMenuItems.filter(
+    buttonMenuItem => buttonMenuItem.isChosen,
+  );
+
+  return chosenMenuItem[0].path || "/";
+};
