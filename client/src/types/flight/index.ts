@@ -1,4 +1,3 @@
-import { Ticket } from "@appTypes/ticket";
 import { Airport } from "@appTypes/airport";
 import { OptionFormItem } from "@appTypes/shared/form";
 
@@ -21,7 +20,11 @@ export interface Flight {
   destinationAirport: Airport;
   destinationCity: string;
   startingDate: Date;
-  ticket: Array<Ticket>;
+  ticketsLeft: {
+    economy: number;
+    standard: number;
+    premium: number;
+  };
   estimatedFlightTime: number;
 }
 
