@@ -9,6 +9,7 @@ declare module "@material-ui/core/styles/createPalette" {
     socialMediaIconsAzure: React.CSSProperties["color"];
     footerBlue: React.CSSProperties["color"];
     footerGray: React.CSSProperties["color"];
+    mainGray: React.CSSProperties["color"];
   }
   interface PaletteOptions {
     brandBlack?: React.CSSProperties["color"];
@@ -18,6 +19,7 @@ declare module "@material-ui/core/styles/createPalette" {
     socialMediaIconsAzure?: React.CSSProperties["color"];
     footerBlue?: React.CSSProperties["color"];
     footerGray?: React.CSSProperties["color"];
+    mainGray?: React.CSSProperties["color"];
   }
 }
 
@@ -30,6 +32,7 @@ export const theme = createMuiTheme({
     socialMediaIconsAzure: "#7fb9de",
     footerBlue: "#005489",
     footerGray: "#5a6163",
+    mainGray: "#696969",
   },
   breakpoints: {
     values: {

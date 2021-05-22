@@ -3,20 +3,21 @@ import { Route, Switch } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { SideMenu } from "@components/management/SideMenu";
 import { managementRoutes } from "@resources/res.routes";
+import { useStyles } from "./styles";
 
 export const ManagementPage: React.FC = () => {
+  const classes = useStyles();
   return (
-    // {/* <Typography variant="h5">Managment System</Typography> */}
     <Grid
+      className={classes.container}
       container
       alignItems="stretch"
       wrap="nowrap"
-      style={{ position: "absolute", minHeight: "100%" }}
     >
-      <Grid item xs={2} style={{ backgroundColor: "gray" }}>
+      <Grid className={classes.menu} item xs={2}>
         <SideMenu />
       </Grid>
-      <Grid item xs={10} style={{ backgroundColor: "orange" }}>
+      <Grid className={classes.dataContent} item xs={10}>
         <Switch>
           {managementRoutes.map(managementRoute => (
             <Route
@@ -27,7 +28,7 @@ export const ManagementPage: React.FC = () => {
             />
           ))}
           <Route>
-            <h1>Wrong management site</h1>
+            <h1>{`Management site you're trying to reach doesn't exist`}</h1>
           </Route>
         </Switch>
       </Grid>
