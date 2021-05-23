@@ -7,7 +7,7 @@ interface InnerProps {
 }
 
 type Props = InnerProps & TextFieldProps;
-type ConfigTextField = TextFieldProps & FieldInputProps<any>;
+type ConfigTextField = TextFieldProps & FieldInputProps<HTMLElement>;
 
 export const CustomTextField = ({ name, ...otherProps }: Props) => {
   const [field, meta] = useField(name);

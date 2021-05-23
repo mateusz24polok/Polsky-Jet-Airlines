@@ -1,5 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Airport, AirportServiceResponse } from "@appTypes/airport";
+import {
+  Airport,
+  AirportServiceResponse,
+  CreateAirportRequest,
+} from "@appTypes/airport";
 import { RootState } from "@store/setupStore";
 
 interface AirportsState {
@@ -34,6 +38,22 @@ export const airportsSlice = createSlice({
       state.isProgress = false;
       state.isError = true;
     },
+    createAirports: (
+      state: AirportsState,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<CreateAirportRequest>,
+    ) => {
+      state.isProgress = true;
+      state.isError = false;
+    },
+    createAirportsSuccess: (state: AirportsState) => {
+      state.isProgress = false;
+      state.isError = false;
+    },
+    createAirportsError: (state: AirportsState) => {
+      state.isProgress = false;
+      state.isError = true;
+    },
   },
 });
 
@@ -52,6 +72,9 @@ export const {
   fetchAirports,
   fetchAirportsSuccess,
   fetchAirportsError,
+  createAirports,
+  createAirportsError,
+  createAirportsSuccess,
 } = airportsSlice.actions;
 
 export const airportsReducer = airportsSlice.reducer;

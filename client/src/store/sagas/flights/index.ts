@@ -11,13 +11,13 @@ import {
   fetchFlightsSuccess,
 } from "@store/slices/flights";
 import { getFlightsService } from "@services/flights";
-import { FlightServiceResponse, FlightsSearchFilters } from "@appTypes/flight";
+import { FlightServiceResponse } from "@appTypes/flight";
 
 function* flightsSagaWorker(
   fetchFlightAction: ReturnType<typeof fetchFlights>,
 ): Generator<
   | void
-  | CallEffect<FlightServiceResponse | FlightsSearchFilters>
+  | CallEffect<FlightServiceResponse>
   | PutEffect<{
       payload: FlightServiceResponse;
       type: string;

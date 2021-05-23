@@ -28,6 +28,8 @@ export interface Airport {
   destinationPoint: boolean;
 }
 
+export type CreateAirportRequest = Omit<Airport, "_id">;
+
 export interface AirportServiceResponse {
   status: string;
   data: Array<Airport>;

@@ -6,14 +6,17 @@ import {
   takeLatest,
 } from "redux-saga/effects";
 import {
+  createAirports,
+  createAirportsError,
+  createAirportsSuccess,
   fetchAirports,
   fetchAirportsError,
   fetchAirportsSuccess,
 } from "@store/slices/airports";
-import { getAirportService } from "@services/airports";
+import { getAirportService, postAirportService } from "@services/airports";
 import { AirportServiceResponse } from "@appTypes/airport";
 
-function* airportsSagaWorker(): Generator<
+function* fetchAirportsSagaWorker(): Generator<
   | void
   | CallEffect
   | PutEffect<{
@@ -34,6 +37,24 @@ function* airportsSagaWorker(): Generator<
   }
 }
 
-export function* airportsSaga() {
-  yield takeLatest(fetchAirports.type, airportsSagaWorker);
+function* createAirportsSagaWorker(
+  createAirportsAction: ReturnType<typeof createAirports>,
+): Generator<
+  void | CallEffect | PutEffect<{ payload: undefined; type: string }>,
+  void
+> {
+  try {
+    yield call<any>(postAirportService, createAirportsAction?.payload);
+    yield put(createAirportsSuccess());
+  } catch (error) {
+    yield put(createAirportsError());
+  }
+}
+
+export function* fetchAirportsSaga() {
+  yield takeLatest(fetchAirports.type, fetchAirportsSagaWorker);
+}
+
+export function* createAirportsSaga() {
+  yield takeLatest(createAirports.type, createAirportsSagaWorker);
 }

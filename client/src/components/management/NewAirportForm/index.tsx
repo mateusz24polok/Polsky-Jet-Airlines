@@ -1,16 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Box, Button, Grid, Paper, Typography } from "@material-ui/core";
 import { Formik, Form as FormikForm } from "formik";
 import { CustomTextField } from "@components/shared/CustomTextField";
 import { CustomSelectField } from "@components/shared/CustomSelectField";
 import { CustomCheckbox } from "@components/shared/CustomCheckbox";
-import { Airport, Continent, continents } from "@appTypes/airport";
+import { createAirports } from "@store/slices/airports";
+import { Continent, CreateAirportRequest, continents } from "@appTypes/airport";
 import { OptionFormItem } from "@appTypes/shared/form";
 import { NewAirportSchema } from "./schema";
 import { useStyles } from "./styles";
 
 export const NewAirportForm: React.FC = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const continentsFormOptions: OptionFormItem[] = continents.map(continent => ({
     label: continent,
@@ -25,7 +28,7 @@ export const NewAirportForm: React.FC = () => {
     </Box>
   );
 
-  const formInitialValues: Omit<Airport, "_id"> = {
+  const formInitialValues: CreateAirportRequest = {
     airport: "",
     airportKey: "",
     city: "",
@@ -45,10 +48,7 @@ export const NewAirportForm: React.FC = () => {
           initialValues={formInitialValues}
           validationSchema={NewAirportSchema}
           onSubmit={values => {
-            console.log("Result of form", {
-              ...values,
-              terminals: [values.terminals],
-            });
+            dispatch(createAirports(values));
           }}
         >
           {({ handleReset, submitForm, errors, initialValues, values }) => (
@@ -127,7 +127,10 @@ export const NewAirportForm: React.FC = () => {
                     variant="contained"
                     color="primary"
                     disabled={Object.keys(errors).length > 0}
-                    onClick={submitForm}
+                    onClick={async () => {
+                      await submitForm();
+                      handleReset();
+                    }}
                   >
                     Dodaj
                   </Button>
