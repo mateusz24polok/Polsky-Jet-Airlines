@@ -17,8 +17,8 @@ import {
   AutocompleteRenderInputParams,
 } from "formik-material-ui-lab";
 import { DatePicker } from "formik-material-ui-pickers";
-import * as Yup from "yup";
 import { routesPaths } from "@resources/res.routesPaths";
+import { R } from "@resources/res";
 import {
   selectDestinationAirportCities,
   selectStartingAirportCities,
@@ -31,30 +31,8 @@ import {
   FlightsSearchFormFiltersValues,
 } from "@appTypes/flight";
 import { prepareFlightsSearchFilters } from "./helpers";
+import { FlightSearchSchema } from "./schema";
 import { useStyles } from "./styles";
-
-const FlightSearchSchema = Yup.object().shape({
-  startingCity: Yup.object().shape({
-    label: Yup.string().required(),
-    value: Yup.string().required(),
-  }),
-  destinationCity: Yup.object().shape({
-    label: Yup.string().required(),
-    value: Yup.string().required(),
-  }),
-  flightDateFrom: Yup.date()
-    .max(
-      Yup.ref("flightDateTo"),
-      "Data początkowa nie może być późniejsza niż końcowa",
-    )
-    .required("Data początkowa jest wymagana"),
-  flightDateTo: Yup.date()
-    .min(
-      Yup.ref("flightDateFrom"),
-      "Data końcowa nie może być wcześniejsza niż początkowa",
-    )
-    .required("Data końcowa jest wymagana"),
-});
 
 export const FlightSearchForm: React.FC = () => {
   const classes = useStyles();
@@ -80,7 +58,13 @@ export const FlightSearchForm: React.FC = () => {
     startingCity: { label: "Katowice", value: "Katowice" },
     destinationCity: { label: "Atlanta", value: "Atlanta" },
     flightDateFrom: new Date(),
-    flightDateTo: new Date(new Date().getTime() + 72 * 60 * 60 * 1000),
+    flightDateTo: new Date(
+      new Date().getTime() +
+        R.appSettings.earliestLatestSearchFlightsDateTimespanHours *
+          60 *
+          60 *
+          1000,
+    ),
   };
 
   const goToTheFlightList = (flightsQueryParams: FlightsSearchFilters) => {

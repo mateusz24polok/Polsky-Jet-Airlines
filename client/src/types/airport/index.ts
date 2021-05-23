@@ -7,6 +7,15 @@ export enum Continent {
   AFRICA = "Africa",
 }
 
+export const continents: Continent[] = [
+  Continent.AFRICA,
+  Continent.ASIA,
+  Continent.AUSTRALIA,
+  Continent.EUROPE,
+  Continent.NORTH_AMERICA,
+  Continent.SOUTH_AMERICA,
+];
+
 export interface Airport {
   _id: string;
   city: string;
