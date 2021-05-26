@@ -26,6 +26,7 @@ export interface Airport {
   terminals: Array<string>;
   startingPoint: boolean;
   destinationPoint: boolean;
+  airportPhoto: string;
 }
 
 export type CreateAirportRequest = Omit<Airport, "_id">;
