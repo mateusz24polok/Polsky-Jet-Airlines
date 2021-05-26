@@ -46,7 +46,7 @@ export const AirportsDetailsTable: React.FC = () => {
             {airports.map(airport => (
               <AirportDetailsTableRow
                 key={airport._id}
-                image={R.images.cities.BrusselsPhoto}
+                image={airport.airportPhoto || R.images.cities.BrusselsPhoto}
                 airport={airport.airport}
                 airportKey={airport.airportKey}
                 city={airport.city}

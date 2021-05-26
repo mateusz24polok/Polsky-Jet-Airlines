@@ -3,8 +3,8 @@ import { Grid, TableCell, TableRow } from "@material-ui/core";
 import { Image } from "@appTypes/shared/image";
 import { Airport } from "@appTypes/airport";
 
-interface Props extends Omit<Airport, "_id"> {
-  image: Image;
+interface Props extends Omit<Airport, "_id" | "airportPhoto"> {
+  image: Image | string;
 }
 
 export const AirportDetailsTableRow: React.FC<Props> = ({

@@ -5,6 +5,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { CustomTextField } from "@components/shared/CustomTextField";
 import { CustomSelectField } from "@components/shared/CustomSelectField";
 import { CustomCheckbox } from "@components/shared/CustomCheckbox";
+import { CustomFileUploadInput } from "@components/shared/CustomFileUploadInput";
 import { createAirports } from "@store/slices/airports";
 import { Continent, CreateAirportRequest, continents } from "@appTypes/airport";
 import { OptionFormItem } from "@appTypes/shared/form";
@@ -37,6 +38,7 @@ export const NewAirportForm: React.FC = () => {
     destinationPoint: true,
     startingPoint: false,
     terminals: [],
+    airportPhoto: null,
   };
 
   return (
@@ -48,7 +50,24 @@ export const NewAirportForm: React.FC = () => {
           initialValues={formInitialValues}
           validationSchema={NewAirportSchema}
           onSubmit={values => {
-            dispatch(createAirports(values));
+            const formData = new FormData();
+            formData.append("airport", values.airport);
+            formData.append("airportKey", values.airportKey);
+            formData.append("city", values.city);
+            formData.append("continent", values.continent);
+            formData.append("country", values.country);
+            formData.append(
+              "destinationPoint",
+              values.destinationPoint ? "true" : "false",
+            );
+            formData.append(
+              "startingPoint",
+              values.startingPoint ? "true" : "false",
+            );
+            formData.append("terminals", String(values.terminals));
+            formData.append("airportPhoto", values.airportPhoto || "");
+
+            dispatch(createAirports(formData));
           }}
         >
           {({ handleReset, submitForm, errors, initialValues, values }) => (
@@ -109,6 +128,9 @@ export const NewAirportForm: React.FC = () => {
                     name="startingPoint"
                     label="Starting Point"
                   />
+                </Grid>
+                <Grid item>
+                  <CustomFileUploadInput name="airportPhoto" />
                 </Grid>
                 <Grid item>
                   <Button

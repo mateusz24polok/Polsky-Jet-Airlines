@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   Airport,
   AirportServiceResponse,
-  CreateAirportRequest,
+  CreateAirportRequestFormData,
 } from "@appTypes/airport";
 import { RootState } from "@store/setupStore";
 
@@ -41,7 +41,7 @@ export const airportsSlice = createSlice({
     createAirports: (
       state: AirportsState,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      action: PayloadAction<CreateAirportRequest>,
+      action: PayloadAction<CreateAirportRequestFormData>,
     ) => {
       state.isProgress = true;
       state.isError = false;

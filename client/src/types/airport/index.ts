@@ -26,10 +26,12 @@ export interface Airport {
   terminals: Array<string>;
   startingPoint: boolean;
   destinationPoint: boolean;
-  airportPhoto: string;
+  airportPhoto: string | null;
 }
 
 export type CreateAirportRequest = Omit<Airport, "_id">;
+
+export type CreateAirportRequestFormData = FormData;
 
 export interface AirportServiceResponse {
   status: string;
