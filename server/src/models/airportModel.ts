@@ -45,10 +45,7 @@ const airportSchema: Schema = new Schema({
     required: true,
     default: true,
   },
-  airportPhoto: {
-    type: String,
-    required: true,
-  },
+  airportPhoto: String,
 });
 
 enum Continent {
