@@ -53,9 +53,15 @@ export const getAirports = catchAsync(
 
 export const createAirports = catchAsync(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    let airportPhotoPath: string;
+    if (req.hostname.includes("herokuapp")) {
+      airportPhotoPath = `${req.protocol}://${req.hostname}/uploads/${req.file.filename}`;
+    } else {
+      airportPhotoPath = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${req.file.filename}`;
+    }
     const newAirports = await Airport.create({
       ...req.body,
-      airportPhoto: `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${req.file.filename}`,
+      airportPhoto: airportPhotoPath,
     });
     res.status(201).json({
       status: "success",
