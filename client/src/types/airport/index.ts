@@ -7,6 +7,15 @@ export enum Continent {
   AFRICA = "Africa",
 }
 
+export const continents: Continent[] = [
+  Continent.AFRICA,
+  Continent.ASIA,
+  Continent.AUSTRALIA,
+  Continent.EUROPE,
+  Continent.NORTH_AMERICA,
+  Continent.SOUTH_AMERICA,
+];
+
 export interface Airport {
   _id: string;
   city: string;
@@ -17,4 +26,14 @@ export interface Airport {
   terminals: Array<string>;
   startingPoint: boolean;
   destinationPoint: boolean;
+  airportPhoto: string | null;
+}
+
+export type CreateAirportRequest = Omit<Airport, "_id">;
+
+export type CreateAirportRequestFormData = FormData;
+
+export interface AirportServiceResponse {
+  status: string;
+  data: Array<Airport>;
 }

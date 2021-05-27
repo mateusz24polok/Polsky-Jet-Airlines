@@ -45,6 +45,7 @@ const airportSchema: Schema = new Schema({
     required: true,
     default: true,
   },
+  airportPhoto: String,
 });
 
 enum Continent {
@@ -65,6 +66,7 @@ interface IAirport {
   terminals: Array<string>;
   startingPoint: boolean;
   destinationPoint: boolean;
+  airportPhoto: string;
 }
 
 export interface AirportBaseDocument extends IAirport, Document {
