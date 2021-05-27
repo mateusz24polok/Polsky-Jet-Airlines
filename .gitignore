@@ -4,5 +4,4 @@ build
 coverage
 .vscode
 dist
-uploads
 *.env
