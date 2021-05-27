@@ -8,9 +8,9 @@ import { globalErrorHandler } from "./utils/globalErrorHandler";
 
 export const app: Express = express();
 
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use(cors());
 app.use(express.json({ limit: "10kb" }));
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.get("/", (req, res) => {
   res.send("This is PolskyJet Airlines API");
