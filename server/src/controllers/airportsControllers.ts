@@ -54,6 +54,7 @@ export const getAirports = catchAsync(
 export const createAirports = catchAsync(
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     let airportPhotoPath: string;
+    //CONDITION FOR DISTINGUISH PUBLIC PATH BETWEEN LOCALHOST SERVER APP AND HEROKU SERVER APP
     if (req.hostname.includes("herokuapp")) {
       airportPhotoPath = `${req.protocol}://${req.hostname}/uploads/${req.file.filename}`;
     } else {
