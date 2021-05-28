@@ -46,3 +46,22 @@ export interface FlightsSearchFormFiltersValues {
   flightDateFrom: Date;
   flightDateTo: Date;
 }
+
+export type CreateFlightRequest = Pick<
+  Flight,
+  | "startingAirport"
+  | "destinationCity"
+  | "estimatedFlightTime"
+  | "startingDate"
+  | "ticketsLeft"
+>;
+
+export interface CreateFlightFormFormat {
+  startingAirport: OptionFormItem | null;
+  destinationAirport: OptionFormItem | null;
+  estimatedFlightTime: number;
+  startingDate: Date;
+  ticketsLeftEconomy: number;
+  ticketsLeftStandard: number;
+  ticketsLeftPremium: number;
+}

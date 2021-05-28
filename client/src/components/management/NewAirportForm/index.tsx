@@ -24,7 +24,7 @@ export const NewAirportForm: React.FC = () => {
   const renderTitle = (): JSX.Element => (
     <Box mb={2}>
       <Typography variant="h5" align="center">
-        Dodaj nowy lot
+        Dodaj nowe lotnisko
       </Typography>
     </Box>
   );
