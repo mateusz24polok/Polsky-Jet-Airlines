@@ -1,6 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { prepareQueryParamsURLFromObject } from "@utils/urlUtils";
-import { FlightServiceResponse, FlightsSearchFilters } from "@appTypes/flight";
+import {
+  CreateFlightRequest,
+  FlightServiceResponse,
+  FlightsSearchFilters,
+} from "@appTypes/flight";
 
 const flightAxiosInstance = axios.create({
   baseURL: `${process.env.api as string}/api/v1/flights`,
@@ -19,5 +23,14 @@ export const getFlightsService = async (
   } catch (error) {
     console.log(error);
     throw new Error(error);
+  }
+};
+
+export const postFlightService = async (newFlight: CreateFlightRequest) => {
+  try {
+    await flightAxiosInstance.post("/", newFlight);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
   }
 };

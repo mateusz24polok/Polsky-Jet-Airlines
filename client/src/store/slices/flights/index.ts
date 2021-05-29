@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
+  CreateFlightRequest,
   Flight,
   FlightServiceResponse,
   FlightsSearchFilters,
@@ -42,6 +43,22 @@ export const flightsSlice = createSlice({
       state.flights = action.payload.data;
     },
     fetchFlightsError: (state: FlightsState) => {
+      state.isProgress = false;
+      state.isError = true;
+    },
+    createFlight: (
+      state: FlightsState,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<CreateFlightRequest>,
+    ) => {
+      state.isProgress = true;
+      state.isError = false;
+    },
+    createFlightSuccess: (state: FlightsState) => {
+      state.isProgress = false;
+      state.isError = false;
+    },
+    createFlightError: (state: FlightsState) => {
       state.isProgress = false;
       state.isError = true;
     },
@@ -97,6 +114,9 @@ export const {
   fetchFlights,
   fetchFlightsSuccess,
   fetchFlightsError,
+  createFlight,
+  createFlightSuccess,
+  createFlightError,
 } = flightsSlice.actions;
 
 export const flightsReducer = flightsSlice.reducer;

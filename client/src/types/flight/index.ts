@@ -41,8 +41,31 @@ export interface FlightsSearchFilters {
 }
 
 export interface FlightsSearchFormFiltersValues {
-  startingCity: OptionFormItem;
-  destinationCity: OptionFormItem;
+  startingCity: OptionFormItem<string>;
+  destinationCity: OptionFormItem<string>;
   flightDateFrom: Date;
   flightDateTo: Date;
+}
+
+export interface CreateFlightRequest {
+  startingAirport: string;
+  destinationAirport: string;
+  estimatedFlightTime: number;
+  startingDate: Date;
+  ticketsLeft: {
+    economy: number;
+    standard: number;
+    premium: number;
+  };
+  status?: FlightStatus;
+}
+
+export interface CreateFlightFormFormat {
+  startingAirport: OptionFormItem<Airport> | null;
+  destinationAirport: OptionFormItem<Airport> | null;
+  estimatedFlightTime: number;
+  startingDate: Date;
+  ticketsLeftEconomy: number;
+  ticketsLeftStandard: number;
+  ticketsLeftPremium: number;
 }

@@ -16,15 +16,17 @@ export const NewAirportForm: React.FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const continentsFormOptions: OptionFormItem[] = continents.map(continent => ({
-    label: continent,
-    value: continent,
-  }));
+  const continentsFormOptions: OptionFormItem<Continent>[] = continents.map(
+    continent => ({
+      label: continent,
+      value: continent,
+    }),
+  );
 
   const renderTitle = (): JSX.Element => (
     <Box mb={2}>
       <Typography variant="h5" align="center">
-        Dodaj nowy lot
+        Dodaj nowe lotnisko
       </Typography>
     </Box>
   );

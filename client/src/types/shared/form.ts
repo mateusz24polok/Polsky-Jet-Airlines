@@ -1,4 +1,4 @@
-export interface OptionFormItem {
+export interface OptionFormItem<T> {
   label: string;
-  value: string;
+  value: T;
 }

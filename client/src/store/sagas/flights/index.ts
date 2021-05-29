@@ -6,14 +6,17 @@ import {
   takeLatest,
 } from "redux-saga/effects";
 import {
+  createFlight,
+  createFlightError,
+  createFlightSuccess,
   fetchFlights,
   fetchFlightsError,
   fetchFlightsSuccess,
 } from "@store/slices/flights";
-import { getFlightsService } from "@services/flights";
+import { getFlightsService, postFlightService } from "@services/flights";
 import { FlightServiceResponse } from "@appTypes/flight";
 
-function* flightsSagaWorker(
+function* fetchFlightsSagaWorker(
   fetchFlightAction: ReturnType<typeof fetchFlights>,
 ): Generator<
   | void
@@ -37,6 +40,24 @@ function* flightsSagaWorker(
   }
 }
 
-export function* flightsSaga() {
-  yield takeLatest(fetchFlights.type, flightsSagaWorker);
+function* createFlightSagaWorker(
+  createFlightAction: ReturnType<typeof createFlight>,
+): Generator<
+  void | CallEffect | PutEffect<{ payload: undefined; type: string }>,
+  void
+> {
+  try {
+    yield call<any>(postFlightService, createFlightAction?.payload);
+    yield put(createFlightSuccess());
+  } catch (error) {
+    yield put(createFlightError());
+  }
+}
+
+export function* fetchFlightsSaga() {
+  yield takeLatest(fetchFlights.type, fetchFlightsSagaWorker);
+}
+
+export function* createFlightSaga() {
+  yield takeLatest(createFlight.type, createFlightSagaWorker);
 }
