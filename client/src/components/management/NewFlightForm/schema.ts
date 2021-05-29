@@ -5,16 +5,17 @@ export const CreateFlightSchema = Yup.object().shape({
     .nullable()
     .required("Wprowadź lotnisko docelowe")
     .shape({
-      label: Yup.string().required("Wrong"),
+      label: Yup.string().required(),
       value: Yup.object().shape({
-        airport: Yup.string().required("Wrong"),
-        airportKey: Yup.string().required("Wrong"),
-        city: Yup.string().required("Wrong"),
-        continent: Yup.string().required("Wrong"),
-        country: Yup.string().required("Wrong"),
-        destinationPoint: Yup.boolean().required("Wrong"),
-        startingPoint: Yup.boolean().required("Wrong"),
-        terminals: Yup.array().required("Wrong"),
+        _id: Yup.string().required(),
+        airport: Yup.string().required(),
+        airportKey: Yup.string().required(),
+        city: Yup.string().required(),
+        continent: Yup.string().required(),
+        country: Yup.string().required(),
+        destinationPoint: Yup.boolean().required(),
+        startingPoint: Yup.boolean().required(),
+        terminals: Yup.array().required(),
       }),
     }),
   startingAirport: Yup.object()
@@ -23,6 +24,7 @@ export const CreateFlightSchema = Yup.object().shape({
     .shape({
       label: Yup.string().required(),
       value: Yup.object().shape({
+        _id: Yup.string().required(),
         airport: Yup.string(),
         airportKey: Yup.string(),
         city: Yup.string(),

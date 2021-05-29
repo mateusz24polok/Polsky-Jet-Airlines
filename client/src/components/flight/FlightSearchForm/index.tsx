@@ -40,14 +40,14 @@ export const FlightSearchForm: React.FC = () => {
 
   const mediumMediaQuerryBreakpointMatches = useMediumBrekpointMatchesUp();
 
-  const startingAirportCityOptions: OptionFormItem[] = useSelector(
+  const startingAirportCityOptions: OptionFormItem<string>[] = useSelector(
     selectStartingAirportCities,
   ).map(airportCity => ({
     label: airportCity,
     value: airportCity,
   }));
 
-  const destinationAirportCityOptions: OptionFormItem[] = useSelector(
+  const destinationAirportCityOptions: OptionFormItem<string>[] = useSelector(
     selectDestinationAirportCities,
   ).map(airportCity => ({
     label: airportCity,
@@ -116,12 +116,12 @@ export const FlightSearchForm: React.FC = () => {
                     name="startingCity"
                     component={Autocomplete}
                     options={startingAirportCityOptions}
-                    getOptionLabel={(option: OptionFormItem) =>
+                    getOptionLabel={(option: OptionFormItem<string>) =>
                       option ? option.label : ""
                     }
                     getOptionSelected={(
-                      option: OptionFormItem,
-                      value: OptionFormItem,
+                      option: OptionFormItem<string>,
+                      value: OptionFormItem<string>,
                     ) => option.value === value.value}
                     renderInput={(params: AutocompleteRenderInputParams) => (
                       <MuiTextField
@@ -136,12 +136,12 @@ export const FlightSearchForm: React.FC = () => {
                     name="destinationCity"
                     component={Autocomplete}
                     options={destinationAirportCityOptions}
-                    getOptionLabel={(option: OptionFormItem) =>
+                    getOptionLabel={(option: OptionFormItem<string>) =>
                       option ? option.label : ""
                     }
                     getOptionSelected={(
-                      option: OptionFormItem,
-                      value: OptionFormItem,
+                      option: OptionFormItem<string>,
+                      value: OptionFormItem<string>,
                     ) => option.value === value.value}
                     renderInput={(params: AutocompleteRenderInputParams) => (
                       <MuiTextField

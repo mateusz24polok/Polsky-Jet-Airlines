@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   Button,
@@ -18,6 +18,8 @@ import DateFnsUtils from "@date-io/date-fns";
 import { DateTimePicker } from "formik-material-ui-pickers";
 import { CustomTextField } from "@components/shared/CustomTextField";
 import { selectAirports } from "@store/slices/airports";
+import { createFlight } from "@store/slices/flights";
+import { Airport } from "@appTypes/airport";
 import { CreateFlightFormFormat } from "@appTypes/flight";
 import { OptionFormItem } from "@appTypes/shared/form";
 import { CreateFlightSchema } from "./schema";
@@ -25,18 +27,17 @@ import { useStyle } from "./styles";
 
 export const NewFlightForm: React.FC = () => {
   const classes = useStyle();
+  const dispatch = useDispatch();
   const airports = useSelector(selectAirports);
 
-  console.log(airports);
-
-  const startingAirportOptions: OptionFormItem[] = airports
+  const startingAirportOptions: OptionFormItem<Airport>[] = airports
     .filter(airport => airport.startingPoint)
     .map(airport => ({
       label: `${airport.city} (${airport.airportKey})`,
       value: airport,
     }));
 
-  const destinationAirportOptions: OptionFormItem[] = airports
+  const destinationAirportOptions: OptionFormItem<Airport>[] = airports
     .filter(airport => airport.destinationPoint)
     .map(airport => ({
       label: `${airport.city} (${airport.airportKey})`,
@@ -70,7 +71,21 @@ export const NewFlightForm: React.FC = () => {
           initialValues={formInitialValues}
           validationSchema={CreateFlightSchema}
           onSubmit={values => {
-            console.log(values);
+            if (values.destinationAirport && values.startingAirport) {
+              dispatch(
+                createFlight({
+                  destinationAirport: values.destinationAirport.value._id,
+                  startingAirport: values.startingAirport.value._id,
+                  estimatedFlightTime: values.estimatedFlightTime,
+                  startingDate: values.startingDate,
+                  ticketsLeft: {
+                    economy: values.ticketsLeftEconomy,
+                    premium: values.ticketsLeftPremium,
+                    standard: values.ticketsLeftStandard,
+                  },
+                }),
+              );
+            }
           }}
         >
           {({
@@ -93,12 +108,12 @@ export const NewFlightForm: React.FC = () => {
                     name="startingAirport"
                     component={Autocomplete}
                     options={startingAirportOptions}
-                    getOptionLabel={(option: OptionFormItem) =>
+                    getOptionLabel={(option: OptionFormItem<Airport>) =>
                       option ? option.label : ""
                     }
                     getOptionSelected={(
-                      option: OptionFormItem,
-                      value: OptionFormItem,
+                      option: OptionFormItem<Airport>,
+                      value: OptionFormItem<Airport>,
                     ) => option.value === value.value}
                     renderInput={(params: AutocompleteRenderInputParams) => (
                       <MuiTextField
@@ -115,12 +130,12 @@ export const NewFlightForm: React.FC = () => {
                     name="destinationAirport"
                     component={Autocomplete}
                     options={destinationAirportOptions}
-                    getOptionLabel={(option: OptionFormItem) =>
+                    getOptionLabel={(option: OptionFormItem<Airport>) =>
                       option ? option.label : ""
                     }
                     getOptionSelected={(
-                      option: OptionFormItem,
-                      value: OptionFormItem,
+                      option: OptionFormItem<Airport>,
+                      value: OptionFormItem<Airport>,
                     ) => option.value === value.value}
                     renderInput={(params: AutocompleteRenderInputParams) => (
                       <MuiTextField
