@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Types, Model } from "mongoose";
+import mongoose, { Document, Schema, Model } from "mongoose";
 import { Airport, AirportBaseDocument } from "./airportModel";
 
 const flightSchema: Schema = new Schema({
@@ -30,24 +30,45 @@ const flightSchema: Schema = new Schema({
       message: "Starting Date of flight must be greater than today",
     },
   },
-  ticketsLeft: {
+  tickets: {
     economy: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 30,
+      amount: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 30,
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
     standard: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 30,
+      amount: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 30,
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
     premium: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 30,
+      amount: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 30,
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
   },
   estimatedFlightTime: {
@@ -62,41 +83,19 @@ enum FlightStatus {
   CLOSED = "CLOSED",
 }
 
-// enum Currency {
-//   PLN = "PLN",
-//   EUR = "EUR",
-//   USD = "USD",
-// }
-// interface Money {
-//   value: number;
-//   currency: Currency;
-// }
-
-//WITHDRAWN FROM APP
-// enum TicketStatus {
-//   OPEN = "OPEN",
-//   CLOSED = "CLOSED",
-//   BLOCKED = "BLOCKED",
-//   WITHDRAWN = "WITHDRAWN",
-// }
-
-// enum TicketClass {
-//   ECONOMY = "ECONOMY",
-//   STANDARD = "STANDARD",
-//   PREMIUM = "PREMIUM",
-// }
-
-// interface Ticket {
-//   status: TicketStatus;
-//   price: Money;
-//   class: TicketClass;
-//   airplanePosition: string;
-// }
-
-interface TicketsLeft {
-  economy: number;
-  standard: number;
-  premium: number;
+interface Tickets {
+  economy: {
+    amount: number;
+    price: number;
+  };
+  standard: {
+    amount: number;
+    price: number;
+  };
+  premium: {
+    amount: number;
+    price: number;
+  };
 }
 
 interface IFlight {
@@ -106,13 +105,9 @@ interface IFlight {
   destinationAirport: AirportBaseDocument["_id"];
   destinationCity: string;
   startingDate: Date;
-  ticketsLeft: TicketsLeft;
+  ticketsLeft: Tickets;
   estimatedFlightTime: number;
 }
-
-// interface FlightBaseDocument extends IFlight, Document {
-//   ticket: Types.Array<Ticket>;
-// }
 
 interface FlightBaseDocument extends IFlight, Document {}
 

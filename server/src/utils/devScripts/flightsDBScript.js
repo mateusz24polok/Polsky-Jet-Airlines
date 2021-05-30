@@ -90,24 +90,45 @@ const flightSchema = new mongoose.Schema({
       message: "Starting Date of flight must be greater than today",
     },
   },
-  ticketsLeft: {
+  tickets: {
     economy: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 30,
+      amount: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 30,
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
     standard: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 30,
+      amount: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 30,
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
     premium: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 30,
+      amount: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 30,
+      },
+      price: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
     },
   },
   estimatedFlightTime: {
