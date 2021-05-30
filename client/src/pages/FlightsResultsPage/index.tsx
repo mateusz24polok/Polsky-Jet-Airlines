@@ -41,21 +41,9 @@ export const FlightsResultPage: React.FC = () => {
       justify="space-around"
       direction={mediumMediaBreakpointMatches ? "column" : "row"}
     >
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      <FlightListItem />
-      {/* {flights.map(flight => (
-        <li key={flight._id}>
-          Lot z {flight.startingCity} do {flight.destinationCity} dnia:{" "}
-          {flight.startingDate}
-        </li>
-      ))} */}
+      {flights.map(flight => (
+        <FlightListItem key={flight._id} flight={flight} />
+      ))}
     </Grid>
   );
 
