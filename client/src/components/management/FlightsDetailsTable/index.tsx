@@ -9,14 +9,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from "@material-ui/core";
+import { ManagementSiteTitle } from "@components/management/ManagementSiteTitle";
 import { fetchFlights, selectFlights } from "@store/slices/flights";
 import { FlightsDetailsTableRow } from "./FlightsDetailsTableRow";
-import { useStyles } from "./styles";
 
 export const FlightsDetailsTable: React.FC = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const flights = useSelector(selectFlights);
 
@@ -26,9 +24,7 @@ export const FlightsDetailsTable: React.FC = () => {
 
   return (
     <Box p={2}>
-      <Typography className={classes.title} variant="h5" align="center">
-        Polsky Jet Flights
-      </Typography>
+      <ManagementSiteTitle title="Polsku Jet Flights" />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -39,6 +35,7 @@ export const FlightsDetailsTable: React.FC = () => {
               <TableCell align="center">Destination Airport</TableCell>
               <TableCell align="center">Flight Time</TableCell>
               <TableCell align="center">Tickets Left</TableCell>
+              <TableCell align="center">Tickets Prices</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -51,7 +48,7 @@ export const FlightsDetailsTable: React.FC = () => {
                 startingAirport={flight.startingAirport}
                 startingCity={flight.startingCity}
                 startingDate={flight.startingDate}
-                ticketsLeft={flight.ticketsLeft}
+                tickets={flight.tickets}
               />
             ))}
           </TableBody>

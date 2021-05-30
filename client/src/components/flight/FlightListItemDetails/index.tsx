@@ -61,7 +61,7 @@ export const FlightListItemDetails: React.FC<Props> = ({ flight }) => {
           city={destinationAirport.city}
           time={`${flightArrivalDateHour}:${flightArrivalDateMinutes}`}
           date={formatedFlightArrivalDate}
-          photo={startingAirport.airportPhoto || R.images.cities.MilanPhoto}
+          photo={destinationAirport.airportPhoto || R.images.cities.MilanPhoto}
         />
       </Grid>
     </Grid>
@@ -87,7 +87,7 @@ export const FlightListItemDetails: React.FC<Props> = ({ flight }) => {
           city={destinationAirport.city}
           time={`${flightArrivalDateHour}:${flightArrivalDateMinutes}`}
           date={formatedFlightArrivalDate}
-          photo={startingAirport.airportPhoto || R.images.cities.MilanPhoto}
+          photo={destinationAirport.airportPhoto || R.images.cities.MilanPhoto}
         />
       </Grid>
     </Grid>

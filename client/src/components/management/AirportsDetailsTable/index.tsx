@@ -9,15 +9,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from "@material-ui/core";
+import { ManagementSiteTitle } from "@components/management/ManagementSiteTitle";
 import { fetchAirports, selectAirports } from "@store/slices/airports";
 import { R } from "@resources/res";
 import { AirportDetailsTableRow } from "./AirportsDetailsTableRow";
-import { useStyles } from "./styles";
 
 export const AirportsDetailsTable: React.FC = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const airports = useSelector(selectAirports);
 
@@ -27,9 +25,7 @@ export const AirportsDetailsTable: React.FC = () => {
 
   return (
     <Box p={2}>
-      <Typography className={classes.title} variant="h5" align="center">
-        Polsky Jet Airports
-      </Typography>
+      <ManagementSiteTitle title="Polsky Jet Airports" />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

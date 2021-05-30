@@ -39,13 +39,22 @@ export const CreateFlightSchema = Yup.object().shape({
     .min(0, "Czas lotu musi być większy od 0")
     .required("Wprowadź przewidywany czas lotu"),
   startingDate: Yup.date().required("Wprowadź datę wylotu"),
-  ticketsLeftEconomy: Yup.number()
+  ticketsAmountEconomy: Yup.number()
     .min(0)
     .required("Wprowadź liczbę wolnych biletów klasy ekonomicznej"),
-  ticketsLeftPremium: Yup.number()
+  ticketsAmountPremium: Yup.number()
     .min(0)
     .required("Wprowadź liczbę wolnych biletów klasy premium"),
-  ticketsLeftStandard: Yup.number()
+  ticketsAmountStandard: Yup.number()
     .min(0)
     .required("Wprowadź liczbę wolnych biletów klasy standard"),
+  ticketPriceEconomy: Yup.number()
+    .min(1, "Cena biletów powinna być większa niż 1 PLN")
+    .required("Wprowadź cenę biletów klasy ekonomicznej"),
+  ticketPriceStandard: Yup.number()
+    .min(1, "Cena biletów powinna być większa niż 1 PLN")
+    .required("Wprowadź cenę biletów klasy standard"),
+  ticketPricePremium: Yup.number()
+    .min(1, "Cena biletów powinna być większa niż 1 PLN")
+    .required("Wprowadź cenę biletów klasy premium"),
 });

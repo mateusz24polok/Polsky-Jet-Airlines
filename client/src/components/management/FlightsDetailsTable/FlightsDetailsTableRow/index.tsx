@@ -11,13 +11,21 @@ export const FlightsDetailsTableRow: React.FC<Props> = ({
   startingAirport,
   destinationAirport,
   estimatedFlightTime,
-  ticketsLeft,
+  tickets,
 }) => {
   const renderTicketsLeftCell = (): JSX.Element => (
     <>
-      <p>{`Economy: ${ticketsLeft.economy}`}</p>
-      <p>{`Standard: ${ticketsLeft.standard}`}</p>
-      <p>{`Premium: ${ticketsLeft.premium}`}</p>
+      <p>{`Economy: ${tickets.economy.amount}`}</p>
+      <p>{`Standard: ${tickets.standard.amount}`}</p>
+      <p>{`Premium: ${tickets.premium.amount}`}</p>
+    </>
+  );
+
+  const renderTicketsPricesCell = (): JSX.Element => (
+    <>
+      <p>{`Economy: ${tickets.economy.price}`}</p>
+      <p>{`Standard: ${tickets.standard.price}`}</p>
+      <p>{`Premium: ${tickets.premium.price}`}</p>
     </>
   );
 
@@ -43,6 +51,7 @@ export const FlightsDetailsTableRow: React.FC<Props> = ({
       <TableCell align="center">{destinationAirport.airport}</TableCell>
       <TableCell align="center">{estimatedFlightTime}</TableCell>
       <TableCell align="center">{renderTicketsLeftCell()}</TableCell>
+      <TableCell align="center">{renderTicketsPricesCell()}</TableCell>
     </TableRow>
   );
 };

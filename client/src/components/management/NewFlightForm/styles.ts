@@ -11,4 +11,7 @@ export const useStyle = makeStyles((theme: Theme) => ({
     marginLeft: theme.spacing(2),
     minWidth: "140px",
   },
+  ticketsAmountInput: {
+    marginRight: theme.spacing(2),
+  },
 }));
