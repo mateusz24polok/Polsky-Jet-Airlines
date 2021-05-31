@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Divider, Grid, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { CurrenciesSelect } from "./CurrenciesSelect";
 import { useStyles } from "./styles";
 
 interface Props {
@@ -13,8 +14,12 @@ export const LoginBar: React.FC<Props> = ({
   onMenuIconClick,
 }) => {
   const classes = useStyles();
+
   return (
-    <Grid container justify="flex-end" alignItems="center">
+    <Grid container justify="flex-end" alignItems="center" wrap="nowrap">
+      <Grid item container justify="flex-end">
+        <CurrenciesSelect />
+      </Grid>
       <Grid item>
         <Button color="inherit">Login</Button>
       </Grid>

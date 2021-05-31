@@ -15,6 +15,7 @@ import { useStyles } from "./styles";
 
 export const DesktopNavBar = (): JSX.Element => {
   const classes = useStyles();
+
   return (
     <MuiAppBar className={classes.root} position="static" data-testid="app-bar">
       <Toolbar>
@@ -31,7 +32,6 @@ export const DesktopNavBar = (): JSX.Element => {
                   edge="start"
                   className={classes.menuButton}
                   color="inherit"
-                  aria-label="menu"
                 >
                   <img
                     src={R.images.logo.LogoFullSmall}

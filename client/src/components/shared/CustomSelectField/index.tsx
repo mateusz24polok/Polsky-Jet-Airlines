@@ -5,7 +5,8 @@ import { OptionFormItem } from "@appTypes/shared/form";
 
 interface InnerProps {
   name: string;
-  options: OptionFormItem[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options: OptionFormItem<any>[];
 }
 
 type Props = InnerProps & TextFieldProps;
@@ -39,6 +40,7 @@ export const CustomSelectField = ({ name, options, ...otherProps }: Props) => {
   return (
     <TextField {...configSelect}>
       {options.map((option, index) => (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         <MenuItem key={index} value={option.value}>
           {option.label}
         </MenuItem>
