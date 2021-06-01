@@ -5,6 +5,7 @@ import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import {
   getNextDateAfterTimeElapsed,
   getTimeHoursMinutesFormatDateFromMinutes,
+  getTwoDigitNumberAsString,
 } from "@utils/dateUtils";
 import { Flight } from "@appTypes/flight";
 import { AirportDetails } from "./AirportDetails";
@@ -26,8 +27,12 @@ export const FlightListItemDetails: React.FC<Props> = ({ flight }) => {
   const formatedFlightStartingDate = new Date(
     startingDate,
   ).toLocaleDateString();
-  const flightStartingDateHour = new Date(startingDate).getHours();
-  const flightStartingDateMinutes = new Date(startingDate).getMinutes();
+  const flightStartingDateHour = getTwoDigitNumberAsString(
+    new Date(startingDate).getHours(),
+  );
+  const flightStartingDateMinutes = getTwoDigitNumberAsString(
+    new Date(startingDate).getMinutes(),
+  );
   const formatedFlightTime = getTimeHoursMinutesFormatDateFromMinutes(
     estimatedFlightTime,
   );
@@ -38,8 +43,12 @@ export const FlightListItemDetails: React.FC<Props> = ({ flight }) => {
   const formatedFlightArrivalDate = new Date(
     flightArrivalDate,
   ).toLocaleDateString();
-  const flightArrivalDateHour = new Date(flightArrivalDate).getHours();
-  const flightArrivalDateMinutes = new Date(flightArrivalDate).getMinutes();
+  const flightArrivalDateHour = getTwoDigitNumberAsString(
+    new Date(flightArrivalDate).getHours(),
+  );
+  const flightArrivalDateMinutes = getTwoDigitNumberAsString(
+    new Date(flightArrivalDate).getMinutes(),
+  );
 
   const renderMobileView = (): JSX.Element => (
     <Grid container direction="column" alignItems="center">

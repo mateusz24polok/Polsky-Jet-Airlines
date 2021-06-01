@@ -18,3 +18,10 @@ export const getNextDateAfterTimeElapsed = (
   const nextDateMs = basedDateMs + minutesElapsed * 60 * 1000;
   return new Date(nextDateMs);
 };
+
+export const getTwoDigitNumberAsString = (inputNumber: number): string => {
+  if (inputNumber <= 9) {
+    return `0${inputNumber}`;
+  }
+  return String(inputNumber);
+};
