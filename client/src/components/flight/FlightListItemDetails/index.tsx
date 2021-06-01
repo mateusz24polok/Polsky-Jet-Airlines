@@ -2,33 +2,75 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { R } from "@resources/res";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import {
+  getNextDateAfterTimeElapsed,
+  getTimeHoursMinutesFormatDateFromMinutes,
+  getTwoDigitNumberAsString,
+} from "@utils/dateUtils";
+import { Flight } from "@appTypes/flight";
 import { AirportDetails } from "./AirportDetails";
 import { FlightTime } from "./FlightTime";
 
-export const FlightListItemDetails: React.FC = () => {
+interface Props {
+  flight: Flight;
+}
+
+export const FlightListItemDetails: React.FC<Props> = ({ flight }) => {
   const mediumMediaBreakpointMatches = useMediumBrekpointMatchesUp();
+  const {
+    estimatedFlightTime,
+    startingAirport,
+    destinationAirport,
+    startingDate,
+  } = flight;
+
+  const formatedFlightStartingDate = new Date(
+    startingDate,
+  ).toLocaleDateString();
+  const flightStartingDateHour = getTwoDigitNumberAsString(
+    new Date(startingDate).getHours(),
+  );
+  const flightStartingDateMinutes = getTwoDigitNumberAsString(
+    new Date(startingDate).getMinutes(),
+  );
+  const formatedFlightTime = getTimeHoursMinutesFormatDateFromMinutes(
+    estimatedFlightTime,
+  );
+  const flightArrivalDate = getNextDateAfterTimeElapsed(
+    startingDate,
+    estimatedFlightTime,
+  );
+  const formatedFlightArrivalDate = new Date(
+    flightArrivalDate,
+  ).toLocaleDateString();
+  const flightArrivalDateHour = getTwoDigitNumberAsString(
+    new Date(flightArrivalDate).getHours(),
+  );
+  const flightArrivalDateMinutes = getTwoDigitNumberAsString(
+    new Date(flightArrivalDate).getMinutes(),
+  );
 
   const renderMobileView = (): JSX.Element => (
     <Grid container direction="column" alignItems="center">
       <Grid item>
         <AirportDetails
-          airport="Lotnisko Chopina"
-          city="Warszawa"
-          time="12:40"
-          date="24.05.2021"
-          photo={R.images.cities.BerlinPhoto}
+          airport={startingAirport.airport}
+          city={startingAirport.city}
+          time={`${flightStartingDateHour}:${flightStartingDateMinutes}`}
+          date={formatedFlightStartingDate}
+          photo={startingAirport.airportPhoto || R.images.cities.MilanPhoto}
         />
       </Grid>
       <Grid item>
-        <FlightTime flightTime="2h55m" />
+        <FlightTime flightTime={formatedFlightTime} />
       </Grid>
       <Grid item>
         <AirportDetails
-          airport="Charles de Gaule Airport"
-          city="Paryż"
-          time="15:45"
-          date="24.05.2021"
-          photo={R.images.cities.ParisPhoto}
+          airport={destinationAirport.airport}
+          city={destinationAirport.city}
+          time={`${flightArrivalDateHour}:${flightArrivalDateMinutes}`}
+          date={formatedFlightArrivalDate}
+          photo={destinationAirport.airportPhoto || R.images.cities.MilanPhoto}
         />
       </Grid>
     </Grid>
@@ -38,27 +80,28 @@ export const FlightListItemDetails: React.FC = () => {
     <Grid container justify="space-between">
       <Grid item>
         <AirportDetails
-          airport="Lotnisko Chopina"
-          city="Warszawa"
-          time="12:40"
-          date="24.05.2021"
-          photo={R.images.cities.BerlinPhoto}
+          airport={startingAirport.airport}
+          city={startingAirport.city}
+          time={`${flightStartingDateHour}:${flightStartingDateMinutes}`}
+          date={formatedFlightStartingDate}
+          photo={startingAirport.airportPhoto || R.images.cities.MilanPhoto}
         />
       </Grid>
       <Grid item>
-        <FlightTime flightTime="2h55m" />
+        <FlightTime flightTime={formatedFlightTime} />
       </Grid>
       <Grid item>
         <AirportDetails
-          airport="Charles de Gaule Airport"
-          city="Paryż"
-          time="15:45"
-          date="24.05.2021"
-          photo={R.images.cities.ParisPhoto}
+          airport={destinationAirport.airport}
+          city={destinationAirport.city}
+          time={`${flightArrivalDateHour}:${flightArrivalDateMinutes}`}
+          date={formatedFlightArrivalDate}
+          photo={destinationAirport.airportPhoto || R.images.cities.MilanPhoto}
         />
       </Grid>
     </Grid>
   );
+
   return (
     <>
       {mediumMediaBreakpointMatches ? renderDesktopView() : renderMobileView()}

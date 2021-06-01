@@ -1,17 +1,21 @@
 import React from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
+import { GenericPriceText } from "@components/shared/GenericPriceText";
 import {
   useLargeBrekpointMatchesUp,
   useMediumBrekpointMatchesUp,
 } from "@utils/mediaQuerriesUtils";
-import { Money } from "@appTypes/shared/money";
 import { useStyles } from "./styles";
 
 interface Props {
-  price: Money;
+  freeTickets: number;
+  priceValuePLN: number;
 }
 
-export const FlightListItemActions: React.FC<Props> = ({ price }) => {
+export const FlightListItemActions: React.FC<Props> = ({
+  freeTickets,
+  priceValuePLN,
+}) => {
   const classes = useStyles();
   const largeMediaBreakpointMatches = useLargeBrekpointMatchesUp();
   const mediumMediaBreakpointMatches = useMediumBrekpointMatchesUp();
@@ -26,13 +30,13 @@ export const FlightListItemActions: React.FC<Props> = ({ price }) => {
     >
       <Grid item>
         <Typography className={classes.price} variant="h5" align="center">
-          Już od {price.value} {price.currency}
+          Już od <GenericPriceText valuePLN={priceValuePLN} />
         </Typography>
       </Grid>
       {largeMediaBreakpointMatches && (
         <Grid item>
           <Typography variant="subtitle2" align="center">
-            Śpiesz się zostało jeszcze tylko x miejsc
+            Śpiesz się zostało jeszcze tylko {freeTickets} miejsc
           </Typography>
         </Grid>
       )}
@@ -49,7 +53,7 @@ export const FlightListItemActions: React.FC<Props> = ({ price }) => {
       <Button color="default" variant="contained" className={classes.button}>
         Bilet od{" "}
         <Typography className={classes.price} variant="h6">
-          {price.value} {price.currency}
+          <GenericPriceText valuePLN={priceValuePLN} />
         </Typography>
       </Button>
     </>

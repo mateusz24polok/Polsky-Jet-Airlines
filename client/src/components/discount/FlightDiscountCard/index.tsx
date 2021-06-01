@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import { GenericPriceText } from "@components/shared/GenericPriceText";
 import { Money } from "@appTypes/shared/money";
 import { Image } from "@appTypes/shared/image";
 import { FlightJourneyVariants } from "@appTypes/flight";
@@ -58,7 +59,7 @@ export const FlightDiscountCard: React.FC<Props> = props => {
           </Grid>
           <Grid item>
             <Typography align="right" variant="h5">
-              {`${price.value} ${price.currency}`}
+              <GenericPriceText valuePLN={price.value} />
             </Typography>
           </Grid>
         </Grid>
@@ -73,7 +74,7 @@ export const FlightDiscountCard: React.FC<Props> = props => {
           {startingCity} ✈ {destinationCity}
         </Typography>
         <Typography variant="h5">
-          {`${price.value} ${price.currency}`}
+          <GenericPriceText valuePLN={price.value} />
         </Typography>
       </Grid>
     </CardContent>

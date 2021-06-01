@@ -4,10 +4,19 @@
     "startingAirport": "608f18072621d540f80dee61",
     "destinationAirport": "608f18072621d540f80dee62",
     "startingDate": "2021-05-23T16:00:00Z",
-    "ticketsLeft": {
-      "economy": 30,
-      "standard": 30,
-      "premium": 30
+    "tickets": {
+      "economy": {
+        "amount": 30,
+        "price": 40
+      },
+      "standard": {
+        "amount": 30,
+        "price": 50
+      },
+      "premium": {
+        "amount": 30,
+        "price:": 70
+      }
     },
     "estimatedFlightTime": 240
   },
@@ -16,10 +25,19 @@
     "startingAirport": "608f18072621d540f80dee61",
     "destinationAirport": "608f18072621d540f80dee63",
     "startingDate": "2021-05-25T20:00:00Z",
-    "ticketsLeft": {
-      "economy": 30,
-      "standard": 30,
-      "premium": 30
+    "tickets": {
+      "economy": {
+        "amount": 30,
+        "price": 50
+      },
+      "standard": {
+        "amount": 30,
+        "price": 60
+      },
+      "premium": {
+        "amount": 30,
+        "price:": 80
+      }
     },
     "estimatedFlightTime": 360
   },
@@ -28,10 +46,19 @@
     "startingAirport": "608f18072621d540f80dee61",
     "destinationAirport": "608f18072621d540f80dee64",
     "startingDate": "2021-05-30T20:00:00Z",
-    "ticketsLeft": {
-      "economy": 30,
-      "standard": 30,
-      "premium": 30
+    "tickets": {
+      "economy": {
+        "amount": 30,
+        "price": 70
+      },
+      "standard": {
+        "amount": 30,
+        "price": 90
+      },
+      "premium": {
+        "amount": 30,
+        "price:": 110
+      }
     },
     "estimatedFlightTime": 400
   }

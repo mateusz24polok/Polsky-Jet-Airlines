@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Box, Button, Grid, Paper, Typography } from "@material-ui/core";
+import { Box, Button, Grid, Paper } from "@material-ui/core";
 import { Formik, Form as FormikForm } from "formik";
+import { ManagementSiteTitle } from "@components/management/ManagementSiteTitle";
 import { CustomTextField } from "@components/shared/CustomTextField";
 import { CustomSelectField } from "@components/shared/CustomSelectField";
 import { CustomCheckbox } from "@components/shared/CustomCheckbox";
@@ -23,14 +24,6 @@ export const NewAirportForm: React.FC = () => {
     }),
   );
 
-  const renderTitle = (): JSX.Element => (
-    <Box mb={2}>
-      <Typography variant="h5" align="center">
-        Dodaj nowe lotnisko
-      </Typography>
-    </Box>
-  );
-
   const formInitialValues: CreateAirportRequest = {
     airport: "",
     airportKey: "",
@@ -45,7 +38,7 @@ export const NewAirportForm: React.FC = () => {
 
   return (
     <Box p={3}>
-      {renderTitle()}
+      <ManagementSiteTitle title="Dodaj nowe lotnisko" />
       <Paper className={classes.paper}>
         <Formik
           enableReinitialize={true}

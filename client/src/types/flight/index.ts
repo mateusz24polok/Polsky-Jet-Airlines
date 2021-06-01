@@ -1,5 +1,6 @@
 import { Airport } from "@appTypes/airport";
 import { OptionFormItem } from "@appTypes/shared/form";
+import { Money } from "@appTypes/shared/money";
 
 export enum FlightJourneyVariants {
   ONE_WAY = "Lot w jedną stronę",
@@ -12,6 +13,22 @@ export enum FlightStatus {
   CLOSED = "CLOSED",
 }
 
+export interface TicketUI {
+  amount: number;
+  price: Money;
+}
+
+export interface TicketData {
+  amount: number;
+  price: number;
+}
+
+export interface Tickets {
+  economy: TicketData;
+  standard: TicketData;
+  premium: TicketData;
+}
+
 export interface Flight {
   _id: string;
   status: FlightStatus;
@@ -20,11 +37,7 @@ export interface Flight {
   destinationAirport: Airport;
   destinationCity: string;
   startingDate: Date;
-  ticketsLeft: {
-    economy: number;
-    standard: number;
-    premium: number;
-  };
+  tickets: Tickets;
   estimatedFlightTime: number;
 }
 
@@ -52,11 +65,7 @@ export interface CreateFlightRequest {
   destinationAirport: string;
   estimatedFlightTime: number;
   startingDate: Date;
-  ticketsLeft: {
-    economy: number;
-    standard: number;
-    premium: number;
-  };
+  tickets: Tickets;
   status?: FlightStatus;
 }
 
@@ -65,7 +74,10 @@ export interface CreateFlightFormFormat {
   destinationAirport: OptionFormItem<Airport> | null;
   estimatedFlightTime: number;
   startingDate: Date;
-  ticketsLeftEconomy: number;
-  ticketsLeftStandard: number;
-  ticketsLeftPremium: number;
+  ticketsAmountEconomy: number;
+  ticketsAmountStandard: number;
+  ticketsAmountPremium: number;
+  ticketPriceEconomy: number;
+  ticketPriceStandard: number;
+  ticketPricePremium: number;
 }
