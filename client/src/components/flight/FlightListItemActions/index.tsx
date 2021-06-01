@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
+import { GenericPriceText } from "@components/shared/GenericPriceText";
 import {
   useLargeBrekpointMatchesUp,
   useMediumBrekpointMatchesUp,
@@ -26,7 +27,7 @@ export const FlightListItemActions: React.FC<Props> = ({ price }) => {
     >
       <Grid item>
         <Typography className={classes.price} variant="h5" align="center">
-          Już od {price.value} {price.currency}
+          Już od <GenericPriceText valuePLN={price.value} />
         </Typography>
       </Grid>
       {largeMediaBreakpointMatches && (
@@ -49,7 +50,7 @@ export const FlightListItemActions: React.FC<Props> = ({ price }) => {
       <Button color="default" variant="contained" className={classes.button}>
         Bilet od{" "}
         <Typography className={classes.price} variant="h6">
-          {price.value} {price.currency}
+          <GenericPriceText valuePLN={price.value} />
         </Typography>
       </Button>
     </>

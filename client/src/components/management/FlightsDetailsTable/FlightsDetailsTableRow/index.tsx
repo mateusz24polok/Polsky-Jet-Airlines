@@ -1,5 +1,6 @@
 import React from "react";
 import { TableCell, TableRow } from "@material-ui/core";
+import { GenericPriceText } from "@components/shared/GenericPriceText";
 import { Flight } from "@appTypes/flight";
 
 type Props = Omit<Flight, "_id" | "status">;
@@ -23,9 +24,15 @@ export const FlightsDetailsTableRow: React.FC<Props> = ({
 
   const renderTicketsPricesCell = (): JSX.Element => (
     <>
-      <p>{`Economy: ${tickets.economy.price}`}</p>
-      <p>{`Standard: ${tickets.standard.price}`}</p>
-      <p>{`Premium: ${tickets.premium.price}`}</p>
+      <p>
+        Economy: <GenericPriceText valuePLN={tickets.economy.price} />
+      </p>
+      <p>
+        Standard: <GenericPriceText valuePLN={tickets.standard.price} />
+      </p>
+      <p>
+        Premium: <GenericPriceText valuePLN={tickets.premium.price} />
+      </p>
     </>
   );
 

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { prepareQueryParamsURLFromObject } from "@utils/urlUtils";
 import {
-  CurrenciesCustomRate,
+  CurrenciesRateData,
   Currency,
   NBPCurrenciesDataResponse,
   NBPCustomCurrencyRateResponse,
@@ -11,7 +11,7 @@ const currenciesAxiosInstance = axios.create({
   baseURL: "http://api.nbp.pl/api/exchangerates/rates/a/",
 });
 
-export const getCurrencyRate = async (
+export const getCurrencyRateService = async (
   currencyCode: Currency,
 ): Promise<NBPCustomCurrencyRateResponse> => {
   try {
@@ -35,11 +35,11 @@ export const getCurrencyRate = async (
   }
 };
 
-export const getEuroAndDollarCustomRate = async (): Promise<CurrenciesCustomRate> => {
+export const getAppCurrenciesRateDataService = async (): Promise<CurrenciesRateData> => {
   try {
     const [euroCustomRate, dollarCustomRate] = await Promise.all([
-      getCurrencyRate(Currency.EUR),
-      getCurrencyRate(Currency.USD),
+      getCurrencyRateService(Currency.EUR),
+      getCurrencyRateService(Currency.USD),
     ]);
 
     return {

@@ -34,6 +34,6 @@ export interface NBPCustomCurrencyRateResponse {
   date: Date;
 }
 
-export type CurrenciesCustomRate = Partial<
+export type CurrenciesRateData = Partial<
   Record<Currency, NBPCustomCurrencyRateResponse>
 >;
