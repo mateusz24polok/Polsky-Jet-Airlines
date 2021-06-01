@@ -35,6 +35,12 @@ export const FlightsResultPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location]);
 
+  const renderFlightsListTitle = (): JSX.Element => (
+    <Typography className={classes.title} variant="h4" align="center">
+      Wyszukane loty
+    </Typography>
+  );
+
   const renderFlightsList = (): JSX.Element => (
     <Grid
       container
@@ -53,9 +59,7 @@ export const FlightsResultPage: React.FC = () => {
 
   return (
     <FlightListContainer>
-      <Typography className={classes.title} variant="h4" align="center">
-        New page with flight results
-      </Typography>
+      {renderFlightsListTitle()}
       {isProgress
         ? renderLoadingView()
         : flights.length > 0
