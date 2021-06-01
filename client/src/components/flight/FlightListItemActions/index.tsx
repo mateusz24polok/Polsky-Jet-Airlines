@@ -5,14 +5,13 @@ import {
   useLargeBrekpointMatchesUp,
   useMediumBrekpointMatchesUp,
 } from "@utils/mediaQuerriesUtils";
-import { Money } from "@appTypes/shared/money";
 import { useStyles } from "./styles";
 
 interface Props {
-  price: Money;
+  priceValuePLN: number;
 }
 
-export const FlightListItemActions: React.FC<Props> = ({ price }) => {
+export const FlightListItemActions: React.FC<Props> = ({ priceValuePLN }) => {
   const classes = useStyles();
   const largeMediaBreakpointMatches = useLargeBrekpointMatchesUp();
   const mediumMediaBreakpointMatches = useMediumBrekpointMatchesUp();
@@ -27,7 +26,7 @@ export const FlightListItemActions: React.FC<Props> = ({ price }) => {
     >
       <Grid item>
         <Typography className={classes.price} variant="h5" align="center">
-          Już od <GenericPriceText valuePLN={price.value} />
+          Już od <GenericPriceText valuePLN={priceValuePLN} />
         </Typography>
       </Grid>
       {largeMediaBreakpointMatches && (
@@ -50,7 +49,7 @@ export const FlightListItemActions: React.FC<Props> = ({ price }) => {
       <Button color="default" variant="contained" className={classes.button}>
         Bilet od{" "}
         <Typography className={classes.price} variant="h6">
-          <GenericPriceText valuePLN={price.value} />
+          <GenericPriceText valuePLN={priceValuePLN} />
         </Typography>
       </Button>
     </>
