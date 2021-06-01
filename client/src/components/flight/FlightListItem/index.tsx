@@ -2,7 +2,10 @@ import React from "react";
 import { Box, Grid, Paper } from "@material-ui/core";
 import { FlightListItemActions } from "@components/flight/FlightListItemActions";
 import { FlightListItemDetails } from "@components/flight/FlightListItemDetails";
-import { getFlightCheapestTicketPrice } from "@utils/flightUtils";
+import {
+  getFlightCheapestTicketPrice,
+  getFlightFreeTickets,
+} from "@utils/flightUtils";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { Flight } from "@appTypes/flight";
 import { useStyles } from "./styles";
@@ -17,6 +20,7 @@ export const FlightListItem: React.FC<Props> = ({ flight }) => {
   const flightCheapestTicketPrice = getFlightCheapestTicketPrice(
     flight.tickets,
   );
+  const flightFreeTickets = getFlightFreeTickets(flight.tickets);
 
   const renderDesktopView = (): JSX.Element => (
     <Grid container justify="space-around" alignItems="center" wrap="nowrap">
@@ -25,7 +29,10 @@ export const FlightListItem: React.FC<Props> = ({ flight }) => {
       </Grid>
       <Grid item xs={2}>
         <Box className={classes.actionsBox} pl={1} ml={2}>
-          <FlightListItemActions priceValuePLN={flightCheapestTicketPrice} />
+          <FlightListItemActions
+            priceValuePLN={flightCheapestTicketPrice}
+            freeTickets={flightFreeTickets}
+          />
         </Box>
       </Grid>
     </Grid>
@@ -45,7 +52,10 @@ export const FlightListItem: React.FC<Props> = ({ flight }) => {
         pl={mediumMediaBreakpointMatches ? 1 : 0}
         ml={mediumMediaBreakpointMatches ? 2 : 0}
       >
-        <FlightListItemActions priceValuePLN={flightCheapestTicketPrice} />
+        <FlightListItemActions
+          priceValuePLN={flightCheapestTicketPrice}
+          freeTickets={flightFreeTickets}
+        />
       </Box>
     </Grid>
   );

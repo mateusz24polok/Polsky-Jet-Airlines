@@ -8,10 +8,14 @@ import {
 import { useStyles } from "./styles";
 
 interface Props {
+  freeTickets: number;
   priceValuePLN: number;
 }
 
-export const FlightListItemActions: React.FC<Props> = ({ priceValuePLN }) => {
+export const FlightListItemActions: React.FC<Props> = ({
+  freeTickets,
+  priceValuePLN,
+}) => {
   const classes = useStyles();
   const largeMediaBreakpointMatches = useLargeBrekpointMatchesUp();
   const mediumMediaBreakpointMatches = useMediumBrekpointMatchesUp();
@@ -32,7 +36,7 @@ export const FlightListItemActions: React.FC<Props> = ({ priceValuePLN }) => {
       {largeMediaBreakpointMatches && (
         <Grid item>
           <Typography variant="subtitle2" align="center">
-            Śpiesz się zostało jeszcze tylko x miejsc
+            Śpiesz się zostało jeszcze tylko {freeTickets} miejsc
           </Typography>
         </Grid>
       )}
