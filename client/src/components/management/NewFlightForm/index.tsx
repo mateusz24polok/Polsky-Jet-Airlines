@@ -78,14 +78,15 @@ export const NewFlightForm: React.FC = () => {
             values,
             touched,
           }) => {
-            console.log(errors);
             return (
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <FormikForm>
                   <Field
-                    error={Boolean(
-                      touched.startingAirport && errors.startingAirport,
-                    )}
+                    error={
+                      touched.startingAirport
+                        ? errors.startingAirport
+                        : undefined
+                    }
                     className={classes.input}
                     name="startingAirport"
                     component={Autocomplete}

@@ -54,8 +54,8 @@ export interface FlightsSearchFilters {
 }
 
 export interface FlightsSearchFormFiltersValues {
-  startingCity: OptionFormItem<string>;
-  destinationCity: OptionFormItem<string>;
+  startingCity: OptionFormItem<string> | null;
+  destinationCity: OptionFormItem<string> | null;
   flightDateFrom: Date;
   flightDateTo: Date;
 }

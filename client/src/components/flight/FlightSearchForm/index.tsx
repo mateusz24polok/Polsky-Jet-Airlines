@@ -55,8 +55,8 @@ export const FlightSearchForm: React.FC = () => {
   }));
 
   const formInitialValues: FlightsSearchFormFiltersValues = {
-    startingCity: { label: "Katowice", value: "Katowice" },
-    destinationCity: { label: "Atlanta", value: "Atlanta" },
+    startingCity: null,
+    destinationCity: null,
     flightDateFrom: new Date(),
     flightDateTo: new Date(
       new Date().getTime() +
@@ -98,7 +98,7 @@ export const FlightSearchForm: React.FC = () => {
           goToTheFlightList(prepareFlightsSearchFilters(values));
         }}
       >
-        {({ handleReset, submitForm, errors, initialValues, values }) => (
+        {({ handleReset, submitForm, errors, dirty }) => (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <FormikForm>
               <Grid container direction="column" spacing={3}>
@@ -109,7 +109,6 @@ export const FlightSearchForm: React.FC = () => {
                     mediumMediaQuerryBreakpointMatches ? "row" : "column"
                   }
                   justify="space-between"
-                  alignItems="center"
                 >
                   <Field
                     className={classes.autocomplete}
@@ -128,6 +127,8 @@ export const FlightSearchForm: React.FC = () => {
                         {...params}
                         label="Miejsce wylotu"
                         variant="outlined"
+                        error={Boolean(errors.startingCity)}
+                        helperText={errors.startingCity}
                       />
                     )}
                   />
@@ -148,6 +149,8 @@ export const FlightSearchForm: React.FC = () => {
                         {...params}
                         label="Miejsce przylotu"
                         variant="outlined"
+                        error={Boolean(errors.destinationCity)}
+                        helperText={errors.destinationCity}
                       />
                     )}
                   />
@@ -195,9 +198,7 @@ export const FlightSearchForm: React.FC = () => {
                       className={classes.button}
                       variant="contained"
                       color="secondary"
-                      disabled={
-                        JSON.stringify(initialValues) === JSON.stringify(values)
-                      }
+                      disabled={!dirty}
                       onClick={handleReset}
                     >
                       Reset formularza
@@ -208,7 +209,7 @@ export const FlightSearchForm: React.FC = () => {
                       className={classes.button}
                       variant="contained"
                       color="primary"
-                      disabled={Object.keys(errors).length > 0}
+                      disabled={Object.keys(errors).length > 0 || !dirty}
                       onClick={submitForm}
                     >
                       Wyszukaj loty
