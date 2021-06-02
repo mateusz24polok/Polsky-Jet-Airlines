@@ -1,14 +1,17 @@
 import * as Yup from "yup";
 
 export const FlightSearchSchema = Yup.object().shape({
-  startingCity: Yup.object().shape({
+  startingCity: Yup.object().nullable().required("Podaj miasto wylotu").shape({
     label: Yup.string().required(),
     value: Yup.string().required(),
   }),
-  destinationCity: Yup.object().shape({
-    label: Yup.string().required(),
-    value: Yup.string().required(),
-  }),
+  destinationCity: Yup.object()
+    .nullable()
+    .required("Podaj miasto docelowe")
+    .shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
   flightDateFrom: Yup.date()
     .max(
       Yup.ref("flightDateTo"),
