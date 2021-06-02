@@ -30,6 +30,7 @@ export const FlightListItem: React.FC<Props> = ({ flight }) => {
       <Grid item xs={2}>
         <Box className={classes.actionsBox} pl={1} ml={2}>
           <FlightListItemActions
+            flightId={flight._id}
             priceValuePLN={flightCheapestTicketPrice}
             freeTickets={flightFreeTickets}
           />
@@ -53,6 +54,7 @@ export const FlightListItem: React.FC<Props> = ({ flight }) => {
         ml={mediumMediaBreakpointMatches ? 2 : 0}
       >
         <FlightListItemActions
+          flightId={flight._id}
           priceValuePLN={flightCheapestTicketPrice}
           freeTickets={flightFreeTickets}
         />

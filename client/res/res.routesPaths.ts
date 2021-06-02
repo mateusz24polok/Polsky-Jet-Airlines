@@ -1,11 +1,12 @@
 export interface RoutesPaths {
   readonly root: string;
   readonly home: string;
-  readonly flights: string;
-  readonly hotels: string;
-  readonly cars: string;
+  readonly offerFlights: string;
+  readonly offerHotels: string;
+  readonly offerCars: string;
   readonly aboutUs: string;
-  readonly searchedFlightsList: string;
+  readonly flights: string;
+  readonly flight: string;
   readonly management: string;
   readonly managementAirportsDetails: string;
   readonly managementNewAirport: string;
@@ -16,11 +17,12 @@ export interface RoutesPaths {
 export const routesPaths: RoutesPaths = {
   root: "/",
   home: "/",
-  flights: "/",
-  hotels: "/hotels",
-  cars: "/cars",
+  offerFlights: "/",
+  offerHotels: "/hotels",
+  offerCars: "/cars",
   aboutUs: "/aboutUs",
-  searchedFlightsList: "/flights",
+  flights: "/flights",
+  flight: "/flights/:id",
   management: "/management",
   managementAirportsDetails: "/management/airports",
   managementNewAirport: "/management/new-airport",

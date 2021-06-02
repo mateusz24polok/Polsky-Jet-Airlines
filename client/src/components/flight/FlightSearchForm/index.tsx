@@ -71,7 +71,7 @@ export const FlightSearchForm: React.FC = () => {
     history.push(
       prepareQueryParamsURLFromObject(
         { ...flightsQueryParams },
-        routesPaths.searchedFlightsList,
+        routesPaths.flights,
       ),
     );
   };
