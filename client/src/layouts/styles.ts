@@ -5,6 +5,7 @@ export const useStyles = makeStyles({
     minHeight: "100vh",
   },
   content: {
+    position: "relative",
     flexGrow: 1,
   },
   appBar: {

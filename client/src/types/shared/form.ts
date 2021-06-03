@@ -3,3 +3,9 @@ export interface OptionFormItem<T> {
   value: T;
   disabled?: boolean;
 }
+
+export interface StepperFormStep {
+  label: string;
+  component: React.ReactNode;
+  disableNextStep?: boolean;
+}
