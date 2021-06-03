@@ -17,7 +17,7 @@ export const AppLayout: React.FC = () => {
 
   useEffect(() => {
     switch (location.pathname) {
-      case routesPaths.searchedFlightsList:
+      case routesPaths.flights:
         setContentBackgroundColor(theme.palette.brandOrange);
         break;
       default:

@@ -3,6 +3,7 @@ import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
+import { FlightPurchasePage } from "@pages/FlightPurchasePage";
 import { AirportsDetailsTable } from "@components/management/AirportsDetailsTable";
 import { NewAirportForm } from "@components/management/NewAirportForm";
 import { FlightsDetailsTable } from "@components/management/FlightsDetailsTable";
@@ -18,14 +19,14 @@ export const routes: Route[] = [
   },
   {
     id: "hotels",
-    path: routesPaths.hotels,
+    path: routesPaths.offerHotels,
     label: "Hotele",
     component: HomePage,
     appBarElement: true,
   },
   {
     id: "cars",
-    path: routesPaths.cars,
+    path: routesPaths.offerCars,
     label: "Samochody",
     component: HomePage,
     appBarElement: true,
@@ -39,8 +40,13 @@ export const routes: Route[] = [
   },
   {
     id: "searchFlightsList",
-    path: routesPaths.searchedFlightsList,
+    path: routesPaths.flights,
     component: FlightsResultPage,
+  },
+  {
+    id: "flight",
+    path: routesPaths.flight,
+    component: FlightPurchasePage,
   },
   {
     id: "management",
