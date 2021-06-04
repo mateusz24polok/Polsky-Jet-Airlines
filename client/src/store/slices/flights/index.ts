@@ -82,6 +82,8 @@ export const flightsSlice = createSlice({
         destinationCityWeather: action.payload.destinationCityWeather,
         startingCityWeather: action.payload.startingCityWeather,
       };
+      state.isProgress = false;
+      state.isError = false;
     },
     fetchFlightWeatherError: (state: FlightsState) => {
       state.isProgress = false;

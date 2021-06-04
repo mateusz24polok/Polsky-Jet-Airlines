@@ -39,7 +39,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
         const steps: StepperFormStep[] = [
           {
             label: "Potwierdzenie warunków pogodowych",
-            component: <WeatherInfoAcceptStep />,
+            component: <WeatherInfoAcceptStep flightId={flightId} />,
             disableNextStep: !values.weatherInfoAccept,
           },
           {
