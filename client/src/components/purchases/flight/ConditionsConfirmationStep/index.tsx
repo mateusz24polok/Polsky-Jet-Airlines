@@ -12,10 +12,31 @@ import {
 } from "@material-ui/core";
 import { GenericPriceText } from "@components/shared/GenericPriceText";
 import { CustomCheckbox } from "@components/shared/CustomCheckbox";
+import { getNextDateAfterTimeElapsed } from "@utils/dateUtils";
+import { Flight } from "@appTypes/flight";
 import { useStyles } from "./styles";
 
-export const ConditionConfirmationStep: React.FC = () => {
+interface Props {
+  flight: Flight;
+  amountSelectedEconomyTickets: number;
+  amountSelectedStandardTickets: number;
+  amountSelectedPremiumTickets: number;
+}
+
+export const ConditionConfirmationStep: React.FC<Props> = ({
+  amountSelectedEconomyTickets,
+  amountSelectedPremiumTickets,
+  amountSelectedStandardTickets,
+  flight,
+}) => {
   const classes = useStyles();
+  const {
+    destinationAirport,
+    startingAirport,
+    tickets,
+    startingDate,
+    estimatedFlightTime,
+  } = flight;
   return (
     <>
       <Typography className={classes.title} variant="h5" align="center">
@@ -34,22 +55,48 @@ export const ConditionConfirmationStep: React.FC = () => {
           <TableBody>
             <TableRow>
               <TableCell>
-                <p>Katowice</p>
-                <p>Pyżowice (Pdofsj)</p>
-                <p>24.05.2021 15:35</p>
+                <p>{startingAirport.city}</p>
+                <p>
+                  {startingAirport.airport} ({startingAirport.airportKey})
+                </p>
+                <p>
+                  {new Date(startingDate).toLocaleDateString()}{" "}
+                  {new Date(startingDate).toLocaleTimeString()}
+                </p>
               </TableCell>
               <TableCell>
-                <p>Atlanta</p>
-                <p>International Airport (Pdofsj)</p>
-                <p>24.05.2021 20:35</p>
+                <p>{destinationAirport.city}</p>
+                <p>
+                  {destinationAirport.airport} ({destinationAirport.airportKey})
+                </p>
+                <p>
+                  {new Date(
+                    getNextDateAfterTimeElapsed(
+                      startingDate,
+                      estimatedFlightTime,
+                    ),
+                  ).toLocaleDateString()}{" "}
+                  {new Date(
+                    getNextDateAfterTimeElapsed(
+                      startingDate,
+                      estimatedFlightTime,
+                    ),
+                  ).toLocaleTimeString()}
+                </p>
               </TableCell>
               <TableCell>
-                <p>Klasa ekonomiczna: 5</p>
-                <p>Klasa standard: 0</p>
-                <p>Klasa premium: 0</p>
+                <p>Klasa ekonomiczna: {amountSelectedEconomyTickets}</p>
+                <p>Klasa standard: {amountSelectedStandardTickets}</p>
+                <p>Klasa premium: {amountSelectedPremiumTickets}</p>
               </TableCell>
               <TableCell>
-                <GenericPriceText valuePLN={500} />
+                <GenericPriceText
+                  valuePLN={
+                    amountSelectedEconomyTickets * tickets.economy.price +
+                    amountSelectedStandardTickets * tickets.standard.price +
+                    amountSelectedPremiumTickets * tickets.premium.price
+                  }
+                />
               </TableCell>
             </TableRow>
           </TableBody>
@@ -57,7 +104,6 @@ export const ConditionConfirmationStep: React.FC = () => {
             <TableRow>
               <TableCell>
                 <CustomCheckbox
-                  // className={classes.checkbox}
                   name="confirmPurchase"
                   label="Potwierdź chęć zamówienia"
                 />

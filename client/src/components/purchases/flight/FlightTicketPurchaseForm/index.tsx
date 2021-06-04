@@ -64,7 +64,14 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
             },
             {
               label: "Potwierdzenie zamówienia",
-              component: <ConditionConfirmationStep />,
+              component: (
+                <ConditionConfirmationStep
+                  flight={flight}
+                  amountSelectedEconomyTickets={values.economyTickets}
+                  amountSelectedPremiumTickets={values.premiumTickets}
+                  amountSelectedStandardTickets={values.standardTickets}
+                />
+              ),
               disableNextStep: !values.confirmPurchase,
             },
           ];
