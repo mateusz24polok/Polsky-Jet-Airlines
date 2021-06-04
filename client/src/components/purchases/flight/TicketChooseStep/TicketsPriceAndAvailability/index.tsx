@@ -15,9 +15,17 @@ import { useStyles } from "./styles";
 
 interface Props {
   flight: Flight;
+  amountSelectedEconomyTickets: number;
+  amountSelectedStandardTickets: number;
+  amountSelectedPremiumTickets: number;
 }
 
-export const TicketsPriceAndAvailability: React.FC<Props> = ({ flight }) => {
+export const TicketsPriceAndAvailability: React.FC<Props> = ({
+  flight,
+  amountSelectedEconomyTickets,
+  amountSelectedPremiumTickets,
+  amountSelectedStandardTickets,
+}) => {
   const classes = useStyles();
   const { tickets } = flight;
 
@@ -37,21 +45,27 @@ export const TicketsPriceAndAvailability: React.FC<Props> = ({ flight }) => {
         <TableBody>
           <TableRow>
             <TableCell align="justify">Ekonomiczna</TableCell>
-            <TableCell align="center">{tickets.economy.amount}</TableCell>
+            <TableCell align="center">
+              {tickets.economy.amount - amountSelectedEconomyTickets}
+            </TableCell>
             <TableCell align="center">
               <GenericPriceText valuePLN={tickets.economy.price} />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Standard</TableCell>
-            <TableCell align="center">{tickets.standard.amount}</TableCell>
+            <TableCell align="center">
+              {tickets.standard.amount - amountSelectedStandardTickets}
+            </TableCell>
             <TableCell align="center">
               <GenericPriceText valuePLN={tickets.standard.price} />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Premium</TableCell>
-            <TableCell align="center">{tickets.premium.amount}</TableCell>
+            <TableCell align="center">
+              {tickets.premium.amount - amountSelectedPremiumTickets}
+            </TableCell>
             <TableCell align="center">
               <GenericPriceText valuePLN={tickets.premium.price} />
             </TableCell>

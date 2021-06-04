@@ -49,7 +49,18 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
             },
             {
               label: "Wybór biletów",
-              component: <TicketChooseStep flight={flight} />,
+              component: (
+                <TicketChooseStep
+                  flight={flight}
+                  amountSelectedEconomyTickets={values.economyTickets}
+                  amountSelectedPremiumTickets={values.premiumTickets}
+                  amountSelectedStandardTickets={values.standardTickets}
+                />
+              ),
+              disableNextStep:
+                values.economyTickets === 0 &&
+                values.standardTickets === 0 &&
+                values.premiumTickets === 0,
             },
             {
               label: "Potwierdzenie zamówienia",
