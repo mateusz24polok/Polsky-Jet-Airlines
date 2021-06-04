@@ -10,10 +10,24 @@ import {
   Typography,
 } from "@material-ui/core";
 import { GenericPriceText } from "@components/shared/GenericPriceText";
+import { Flight } from "@appTypes/flight";
 import { useStyles } from "./styles";
 
-export const TicketsPriceAndAvailability: React.FC = () => {
+interface Props {
+  flight: Flight;
+  amountSelectedEconomyTickets: number;
+  amountSelectedStandardTickets: number;
+  amountSelectedPremiumTickets: number;
+}
+
+export const TicketsPriceAndAvailability: React.FC<Props> = ({
+  flight,
+  amountSelectedEconomyTickets,
+  amountSelectedPremiumTickets,
+  amountSelectedStandardTickets,
+}) => {
   const classes = useStyles();
+  const { tickets } = flight;
 
   return (
     <TableContainer className={classes.paper} component={Paper}>
@@ -31,23 +45,29 @@ export const TicketsPriceAndAvailability: React.FC = () => {
         <TableBody>
           <TableRow>
             <TableCell align="justify">Ekonomiczna</TableCell>
-            <TableCell align="center">30</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={100} />
+              {tickets.economy.amount - amountSelectedEconomyTickets}
+            </TableCell>
+            <TableCell align="center">
+              <GenericPriceText valuePLN={tickets.economy.price} />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Standard</TableCell>
-            <TableCell align="center">30</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={150} />
+              {tickets.standard.amount - amountSelectedStandardTickets}
+            </TableCell>
+            <TableCell align="center">
+              <GenericPriceText valuePLN={tickets.standard.price} />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Premium</TableCell>
-            <TableCell align="center">30</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={200} />
+              {tickets.premium.amount - amountSelectedPremiumTickets}
+            </TableCell>
+            <TableCell align="center">
+              <GenericPriceText valuePLN={tickets.premium.price} />
             </TableCell>
           </TableRow>
         </TableBody>

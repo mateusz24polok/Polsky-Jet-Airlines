@@ -11,8 +11,22 @@ import {
   Typography,
 } from "@material-ui/core";
 import { GenericPriceText } from "@components/shared/GenericPriceText";
+import { Flight } from "@appTypes/flight";
 
-export const TicketsSummary: React.FC = () => {
+interface Props {
+  flight: Flight;
+  amountSelectedEconomyTickets: number;
+  amountSelectedStandardTickets: number;
+  amountSelectedPremiumTickets: number;
+}
+
+export const TicketsSummary: React.FC<Props> = ({
+  flight,
+  amountSelectedEconomyTickets,
+  amountSelectedPremiumTickets,
+  amountSelectedStandardTickets,
+}) => {
+  const { tickets } = flight;
   return (
     <TableContainer component={Paper}>
       <Typography variant="h6" align="center">
@@ -29,23 +43,33 @@ export const TicketsSummary: React.FC = () => {
         <TableBody>
           <TableRow>
             <TableCell align="justify">Ekonomiczna</TableCell>
-            <TableCell align="center">1</TableCell>
+            <TableCell align="center">{amountSelectedEconomyTickets}</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={200} />
+              <GenericPriceText
+                valuePLN={amountSelectedEconomyTickets * tickets.economy.price}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Standard</TableCell>
-            <TableCell align="center">2</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={300} />
+              {amountSelectedStandardTickets}
+            </TableCell>
+            <TableCell align="center">
+              <GenericPriceText
+                valuePLN={
+                  amountSelectedStandardTickets * tickets.standard.price
+                }
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Premium</TableCell>
-            <TableCell align="center">3</TableCell>
+            <TableCell align="center">{amountSelectedPremiumTickets}</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={600} />
+              <GenericPriceText
+                valuePLN={amountSelectedPremiumTickets * tickets.premium.price}
+              />
             </TableCell>
           </TableRow>
         </TableBody>
@@ -53,7 +77,13 @@ export const TicketsSummary: React.FC = () => {
           <TableRow>
             <TableCell>Podsumowanie kosztów</TableCell>
             <TableCell align="center">
-              <GenericPriceText valuePLN={1100} />
+              <GenericPriceText
+                valuePLN={
+                  amountSelectedEconomyTickets * tickets.economy.price +
+                  amountSelectedStandardTickets * tickets.standard.price +
+                  amountSelectedPremiumTickets * tickets.premium.price
+                }
+              />
             </TableCell>
           </TableRow>
         </TableFooter>
