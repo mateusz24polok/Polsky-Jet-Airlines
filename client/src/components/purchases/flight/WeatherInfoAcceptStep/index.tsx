@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CustomCheckbox } from "@components/shared/CustomCheckbox";
+import {
+  fetchFlightWeather,
+  fetchFlights,
+  selectFlights,
+} from "@store/slices/flights";
 
 export const WeatherInfoAcceptStep: React.FC = () => {
+  const dispatch = useDispatch();
+  const flights = useSelector(selectFlights);
+
+  useEffect(() => {
+    if (flights.length === 0) {
+      dispatch(fetchFlights());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (flights.length) {
+      dispatch(fetchFlightWeather("60b39441d056564ab4e354e7"));
+    }
+  }, [flights.length, dispatch]);
+
   return (
     <>
       <h1>First Step - Weather Accept</h1>

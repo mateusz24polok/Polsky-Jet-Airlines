@@ -5,6 +5,7 @@ import {
   FlightServiceResponse,
   FlightsSearchFilters,
 } from "@appTypes/flight";
+import { FlightCitiesWeatherResponseWithFlightId } from "@appTypes/weather";
 import { RootState } from "@store/setupStore";
 
 interface FlightsState {
@@ -62,6 +63,30 @@ export const flightsSlice = createSlice({
       state.isProgress = false;
       state.isError = true;
     },
+    fetchFlightWeather: (
+      state: FlightsState,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<string>,
+    ) => {
+      state.isProgress = true;
+      state.isError = false;
+    },
+    fetchFlightWeatherSuccess: (
+      state: FlightsState,
+      action: PayloadAction<FlightCitiesWeatherResponseWithFlightId>,
+    ) => {
+      const flightIndex = state.flights.findIndex(
+        flight => flight._id === action.payload.id,
+      );
+      state.flights[flightIndex].weather = {
+        destinationCityWeather: action.payload.destinationCityWeather,
+        startingCityWeather: action.payload.startingCityWeather,
+      };
+    },
+    fetchFlightWeatherError: (state: FlightsState) => {
+      state.isProgress = false;
+      state.isError = true;
+    },
   },
 });
 
@@ -110,6 +135,12 @@ export const selectFlightsToChosenCity = (state: RootState, city: string) =>
     flight => flight.destinationCity === city,
   );
 
+export const selectFlightById = (state: RootState, flightId: string) => {
+  return selectFlightsState(state).flights.find(
+    flight => flight._id === flightId,
+  );
+};
+
 export const {
   fetchFlights,
   fetchFlightsSuccess,
@@ -117,6 +148,9 @@ export const {
   createFlight,
   createFlightSuccess,
   createFlightError,
+  fetchFlightWeather,
+  fetchFlightWeatherSuccess,
+  fetchFlightWeatherError,
 } = flightsSlice.actions;
 
 export const flightsReducer = flightsSlice.reducer;

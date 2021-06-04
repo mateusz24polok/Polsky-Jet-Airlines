@@ -1,6 +1,7 @@
 import { Airport } from "@appTypes/airport";
 import { OptionFormItem } from "@appTypes/shared/form";
 import { Money } from "@appTypes/shared/money";
+import { FlightCitiesWeatherResponse } from "@appTypes/weather";
 
 export enum FlightJourneyVariants {
   ONE_WAY = "Lot w jedną stronę",
@@ -39,6 +40,7 @@ export interface Flight {
   startingDate: Date;
   tickets: Tickets;
   estimatedFlightTime: number;
+  weather: FlightCitiesWeatherResponse | null;
 }
 
 export interface FlightServiceResponse {

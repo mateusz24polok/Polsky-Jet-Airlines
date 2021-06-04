@@ -55,3 +55,8 @@ export interface FlightCitiesWeatherResponse {
   startingCityWeather: WeatherResponse;
   destinationCityWeather: WeatherResponse;
 }
+
+export interface FlightCitiesWeatherResponseWithFlightId
+  extends FlightCitiesWeatherResponse {
+  id: string;
+}
