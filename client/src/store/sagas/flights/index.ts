@@ -1,25 +1,32 @@
 import {
   CallEffect,
   PutEffect,
+  SelectEffect,
   call,
   put,
+  select,
   takeLatest,
 } from "redux-saga/effects";
 import {
   createFlight,
   createFlightError,
   createFlightSuccess,
+  fetchFlightWeather,
+  fetchFlightWeatherError,
+  fetchFlightWeatherSuccess,
   fetchFlights,
   fetchFlightsError,
   fetchFlightsSuccess,
+  selectFlightById,
 } from "@store/slices/flights";
 import { getFlightsService, postFlightService } from "@services/flights";
-import { FlightServiceResponse } from "@appTypes/flight";
+import { getFlightCitiesWeather } from "@services/weather";
+import { Flight, FlightServiceResponse } from "@appTypes/flight";
+import { FlightCitiesWeatherResponse } from "@appTypes/weather";
 
 function* fetchFlightsSagaWorker(
   fetchFlightAction: ReturnType<typeof fetchFlights>,
 ): Generator<
-  | void
   | CallEffect<FlightServiceResponse>
   | PutEffect<{
       payload: FlightServiceResponse;
@@ -30,7 +37,7 @@ function* fetchFlightsSagaWorker(
   FlightServiceResponse
 > {
   try {
-    const flightsResponse: FlightServiceResponse = yield call(
+    const flightsResponse = yield call(
       getFlightsService,
       fetchFlightAction?.payload,
     );
@@ -43,7 +50,8 @@ function* fetchFlightsSagaWorker(
 function* createFlightSagaWorker(
   createFlightAction: ReturnType<typeof createFlight>,
 ): Generator<
-  void | CallEffect | PutEffect<{ payload: undefined; type: string }>,
+  CallEffect | PutEffect<{ payload: undefined; type: string }>,
+  void,
   void
 > {
   try {
@@ -54,10 +62,41 @@ function* createFlightSagaWorker(
   }
 }
 
+function* fetchFlightWeatherSagaWorker(
+  fetchFlightWeatherAction: ReturnType<typeof fetchFlightWeather>,
+): Generator<
+  SelectEffect | CallEffect | PutEffect,
+  void,
+  Flight | FlightCitiesWeatherResponse
+> {
+  try {
+    const flightId = fetchFlightWeatherAction.payload;
+    const flight = yield select(selectFlightById, flightId);
+
+    const flightCitiesWeather = yield call<any>(
+      getFlightCitiesWeather,
+      (flight as Flight).startingCity,
+      (flight as Flight).destinationCity,
+    );
+    yield put(
+      fetchFlightWeatherSuccess({
+        ...(flightCitiesWeather as FlightCitiesWeatherResponse),
+        id: flightId,
+      }),
+    );
+  } catch (error) {
+    yield put(fetchFlightWeatherError());
+  }
+}
+
 export function* fetchFlightsSaga() {
   yield takeLatest(fetchFlights.type, fetchFlightsSagaWorker);
 }
 
 export function* createFlightSaga() {
   yield takeLatest(createFlight.type, createFlightSagaWorker);
+}
+
+export function* fetchFlightWeatherSaga() {
+  yield takeLatest(fetchFlightWeather.type, fetchFlightWeatherSagaWorker);
 }

@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
@@ -15,5 +16,8 @@ module.exports = {
       "process.env.api": JSON.stringify("http://localhost:5000"),
     }),
     new ReactRefreshWebpackPlugin(),
+    new Dotenv({
+      path: "./.env",
+    }),
   ],
 };
