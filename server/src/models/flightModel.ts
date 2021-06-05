@@ -98,18 +98,18 @@ interface Tickets {
   };
 }
 
-interface IFlight {
+export interface IFlight {
   status: FlightStatus;
   startingAirport: AirportBaseDocument["_id"];
   startingCity: string;
   destinationAirport: AirportBaseDocument["_id"];
   destinationCity: string;
   startingDate: Date;
-  ticketsLeft: Tickets;
+  tickets: Tickets;
   estimatedFlightTime: number;
 }
 
-interface FlightBaseDocument extends IFlight, Document {}
+export interface FlightBaseDocument extends IFlight, Document {}
 
 flightSchema.pre(/^find/, function (this: Model<any>, next) {
   this.find({ startingDate: { $gte: new Date() } });

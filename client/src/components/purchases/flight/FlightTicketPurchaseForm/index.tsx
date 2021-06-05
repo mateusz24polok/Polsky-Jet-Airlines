@@ -37,7 +37,16 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
         enableReinitialize={true}
         initialValues={formInitialValues}
         onSubmit={values => {
-          console.log({ flightId, ...values });
+          console.log({
+            purchaseType: values.purchaseType,
+            confirmPurchase: values.confirmPurchase,
+            weatherInfoAccept: values.weatherInfoAccept,
+            purchasedTickets: {
+              economy: values.economyTickets,
+              standard: values.standardTickets,
+              premium: values.premiumTickets,
+            },
+          });
         }}
       >
         {({ submitForm, values }) => {

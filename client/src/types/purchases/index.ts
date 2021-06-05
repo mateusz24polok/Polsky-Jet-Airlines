@@ -12,3 +12,14 @@ export interface FlightTicketPurchaseFormValues {
   premiumTickets: number;
   confirmPurchase: boolean;
 }
+
+export interface FlightTicketPurchaseRequest {
+  purchaseType: PurchaseType;
+  confirmPurchase: boolean;
+  weatherInfoAccept: boolean;
+  purchasedTickets: {
+    economy: number;
+    standard: number;
+    premium: number;
+  };
+}
