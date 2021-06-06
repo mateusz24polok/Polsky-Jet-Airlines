@@ -5,35 +5,30 @@ import { CustomCheckbox } from "@components/shared/CustomCheckbox";
 import { FlightWeatherCard } from "@components/shared/FlightWeatherCard";
 import {
   fetchFlightWeather,
-  fetchFlights,
   selectFlightById,
-  selectFlights,
   selectIsProgress,
 } from "@store/slices/flights";
 import { RootState } from "@store/setupStore";
 import { getCelsiusTemperature } from "@utils/weatherUtils";
 import { getNextDateAfterTimeElapsed } from "@utils/dateUtils";
+import { Flight } from "@appTypes/flight";
 import { useStyles } from "./styles";
 
 interface Props {
+  flights: Flight[];
   flightId: string;
 }
 
-export const WeatherInfoAcceptStep: React.FC<Props> = ({ flightId }) => {
+export const WeatherInfoAcceptStep: React.FC<Props> = ({
+  flightId,
+  flights,
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isProgress = useSelector(selectIsProgress);
-  const flights = useSelector(selectFlights);
   const purchasedFlight = useSelector((state: RootState) =>
     selectFlightById(state, flightId),
   );
-
-  useEffect(() => {
-    if (flights.length === 0) {
-      dispatch(fetchFlights());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (flights.length) {

@@ -1,16 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form as FormikForm } from "formik";
 import { Box, Typography } from "@material-ui/core";
 import { MultiStepperForm } from "@components/shared/MultiStepperForm";
 import { WeatherInfoAcceptStep } from "@components/purchases/flight/WeatherInfoAcceptStep";
 import { TicketChooseStep } from "@components/purchases/flight/TicketChooseStep";
 import { ConditionConfirmationStep } from "@components/purchases/flight/ConditionsConfirmationStep";
-import { selectFlightById } from "@store/slices/flights";
+import {
+  fetchFlights,
+  selectFlightById,
+  selectFlights,
+} from "@store/slices/flights";
+import { addPurchase } from "@store/slices/user";
 import { RootState } from "@store/setupStore";
 import { StepperFormStep } from "@appTypes/shared/form";
 import {
   FlightTicketPurchaseFormValues,
+  FlightTicketPurchaseRequest,
   PurchaseType,
 } from "@appTypes/purchases";
 
@@ -28,17 +34,28 @@ const formInitialValues: FlightTicketPurchaseFormValues = {
 };
 
 export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
+  const dispatch = useDispatch();
+  const flights = useSelector(selectFlights);
   const flight = useSelector((state: RootState) =>
     selectFlightById(state, flightId),
   );
+
+  useEffect(() => {
+    if (flights.length === 0) {
+      dispatch(fetchFlights());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (flight) {
     return (
       <Formik
         enableReinitialize={true}
         initialValues={formInitialValues}
         onSubmit={values => {
-          console.log({
+          const flightTicketPurchaseRequest: FlightTicketPurchaseRequest = {
             purchaseType: values.purchaseType,
+            flight: flightId,
             confirmPurchase: values.confirmPurchase,
             weatherInfoAccept: values.weatherInfoAccept,
             purchasedTickets: {
@@ -46,14 +63,28 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
               standard: values.standardTickets,
               premium: values.premiumTickets,
             },
-          });
+          };
+          dispatch(addPurchase(flightTicketPurchaseRequest));
         }}
       >
         {({ submitForm, values }) => {
+          const TicketChooseStepPassCondition =
+            (values.economyTickets === 0 &&
+              values.standardTickets === 0 &&
+              values.premiumTickets === 0) ||
+            values.economyTickets < 0 ||
+            values.standardTickets < 0 ||
+            values.premiumTickets < 0 ||
+            typeof values.economyTickets !== "number" ||
+            typeof values.standardTickets !== "number" ||
+            typeof values.premiumTickets !== "number";
+
           const steps: StepperFormStep[] = [
             {
               label: "Potwierdzenie warunków pogodowych",
-              component: <WeatherInfoAcceptStep flightId={flightId} />,
+              component: (
+                <WeatherInfoAcceptStep flightId={flightId} flights={flights} />
+              ),
               disableNextStep: !values.weatherInfoAccept,
             },
             {
@@ -66,10 +97,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
                   amountSelectedStandardTickets={values.standardTickets}
                 />
               ),
-              disableNextStep:
-                values.economyTickets === 0 &&
-                values.standardTickets === 0 &&
-                values.premiumTickets === 0,
+              disableNextStep: TicketChooseStepPassCondition,
             },
             {
               label: "Potwierdzenie zamówienia",

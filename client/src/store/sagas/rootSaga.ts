@@ -6,6 +6,7 @@ import {
 } from "@store/sagas/flights";
 import { createAirportsSaga, fetchAirportsSaga } from "@store/sagas/airports";
 import { fetchCurrenciesSaga } from "@store/sagas/currencies";
+import { addPurchaseSaga } from "@store/sagas/purchases";
 
 export function* rootSaga() {
   yield all([
@@ -15,5 +16,6 @@ export function* rootSaga() {
     fetchAirportsSaga(),
     createAirportsSaga(),
     fetchCurrenciesSaga(),
+    addPurchaseSaga(),
   ]);
 }
