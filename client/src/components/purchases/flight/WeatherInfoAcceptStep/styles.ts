@@ -11,9 +11,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   circular: {
     color: theme.palette.brandBlack,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
   },
 }));

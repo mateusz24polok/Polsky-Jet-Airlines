@@ -3,8 +3,30 @@ import { Paper, Typography } from "@material-ui/core";
 import { CustomTextField } from "@components/shared/CustomTextField";
 import { useStyles } from "./styles";
 
-export const TicketsSelection: React.FC = () => {
+interface Props {
+  amountSelectedEconomyTickets: number;
+  amountSelectedPremiumTickets: number;
+  amountSelectedStandardTickets: number;
+}
+
+export const TicketsSelection: React.FC<Props> = ({
+  amountSelectedEconomyTickets,
+  amountSelectedPremiumTickets,
+  amountSelectedStandardTickets,
+}) => {
   const classes = useStyles();
+
+  const amountSelectedEconomyTicketsError =
+    typeof amountSelectedEconomyTickets !== "number" ||
+    amountSelectedEconomyTickets < 0;
+
+  const amountSelectedStandardTicketsError =
+    typeof amountSelectedStandardTickets !== "number" ||
+    amountSelectedStandardTickets < 0;
+
+  const amountSelectedPremiumTicketsError =
+    typeof amountSelectedPremiumTickets !== "number" ||
+    amountSelectedPremiumTickets < 0;
 
   return (
     <Paper className={classes.paper}>
@@ -19,6 +41,11 @@ export const TicketsSelection: React.FC = () => {
         variant="outlined"
         fullWidth={true}
         InputProps={{ inputProps: { min: 0, max: 30 } }}
+        error={amountSelectedEconomyTicketsError}
+        helperText={
+          amountSelectedEconomyTicketsError &&
+          "Podano nieprawidłową ilość biletów"
+        }
       />
 
       <CustomTextField
@@ -29,6 +56,11 @@ export const TicketsSelection: React.FC = () => {
         variant="outlined"
         fullWidth={true}
         InputProps={{ inputProps: { min: 0, max: 30 } }}
+        error={amountSelectedStandardTicketsError}
+        helperText={
+          amountSelectedStandardTicketsError &&
+          "Podano nieprawidłową ilość biletów"
+        }
       />
       <CustomTextField
         className={classes.input}
@@ -38,6 +70,11 @@ export const TicketsSelection: React.FC = () => {
         variant="outlined"
         fullWidth={true}
         InputProps={{ inputProps: { min: 0, max: 30 } }}
+        error={amountSelectedPremiumTicketsError}
+        helperText={
+          amountSelectedPremiumTicketsError &&
+          "Podano nieprawidłową ilość biletów"
+        }
       />
     </Paper>
   );

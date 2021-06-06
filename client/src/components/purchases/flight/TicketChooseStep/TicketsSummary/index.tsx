@@ -12,6 +12,10 @@ import {
 } from "@material-ui/core";
 import { GenericPriceText } from "@components/shared/GenericPriceText";
 import { Flight } from "@appTypes/flight";
+import {
+  getSelectedTicketAmountTextContent,
+  getSelectedTicketSummaryValue,
+} from "./helpers";
 
 interface Props {
   flight: Flight;
@@ -27,6 +31,12 @@ export const TicketsSummary: React.FC<Props> = ({
   amountSelectedStandardTickets,
 }) => {
   const { tickets } = flight;
+
+  const summaryTicketsCost =
+    amountSelectedEconomyTickets * tickets.economy.price +
+    amountSelectedStandardTickets * tickets.standard.price +
+    amountSelectedPremiumTickets * tickets.premium.price;
+
   return (
     <TableContainer component={Paper}>
       <Typography variant="h6" align="center">
@@ -43,32 +53,45 @@ export const TicketsSummary: React.FC<Props> = ({
         <TableBody>
           <TableRow>
             <TableCell align="justify">Ekonomiczna</TableCell>
-            <TableCell align="center">{amountSelectedEconomyTickets}</TableCell>
+            <TableCell align="center">
+              {getSelectedTicketAmountTextContent(amountSelectedEconomyTickets)}
+            </TableCell>
             <TableCell align="center">
               <GenericPriceText
-                valuePLN={amountSelectedEconomyTickets * tickets.economy.price}
+                valuePLN={getSelectedTicketSummaryValue(
+                  amountSelectedEconomyTickets,
+                  tickets.economy.price,
+                )}
               />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Standard</TableCell>
             <TableCell align="center">
-              {amountSelectedStandardTickets}
+              {getSelectedTicketAmountTextContent(
+                amountSelectedStandardTickets,
+              )}
             </TableCell>
             <TableCell align="center">
               <GenericPriceText
-                valuePLN={
-                  amountSelectedStandardTickets * tickets.standard.price
-                }
+                valuePLN={getSelectedTicketSummaryValue(
+                  amountSelectedStandardTickets,
+                  tickets.standard.price,
+                )}
               />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Premium</TableCell>
-            <TableCell align="center">{amountSelectedPremiumTickets}</TableCell>
+            <TableCell align="center">
+              {getSelectedTicketAmountTextContent(amountSelectedPremiumTickets)}
+            </TableCell>
             <TableCell align="center">
               <GenericPriceText
-                valuePLN={amountSelectedPremiumTickets * tickets.premium.price}
+                valuePLN={getSelectedTicketSummaryValue(
+                  amountSelectedPremiumTickets,
+                  tickets.premium.price,
+                )}
               />
             </TableCell>
           </TableRow>
@@ -78,11 +101,7 @@ export const TicketsSummary: React.FC<Props> = ({
             <TableCell>Podsumowanie kosztów</TableCell>
             <TableCell align="center">
               <GenericPriceText
-                valuePLN={
-                  amountSelectedEconomyTickets * tickets.economy.price +
-                  amountSelectedStandardTickets * tickets.standard.price +
-                  amountSelectedPremiumTickets * tickets.premium.price
-                }
+                valuePLN={summaryTicketsCost >= 0 ? summaryTicketsCost : 0}
               />
             </TableCell>
           </TableRow>
