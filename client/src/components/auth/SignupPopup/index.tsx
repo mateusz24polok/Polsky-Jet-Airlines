@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import { hideSignupPopup, selectIsSignupPopupShown } from "@store/slices/auth";
+import { Popup } from "@components/shared/Popup";
 import { SignupForm } from "./SignupForm";
 
 interface Props {
@@ -23,11 +23,12 @@ export const SignupPopup: React.FC<Props> = ({
   };
 
   return (
-    <Dialog open={isSignupPopupOpen} onClose={handleClose || handlePopupClose}>
-      <DialogTitle>Rejestracja użytkownika</DialogTitle>
-      <DialogContent>
-        <SignupForm onAbort={onAbort} onSubmit={onSubmit} />
-      </DialogContent>
-    </Dialog>
+    <Popup
+      title="Rejestracja użytkownika"
+      open={isSignupPopupOpen}
+      handleClose={handleClose || handlePopupClose}
+    >
+      <SignupForm onAbort={onAbort} onSubmit={onSubmit} />
+    </Popup>
   );
 };

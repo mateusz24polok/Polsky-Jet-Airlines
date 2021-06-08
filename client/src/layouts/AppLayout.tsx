@@ -3,7 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { Footer } from "@containers/MainPage/Footer";
 import { AppBar } from "@containers/MainPage/AppBar";
-import { SignupPopup } from "@components/shared/SignupPopup";
+import { SignupPopup } from "@components/auth/SignupPopup";
 import { routes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { theme } from "@resources/theme";
