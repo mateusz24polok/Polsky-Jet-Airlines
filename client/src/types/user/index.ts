@@ -11,7 +11,7 @@ export interface SignupRequest {
   passwordConfirm: string;
 }
 
-export interface NewUserSignupResponse {
+export interface UserSignupAndLoginResponse {
   status: string;
   token: string;
   user: {
@@ -20,4 +20,9 @@ export interface NewUserSignupResponse {
     name: string;
     email: string;
   };
+}
+
+export interface LoginFormAndRequest {
+  email: string;
+  password: string;
 }

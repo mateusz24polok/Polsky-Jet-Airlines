@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import { Footer } from "@containers/MainPage/Footer";
 import { AppBar } from "@containers/MainPage/AppBar";
 import { SignupPopup } from "@components/auth/SignupPopup";
+import { LoginPopup } from "@components/auth/LoginPopup";
 import { routes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { theme } from "@resources/theme";
@@ -57,6 +58,7 @@ export const AppLayout: React.FC = () => {
         </Grid>
       </Grid>
       <SignupPopup />
+      <LoginPopup />
     </>
   );
 };
