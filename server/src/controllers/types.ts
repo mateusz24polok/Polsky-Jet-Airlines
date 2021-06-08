@@ -5,7 +5,8 @@ export interface GetFlightsRequestQueryParams {
   flightDateTo?: Date;
 }
 
-export interface GetFlightsModifiedQueryParams extends GetFlightsRequestQueryParams {
+export interface GetFlightsModifiedQueryParams
+  extends GetFlightsRequestQueryParams {
   startingDate?: {
     lte?: Date;
     gte?: Date;

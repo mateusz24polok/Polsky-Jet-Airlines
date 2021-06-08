@@ -60,7 +60,7 @@ interface IPurchase {
   };
 }
 
-interface PurchaseBaseDocument extends IPurchase, Document {}
+export interface PurchaseBaseDocument extends IPurchase, Document {}
 
 export const Purchase = mongoose.model<
   PurchaseBaseDocument,
