@@ -7,11 +7,15 @@ import { useStyles } from "./styles";
 interface Props {
   isMobileView?: boolean;
   onMenuIconClick?: () => void;
+  onSignupClick?: () => void;
+  onLoginClick?: () => void;
 }
 
 export const LoginBar: React.FC<Props> = ({
   isMobileView,
   onMenuIconClick,
+  onLoginClick,
+  onSignupClick,
 }) => {
   const classes = useStyles();
 
@@ -21,13 +25,17 @@ export const LoginBar: React.FC<Props> = ({
         <CurrenciesSelect />
       </Grid>
       <Grid item>
-        <Button color="inherit">Login</Button>
+        <Button onClick={onLoginClick} color="inherit">
+          Login
+        </Button>
       </Grid>
       {isMobileView ? null : (
         <Divider orientation="vertical" flexItem className={classes.divider} />
       )}
       <Grid item>
-        <Button color="inherit">SignUp</Button>
+        <Button onClick={onSignupClick} color="inherit">
+          SignUp
+        </Button>
       </Grid>
       {isMobileView ? (
         <Grid item>
