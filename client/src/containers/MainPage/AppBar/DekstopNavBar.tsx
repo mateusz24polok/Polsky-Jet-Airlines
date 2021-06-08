@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
-import { showSignupPopup } from "@store/slices/app";
+import { showSignupPopup } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";

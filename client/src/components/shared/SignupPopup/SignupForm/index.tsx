@@ -3,8 +3,10 @@ import { useDispatch } from "react-redux";
 import { Formik, Form as FormikForm } from "formik";
 import { Box, Button } from "@material-ui/core";
 import { CustomTextField } from "@components/shared/CustomTextField";
-import { hideSignupPopup } from "@store/slices/app";
+import { hideSignupPopup, registerNewUser } from "@store/slices/auth";
 import { SignupFormValues } from "@appTypes/shared/form";
+import { UserRole } from "@appTypes/user";
+import { signupSchema } from "./schema";
 import { useStyles } from "./styles";
 
 interface Props {
@@ -35,11 +37,12 @@ export const SignupForm: React.FC<Props> = ({ onAbort, onSubmit }) => {
     <Formik
       enableReinitialize={true}
       initialValues={formInitialValues}
+      validationSchema={signupSchema}
       onSubmit={values => {
-        console.log(values);
+        dispatch(registerNewUser({ ...values, role: UserRole.USER }));
       }}
     >
-      {({ submitForm }) => {
+      {({ submitForm, dirty, errors }) => {
         return (
           <FormikForm>
             <CustomTextField
@@ -74,7 +77,7 @@ export const SignupForm: React.FC<Props> = ({ onAbort, onSubmit }) => {
             />
             <Box className={classes.buttonsContainer}>
               <Button
-                onClick={onSubmit || handleSignupPopupClose}
+                onClick={onAbort || handleSignupPopupClose}
                 variant="contained"
                 color="secondary"
                 className={classes.button}
@@ -83,11 +86,12 @@ export const SignupForm: React.FC<Props> = ({ onAbort, onSubmit }) => {
               </Button>
               <Button
                 onClick={
-                  onAbort ? onAbort : () => handleSignupSubmit(submitForm)
+                  onSubmit ? onSubmit : () => handleSignupSubmit(submitForm)
                 }
                 variant="contained"
                 color="primary"
                 className={classes.button}
+                disabled={!dirty || Object.keys(errors).length > 0}
               >
                 Zarejestruj
               </Button>

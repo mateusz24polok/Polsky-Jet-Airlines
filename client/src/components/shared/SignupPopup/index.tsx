@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
-import { hideSignupPopup, selectIsSignupPopupShown } from "@store/slices/app";
+import { hideSignupPopup, selectIsSignupPopupShown } from "@store/slices/auth";
 import { SignupForm } from "./SignupForm";
 
 interface Props {
