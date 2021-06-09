@@ -9,3 +9,10 @@ export interface StepperFormStep {
   component: React.ReactNode;
   disableNextStep?: boolean;
 }
+
+export interface SignupFormValues {
+  email: string;
+  name: string;
+  password: string;
+  passwordConfirm: string;
+}

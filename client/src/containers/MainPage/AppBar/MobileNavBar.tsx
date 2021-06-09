@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -10,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
+import { showSignupPopup } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
@@ -18,6 +20,7 @@ import { useStyles } from "./styles";
 
 export const MobileNavBar = (): JSX.Element => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const smallMatches = useSmallBrekpointMatchesUp();
 
@@ -25,6 +28,10 @@ export const MobileNavBar = (): JSX.Element => {
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const handleSignupPopupOpen = () => {
+    dispatch(showSignupPopup());
   };
 
   return (
@@ -63,7 +70,11 @@ export const MobileNavBar = (): JSX.Element => {
               </Grid>
             </Grid>
             <Grid item sm={6} xs={10}>
-              <LoginBar isMobileView onMenuIconClick={handleExpandClick} />
+              <LoginBar
+                onSignupClick={handleSignupPopupOpen}
+                isMobileView
+                onMenuIconClick={handleExpandClick}
+              />
             </Grid>
           </Grid>
           <Grid item>
