@@ -6,6 +6,7 @@ import { airportsReducer } from "@store/slices/airports";
 import { currenciesReducer } from "@store/slices/currencies";
 import { userReducer } from "@store/slices/user";
 import { authReducer } from "@store/slices/auth";
+import { appReducer } from "@store/slices/app";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,6 +17,7 @@ export const store = configureStore({
     currencies: currenciesReducer,
     user: userReducer,
     auth: authReducer,
+    app: appReducer,
   },
   middleware: [sagaMiddleware],
 });
