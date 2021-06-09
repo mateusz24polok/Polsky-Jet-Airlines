@@ -19,6 +19,7 @@ import {
   fetchFlightsSuccess,
   selectFlightById,
 } from "@store/slices/flights";
+import { addSnackbar } from "@store/slices/app";
 import { getFlightsService, postFlightService } from "@services/flights";
 import { getFlightCitiesWeather } from "@services/weather";
 import { Flight, FlightServiceResponse } from "@appTypes/flight";
@@ -49,16 +50,24 @@ function* fetchFlightsSagaWorker(
 
 function* createFlightSagaWorker(
   createFlightAction: ReturnType<typeof createFlight>,
-): Generator<
-  CallEffect | PutEffect<{ payload: undefined; type: string }>,
-  void,
-  void
-> {
+): Generator<CallEffect | PutEffect, void, void> {
   try {
     yield call<any>(postFlightService, createFlightAction?.payload);
     yield put(createFlightSuccess());
+    yield put(
+      addSnackbar({
+        message: "Pomyślnie dodano nowy lot",
+        options: { variant: "success" },
+      }),
+    );
   } catch (error) {
     yield put(createFlightError());
+    yield put(
+      addSnackbar({
+        message: "Błąd podczas dodawania lotu",
+        options: { variant: "success" },
+      }),
+    );
   }
 }
 
