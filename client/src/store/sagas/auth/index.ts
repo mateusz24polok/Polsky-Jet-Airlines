@@ -9,8 +9,18 @@ import {
   registerNewUser,
   registerNewUserError,
   registerNewUserSuccess,
+  userLogin,
+  userLoginError,
+  userLoginSuccess,
 } from "@store/slices/auth";
-import { postRegisterNewUserService } from "@services/auth";
+import { updateUserDetails } from "@store/slices/user";
+import {
+  postLoginUserService,
+  postRegisterNewUserService,
+} from "@services/auth";
+import { setJwtInLocalStorage } from "@utils/authUtils";
+import { UserSignupAndLoginResponse } from "@appTypes/user";
+import { ApiResponseError } from "@appTypes/shared/ajax";
 
 function* registerNewUserSagaWorker(
   registerNewUserAction: ReturnType<typeof registerNewUser>,
@@ -23,6 +33,23 @@ function* registerNewUserSagaWorker(
   }
 }
 
+function* loginUserSagaWorker(
+  loginUserAction: ReturnType<typeof userLogin>,
+): Generator<CallEffect | PutEffect | void, void, UserSignupAndLoginResponse> {
+  try {
+    const userData = yield call(postLoginUserService, loginUserAction.payload);
+    yield put(userLoginSuccess());
+    yield put(updateUserDetails(userData));
+    yield setJwtInLocalStorage(userData.token);
+  } catch (error) {
+    yield put(userLoginError((error as ApiResponseError).message));
+  }
+}
+
 export function* registerNewUserSaga() {
   yield takeLatest(registerNewUser.type, registerNewUserSagaWorker);
+}
+
+export function* loginUserSaga() {
+  yield takeLatest(userLogin.type, loginUserSagaWorker);
 }

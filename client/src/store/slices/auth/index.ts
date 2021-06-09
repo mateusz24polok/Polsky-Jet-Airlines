@@ -8,6 +8,7 @@ interface AuthState {
   isProgress: boolean;
   isError: boolean;
   lastActivityMessage: string;
+  errorMessage: string;
   isLoggedIn: boolean;
 }
 
@@ -17,12 +18,13 @@ const initialState: AuthState = {
   isError: false,
   isProgress: false,
   lastActivityMessage: "",
+  errorMessage: "",
   isLoggedIn: false,
 };
 
 const authSlice = createSlice({
   initialState,
-  name: "app",
+  name: "auth",
   reducers: {
     showLoginPopup: (state: AuthState) => {
       state.isLoginPopupShown = true;
@@ -68,12 +70,19 @@ const authSlice = createSlice({
     userLoginSuccess: (state: AuthState) => {
       state.isProgress = false;
       state.isError = false;
+      state.isLoggedIn = true;
       state.lastActivityMessage = "Zalogowano poprawnie";
     },
-    userLoginError: (state: AuthState) => {
+    userLoginError: (
+      state: AuthState,
+      action: PayloadAction<string | undefined>,
+    ) => {
       state.isProgress = false;
       state.isError = true;
       state.lastActivityMessage = "Błąd logowania";
+      if (action.payload) {
+        state.errorMessage = action.payload;
+      }
     },
   },
 });

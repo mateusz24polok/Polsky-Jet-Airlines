@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Formik, Form as FormikForm } from "formik";
 import { Box, Button } from "@material-ui/core";
 import { CustomTextField } from "@components/shared/CustomTextField";
-import { hideLoginPopup } from "@store/slices/auth";
+import { hideLoginPopup, userLogin } from "@store/slices/auth";
 import { LoginFormAndRequest } from "@appTypes/user";
 import { loginSchema } from "./schema";
 import { useStyles } from "./styles";
@@ -37,7 +37,7 @@ export const LoginForm: React.FC<Props> = ({ onAbort, onSubmit }) => {
       initialValues={formInitialValues}
       validationSchema={loginSchema}
       onSubmit={values => {
-        console.log(values);
+        dispatch(userLogin(values));
       }}
     >
       {({ submitForm, dirty, errors }) => {

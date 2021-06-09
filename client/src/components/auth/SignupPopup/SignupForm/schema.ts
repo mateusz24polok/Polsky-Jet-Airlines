@@ -10,8 +10,7 @@ export const signupSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Hasło musi mieć minimum 6 znaków")
     .required("Podaj hasło"),
-  passwordConfirm: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match",
-  ),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Hasła muszą do siebie pasować")
+    .required("Powtórz hasło"),
 });

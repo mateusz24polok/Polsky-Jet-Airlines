@@ -1,5 +1,9 @@
-import axios from "axios";
-import { SignupRequest } from "@appTypes/user";
+import axios, { AxiosResponse } from "axios";
+import {
+  LoginFormAndRequest,
+  SignupRequest,
+  UserSignupAndLoginResponse,
+} from "@appTypes/user";
 
 const userAxiosInstance = axios.create({
   baseURL: `${process.env.api as string}/api/v1/user`,
@@ -10,8 +14,23 @@ export const postRegisterNewUserService = async (
 ) => {
   try {
     await userAxiosInstance.post("/signup", newUserRequest);
-  } catch (err) {
-    console.log(err);
-    throw new Error(err);
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const postLoginUserService = async (
+  userLoginData: LoginFormAndRequest,
+): Promise<UserSignupAndLoginResponse> => {
+  try {
+    const user: AxiosResponse<UserSignupAndLoginResponse> = await userAxiosInstance.post(
+      "/login",
+      userLoginData,
+    );
+    return user.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
   }
 };

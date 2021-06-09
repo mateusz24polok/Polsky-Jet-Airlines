@@ -51,7 +51,7 @@ const userSlice = createSlice({
       state.isProgress = false;
       state.isError = true;
     },
-    getUserDetails: (
+    updateUserDetails: (
       state: UserState,
       action: PayloadAction<UserSignupAndLoginResponse>,
     ) => {
@@ -73,7 +73,7 @@ export const {
   addPurchase,
   addPurchaseError,
   addPurchaseSuccess,
-  getUserDetails,
+  updateUserDetails,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
