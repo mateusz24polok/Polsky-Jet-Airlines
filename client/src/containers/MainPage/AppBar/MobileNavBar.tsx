@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -12,20 +12,25 @@ import {
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { AccountBar } from "@components/mainPage/appBar/AccountBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
-import {
-  selectIsLoggedIn,
-  showLoginPopup,
-  showSignupPopup,
-} from "@store/slices/auth";
+import { selectIsLoggedIn } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { useSmallBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
-export const MobileNavBar = (): JSX.Element => {
+interface Props {
+  onSignupClick?: () => void;
+  onLoginClick?: () => void;
+  onLogoutClick?: () => void;
+}
+
+export const MobileNavBar = ({
+  onLoginClick,
+  onLogoutClick,
+  onSignupClick,
+}: Props): JSX.Element => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   const smallMatches = useSmallBrekpointMatchesUp();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -34,14 +39,6 @@ export const MobileNavBar = (): JSX.Element => {
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
-  };
-
-  const handleSignupPopupOpen = () => {
-    dispatch(showSignupPopup());
-  };
-
-  const handleLoginPopupOpen = () => {
-    dispatch(showLoginPopup());
   };
 
   return (
@@ -81,11 +78,11 @@ export const MobileNavBar = (): JSX.Element => {
             </Grid>
             <Grid item sm={6} xs={10}>
               {isLoggedIn ? (
-                <AccountBar />
+                <AccountBar onLogoutClick={onLogoutClick} />
               ) : (
                 <LoginBar
-                  onLoginClick={handleLoginPopupOpen}
-                  onSignupClick={handleSignupPopupOpen}
+                  onLoginClick={onLoginClick}
+                  onSignupClick={onSignupClick}
                   isMobileView
                   onMenuIconClick={handleExpandClick}
                 />

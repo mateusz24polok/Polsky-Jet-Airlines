@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Grid,
@@ -10,29 +10,25 @@ import {
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { AccountBar } from "@components/mainPage/appBar/AccountBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
-import {
-  selectIsLoggedIn,
-  showLoginPopup,
-  showSignupPopup,
-} from "@store/slices/auth";
+import { selectIsLoggedIn } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { useStyles } from "./styles";
 
-export const DesktopNavBar = (): JSX.Element => {
+interface Props {
+  onSignupClick?: () => void;
+  onLoginClick?: () => void;
+  onLogoutClick?: () => void;
+}
+
+export const DesktopNavBar = ({
+  onLoginClick,
+  onLogoutClick,
+  onSignupClick,
+}: Props): JSX.Element => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  const handleSignupPopupOpen = () => {
-    dispatch(showSignupPopup());
-  };
-
-  const handleLoginPopupOpen = () => {
-    dispatch(showLoginPopup());
-  };
 
   return (
     <MuiAppBar className={classes.root} position="static" data-testid="app-bar">
@@ -63,11 +59,11 @@ export const DesktopNavBar = (): JSX.Element => {
           </Grid>
           <Grid item xs={2} container justify="flex-end" alignItems="center">
             {isLoggedIn ? (
-              <AccountBar />
+              <AccountBar onLogoutClick={onLogoutClick} />
             ) : (
               <LoginBar
-                onSignupClick={handleSignupPopupOpen}
-                onLoginClick={handleLoginPopupOpen}
+                onSignupClick={onSignupClick}
+                onLoginClick={onLoginClick}
               />
             )}
           </Grid>
