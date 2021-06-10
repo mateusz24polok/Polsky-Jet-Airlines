@@ -8,7 +8,10 @@ import {
 } from "@appTypes/shared/money";
 
 const currenciesAxiosInstance = axios.create({
-  baseURL: "http://api.nbp.pl/api/exchangerates/rates/a/",
+  baseURL:
+    (process.env.name as string) === "Polsky Jet Development App"
+      ? "http://api.nbp.pl/api/exchangerates/rates/a/"
+      : "https://api.nbp.pl/api/exchangerates/rates/a/",
 });
 
 export const getCurrencyRateService = async (

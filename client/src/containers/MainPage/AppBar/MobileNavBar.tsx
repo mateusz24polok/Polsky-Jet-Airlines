@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
-import { showSignupPopup } from "@store/slices/auth";
+import { showLoginPopup, showSignupPopup } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
@@ -32,6 +32,10 @@ export const MobileNavBar = (): JSX.Element => {
 
   const handleSignupPopupOpen = () => {
     dispatch(showSignupPopup());
+  };
+
+  const handleLoginPopupOpen = () => {
+    dispatch(showLoginPopup());
   };
 
   return (
@@ -71,6 +75,7 @@ export const MobileNavBar = (): JSX.Element => {
             </Grid>
             <Grid item sm={6} xs={10}>
               <LoginBar
+                onLoginClick={handleLoginPopupOpen}
                 onSignupClick={handleSignupPopupOpen}
                 isMobileView
                 onMenuIconClick={handleExpandClick}

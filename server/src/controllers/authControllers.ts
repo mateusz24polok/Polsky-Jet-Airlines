@@ -5,8 +5,8 @@ import { AppError } from "../utils/AppError";
 import { User, UserBaseDocument } from "../models/userModel";
 
 const signToken = (id: string) =>
-  jwt.sign({ id }, process.env.JWT_SECRET as string, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+  jwt.sign({ id }, `${process.env.JWT_SECRET}` as string, {
+    expiresIn: `${process.env.JWT_EXPIRES_IN}`,
   });
 
 const createSendToken = (
@@ -19,7 +19,7 @@ const createSendToken = (
   const cookieOptions: CookieOptions = {
     expires: new Date(
       Date.now() +
-        (process.env.JWT_COOKIE_EXPIRES_IN as unknown as number) *
+        (`${process.env.JWT_COOKIE_EXPIRES_IN}` as unknown as number) *
           24 *
           60 *
           60 *
