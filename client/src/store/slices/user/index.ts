@@ -4,22 +4,22 @@ import { FlightTicketPurchaseRequest } from "@appTypes/purchases";
 import { UserRole, UserSignupAndLoginResponse } from "@appTypes/user";
 
 interface UserState {
-  id: string;
-  name: string;
-  role: UserRole;
-  email: string;
-  jwtToken: string;
+  id: string | null;
+  name: string | null;
+  role: UserRole | null;
+  email: string | null;
+  jwtToken: string | null;
   purchases: FlightTicketPurchaseRequest | null;
   isProgress: boolean;
   isError: boolean;
 }
 
 const initialState: UserState = {
-  id: "",
-  name: "",
-  email: "",
-  jwtToken: "",
-  role: UserRole.USER,
+  id: null,
+  name: null,
+  email: null,
+  jwtToken: null,
+  role: null,
   purchases: null,
   isError: false,
   isProgress: false,
@@ -64,6 +64,8 @@ const userSlice = createSlice({
         state.jwtToken = token;
       }
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    clearUserDetails: (state: UserState) => initialState,
   },
 });
 
@@ -74,6 +76,7 @@ export const {
   addPurchaseError,
   addPurchaseSuccess,
   updateUserDetails,
+  clearUserDetails,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

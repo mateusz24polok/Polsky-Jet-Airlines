@@ -84,6 +84,22 @@ const authSlice = createSlice({
         state.errorMessage = action.payload;
       }
     },
+    userLogout: (state: AuthState) => {
+      state.isProgress = true;
+      state.isError = false;
+      state.lastActivityMessage = "Wylogowywanie...";
+    },
+    userLogoutSuccess: (state: AuthState) => {
+      state.isProgress = false;
+      state.isError = false;
+      state.isLoggedIn = false;
+      state.lastActivityMessage = "Wylogowano pomyślnie";
+    },
+    userLogoutError: (state: AuthState) => {
+      state.isProgress = false;
+      state.isError = true;
+      state.lastActivityMessage = "Nieudana próba wylogowania";
+    },
   },
 });
 
@@ -108,6 +124,9 @@ export const {
   userLogin,
   userLoginError,
   userLoginSuccess,
+  userLogout,
+  userLogoutError,
+  userLogoutSuccess,
 } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

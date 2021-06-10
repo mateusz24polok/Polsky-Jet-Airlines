@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Divider, Grid, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { CurrenciesSelect } from "./CurrenciesSelect";
+import { CurrenciesSelect } from "@components/mainPage/appBar/CurrenciesSelect";
 import { useStyles } from "./styles";
 
 interface Props {

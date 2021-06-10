@@ -5,6 +5,7 @@ export interface RoutesPaths {
   readonly offerHotels: string;
   readonly offerCars: string;
   readonly aboutUs: string;
+  readonly logout: string;
   readonly flights: string;
   readonly flight: string;
   readonly management: string;
@@ -21,6 +22,7 @@ export const routesPaths: RoutesPaths = {
   offerHotels: "/hotels",
   offerCars: "/cars",
   aboutUs: "/aboutUs",
+  logout: "/logout",
   flights: "/flights",
   flight: "/flights/:id",
   management: "/management",

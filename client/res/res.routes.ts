@@ -1,6 +1,7 @@
 import { NestedRoute, Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
+import { LogoutPage } from "@pages/LogoutPage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
 import { FlightPurchasePage } from "@pages/FlightPurchasePage";
@@ -16,6 +17,11 @@ export const routes: Route[] = [
     label: "Loty",
     component: HomePage,
     appBarElement: true,
+  },
+  {
+    id: "logout",
+    path: routesPaths.logout,
+    component: LogoutPage,
   },
   {
     id: "hotels",

@@ -29,6 +29,7 @@ import OpinionIcon from "@images/icons/opinion_icon.png";
 import AirplaneIconBlack from "@images/icons/airplane_icon.png";
 import RightArrowIcon from "@images/icons/right_arrow_icon.png";
 import DownArrowIcon from "@images/icons/down_arrow_icon.png";
+import SuccessCheckIcon from "@images/icons/success_check_icon.png";
 
 export interface Images {
   backgrounds: {
@@ -66,6 +67,7 @@ export interface Images {
     readonly AirplaneIconBlack: Image;
     readonly RightArrowIcon: Image;
     readonly DownArrowIcon: Image;
+    readonly SuccessCheckIcon: Image;
   };
 }
 
@@ -103,5 +105,6 @@ export const images: Images = {
     AirplaneIconBlack,
     RightArrowIcon,
     DownArrowIcon,
+    SuccessCheckIcon,
   },
 };

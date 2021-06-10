@@ -9,3 +9,9 @@ export const getJwtFromLocalStorage = (): string => {
     ? localStorage.getItem("jwt") || ""
     : "";
 };
+
+export const removeJwtFromLocalStorage = (): void => {
+  if (window.localStorage && localStorage.getItem("jwt")) {
+    localStorage.removeItem("jwt");
+  }
+};

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -10,32 +10,35 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
+import { AccountBar } from "@components/mainPage/appBar/AccountBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
-import { showLoginPopup, showSignupPopup } from "@store/slices/auth";
+import { selectIsLoggedIn } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { useSmallBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { useStyles } from "./styles";
 
-export const MobileNavBar = (): JSX.Element => {
+interface Props {
+  onSignupClick?: () => void;
+  onLoginClick?: () => void;
+  onLogoutClick?: () => void;
+}
+
+export const MobileNavBar = ({
+  onLoginClick,
+  onLogoutClick,
+  onSignupClick,
+}: Props): JSX.Element => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   const smallMatches = useSmallBrekpointMatchesUp();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
-  };
-
-  const handleSignupPopupOpen = () => {
-    dispatch(showSignupPopup());
-  };
-
-  const handleLoginPopupOpen = () => {
-    dispatch(showLoginPopup());
   };
 
   return (
@@ -74,12 +77,16 @@ export const MobileNavBar = (): JSX.Element => {
               </Grid>
             </Grid>
             <Grid item sm={6} xs={10}>
-              <LoginBar
-                onLoginClick={handleLoginPopupOpen}
-                onSignupClick={handleSignupPopupOpen}
-                isMobileView
-                onMenuIconClick={handleExpandClick}
-              />
+              {isLoggedIn ? (
+                <AccountBar onLogoutClick={onLogoutClick} />
+              ) : (
+                <LoginBar
+                  onLoginClick={onLoginClick}
+                  onSignupClick={onSignupClick}
+                  isMobileView
+                  onMenuIconClick={handleExpandClick}
+                />
+              )}
             </Grid>
           </Grid>
           <Grid item>

@@ -15,14 +15,21 @@ import {
   userLogin,
   userLoginError,
   userLoginSuccess,
+  userLogout,
+  userLogoutError,
+  userLogoutSuccess,
 } from "@store/slices/auth";
-import { updateUserDetails } from "@store/slices/user";
+import { clearUserDetails, updateUserDetails } from "@store/slices/user";
 import { addSnackbar } from "@store/slices/app";
 import {
+  getLogoutUserService,
   postLoginUserService,
   postRegisterNewUserService,
 } from "@services/auth";
-import { setJwtInLocalStorage } from "@utils/authUtils";
+import {
+  removeJwtFromLocalStorage,
+  setJwtInLocalStorage,
+} from "@utils/authUtils";
 import { UserSignupAndLoginResponse } from "@appTypes/user";
 import { ApiResponseError } from "@appTypes/shared/ajax";
 
@@ -82,10 +89,43 @@ function* loginUserSagaWorker(
   }
 }
 
+function* logoutUserSagaWorker(): Generator<
+  CallEffect | PutEffect | SelectEffect | void,
+  void,
+  string
+> {
+  try {
+    yield call(getLogoutUserService);
+    yield put(userLogoutSuccess());
+    yield put(clearUserDetails());
+    yield call(removeJwtFromLocalStorage);
+    const lastAuthActivityMessage = yield select(selectLastAuthActivityMessage);
+    yield put(
+      addSnackbar({
+        message: lastAuthActivityMessage,
+        options: { variant: "success" },
+      }),
+    );
+  } catch (error) {
+    yield put(userLogoutError());
+    const lastAuthActivityMessage = yield select(selectLastAuthActivityMessage);
+    yield put(
+      addSnackbar({
+        message: lastAuthActivityMessage,
+        options: { variant: "error" },
+      }),
+    );
+  }
+}
+
 export function* registerNewUserSaga() {
   yield takeLatest(registerNewUser.type, registerNewUserSagaWorker);
 }
 
 export function* loginUserSaga() {
   yield takeLatest(userLogin.type, loginUserSagaWorker);
+}
+
+export function* logoutUserSaga() {
+  yield takeLatest(userLogout.type, logoutUserSagaWorker);
 }
