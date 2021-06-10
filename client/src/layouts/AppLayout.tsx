@@ -23,6 +23,9 @@ export const AppLayout: React.FC = () => {
       case routesPaths.flights:
         setContentBackgroundColor(theme.palette.brandOrange);
         break;
+      case routesPaths.logout:
+        setContentBackgroundColor(theme.palette.brandOrange);
+        break;
       default:
         setContentBackgroundColor("white");
     }
