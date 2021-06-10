@@ -1,13 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { DesktopNavBar } from "@containers/MainPage/AppBar/DekstopNavBar";
 import { MobileNavBar } from "@containers/MainPage/AppBar/MobileNavBar";
 import { showLoginPopup, showSignupPopup } from "@store/slices/auth";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import { routesPaths } from "@resources/res.routesPaths";
 
 export const AppBar: React.FC = () => {
   const mediumMatches = useMediumBrekpointMatchesUp();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSignupPopupOpen = () => {
     dispatch(showSignupPopup());
@@ -18,7 +21,7 @@ export const AppBar: React.FC = () => {
   };
 
   const handleLogout = () => {
-    console.log("Here will be logout");
+    history.push(routesPaths.logout);
   };
 
   return (

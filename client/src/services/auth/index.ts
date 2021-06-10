@@ -15,7 +15,7 @@ export const postRegisterNewUserService = async (
   try {
     await userAxiosInstance.post("/signup", newUserRequest);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new Error(error);
   }
 };
@@ -30,7 +30,19 @@ export const postLoginUserService = async (
     );
     return user.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error(error);
+  }
+};
+
+export const getLogoutUserService = async (): Promise<string> => {
+  try {
+    const logoutMessage: AxiosResponse<{
+      status: string;
+    }> = await userAxiosInstance.get("/logout");
+    return logoutMessage.data.status;
+  } catch (error) {
+    console.error(error);
     throw new Error(error);
   }
 };
