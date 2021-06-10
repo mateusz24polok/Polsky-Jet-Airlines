@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -10,8 +10,13 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import { LoginBar } from "@components/mainPage/appBar/LoginBar";
+import { AccountBar } from "@components/mainPage/appBar/AccountBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
-import { showLoginPopup, showSignupPopup } from "@store/slices/auth";
+import {
+  selectIsLoggedIn,
+  showLoginPopup,
+  showSignupPopup,
+} from "@store/slices/auth";
 import { R } from "@resources/res";
 import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
@@ -23,6 +28,7 @@ export const MobileNavBar = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const smallMatches = useSmallBrekpointMatchesUp();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -74,12 +80,16 @@ export const MobileNavBar = (): JSX.Element => {
               </Grid>
             </Grid>
             <Grid item sm={6} xs={10}>
-              <LoginBar
-                onLoginClick={handleLoginPopupOpen}
-                onSignupClick={handleSignupPopupOpen}
-                isMobileView
-                onMenuIconClick={handleExpandClick}
-              />
+              {isLoggedIn ? (
+                <AccountBar />
+              ) : (
+                <LoginBar
+                  onLoginClick={handleLoginPopupOpen}
+                  onSignupClick={handleSignupPopupOpen}
+                  isMobileView
+                  onMenuIconClick={handleExpandClick}
+                />
+              )}
             </Grid>
           </Grid>
           <Grid item>

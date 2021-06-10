@@ -1,21 +1,18 @@
 import React from "react";
-import { Button, Divider, Grid, IconButton } from "@material-ui/core";
+import { Grid, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { CurrenciesSelect } from "@components/mainPage/appBar/CurrenciesSelect";
 import { useStyles } from "./styles";
 
 interface Props {
   isMobileView?: boolean;
   onMenuIconClick?: () => void;
-  onSignupClick?: () => void;
-  onLoginClick?: () => void;
 }
 
-export const LoginBar: React.FC<Props> = ({
+export const AccountBar: React.FC<Props> = ({
   isMobileView,
   onMenuIconClick,
-  onLoginClick,
-  onSignupClick,
 }) => {
   const classes = useStyles();
 
@@ -25,22 +22,14 @@ export const LoginBar: React.FC<Props> = ({
         <CurrenciesSelect />
       </Grid>
       <Grid item>
-        <Button onClick={onLoginClick} color="inherit">
-          Login
-        </Button>
-      </Grid>
-      {isMobileView ? null : (
-        <Divider orientation="vertical" flexItem className={classes.divider} />
-      )}
-      <Grid item>
-        <Button onClick={onSignupClick} color="inherit">
-          SignUp
-        </Button>
+        <IconButton>
+          <AccountCircleIcon className={classes.icon} fontSize="large" />
+        </IconButton>
       </Grid>
       {isMobileView ? (
         <Grid item>
           <IconButton onClick={onMenuIconClick}>
-            <MenuIcon className={classes.menuIcon} />
+            <MenuIcon className={classes.icon} />
           </IconButton>
         </Grid>
       ) : null}
