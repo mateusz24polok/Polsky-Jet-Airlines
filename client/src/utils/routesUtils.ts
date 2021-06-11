@@ -1,4 +1,4 @@
-import { LogoutPage } from "@pages/LogoutPage";
+import { NonAuthorizedRedirect } from "@components/shared/NonAuthorizedRedirect";
 import { store } from "@store/setupStore";
 import { NestedRoute, Route } from "@appTypes/routes";
 
@@ -24,7 +24,7 @@ export const getProtectedRoutesByRole = (routes: Route[]): Route[] => {
         ...route,
         appBarElement: false,
         disable: true,
-        component: LogoutPage,
+        component: NonAuthorizedRedirect,
       };
     }
   });

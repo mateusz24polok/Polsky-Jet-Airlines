@@ -11,8 +11,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
   title: {
     marginTop: theme.spacing(2),
   },
-  button: {
+  buttonsGroup: {
     marginTop: theme.spacing(2),
+  },
+  button: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(2),
     backgroundColor: theme.palette.brandBlack,
     color: theme.palette.brandWhite,
     "&:hover": {

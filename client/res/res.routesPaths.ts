@@ -13,6 +13,7 @@ export interface RoutesPaths {
   readonly managementNewAirport: string;
   readonly managementFlightsDetails: string;
   readonly managementNewFlight: string;
+  readonly nonAuthorized: string;
 }
 
 export const routesPaths: RoutesPaths = {
@@ -30,4 +31,5 @@ export const routesPaths: RoutesPaths = {
   managementNewAirport: "/management/new-airport",
   managementFlightsDetails: "/management/flights",
   managementNewFlight: "/management/new-flight",
+  nonAuthorized: "/non-authorized",
 };

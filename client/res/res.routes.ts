@@ -5,6 +5,7 @@ import { LogoutPage } from "@pages/LogoutPage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
 import { FlightPurchasePage } from "@pages/FlightPurchasePage";
+import { NonAuthorizedPage } from "@pages/NonAuthorizedPage";
 import { AirportsDetailsTable } from "@components/management/AirportsDetailsTable";
 import { NewAirportForm } from "@components/management/NewAirportForm";
 import { FlightsDetailsTable } from "@components/management/FlightsDetailsTable";
@@ -88,5 +89,11 @@ export const routes: Route[] = [
         component: NewFlightForm,
       },
     ],
+  },
+  {
+    id: "nonAuthorized",
+    path: routesPaths.nonAuthorized,
+    component: NonAuthorizedPage,
+    exact: true,
   },
 ];

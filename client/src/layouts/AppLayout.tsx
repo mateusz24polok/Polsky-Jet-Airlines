@@ -27,6 +27,9 @@ export const AppLayout: React.FC = () => {
       case routesPaths.logout:
         setContentBackgroundColor(theme.palette.brandOrange);
         break;
+      case routesPaths.nonAuthorized:
+        setContentBackgroundColor(theme.palette.brandOrange);
+        break;
       default:
         setContentBackgroundColor("white");
     }
