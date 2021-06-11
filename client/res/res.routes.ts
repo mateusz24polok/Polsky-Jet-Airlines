@@ -1,4 +1,4 @@
-import { NestedRoute, Route } from "@appTypes/routes";
+import { Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
 import { LogoutPage } from "@pages/LogoutPage";
@@ -9,6 +9,7 @@ import { AirportsDetailsTable } from "@components/management/AirportsDetailsTabl
 import { NewAirportForm } from "@components/management/NewAirportForm";
 import { FlightsDetailsTable } from "@components/management/FlightsDetailsTable";
 import { NewFlightForm } from "@components/management/NewFlightForm";
+import { UserRole } from "@appTypes/user";
 
 export const routes: Route[] = [
   {
@@ -60,6 +61,7 @@ export const routes: Route[] = [
     label: "Zarządzaj",
     component: ManagementPage,
     appBarElement: true,
+    roleProtected: [UserRole.ADMIN],
     nestedRoutes: [
       {
         id: "airportsDetailsManagement",
@@ -88,7 +90,3 @@ export const routes: Route[] = [
     ],
   },
 ];
-
-export const navRoutes: Route[] = routes.filter(route => route.appBarElement);
-export const managementRoutes: NestedRoute[] =
-  routes.filter(route => route.id === "management")[0].nestedRoutes || [];

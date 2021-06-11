@@ -19,7 +19,7 @@ const initialState: UserState = {
   name: null,
   email: null,
   jwtToken: null,
-  role: null,
+  role: UserRole.NONE,
   purchases: null,
   isError: false,
   isProgress: false,
@@ -70,6 +70,7 @@ const userSlice = createSlice({
 });
 
 export const selectUserState = (state: RootState) => state.user;
+export const selectUserRole = (state: RootState) => selectUserState(state).role;
 
 export const {
   addPurchase,

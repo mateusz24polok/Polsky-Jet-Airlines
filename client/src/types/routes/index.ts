@@ -1,3 +1,5 @@
+import { UserRole } from "@appTypes/user";
+
 export interface NestedRoute {
   id: string;
   path: string;
@@ -25,4 +27,5 @@ export interface Route {
   disable?: boolean;
   appBarElement?: boolean;
   nestedRoutes?: NestedRoute[];
+  roleProtected?: UserRole[];
 }

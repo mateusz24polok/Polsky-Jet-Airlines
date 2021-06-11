@@ -9,6 +9,7 @@ import { SnackBar } from "@components/shared/SnackBar";
 import { routes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { theme } from "@resources/theme";
+import { getProtectedRoutesByRole } from "@utils/routesUtils";
 import { useStyles } from "./styles";
 
 export const AppLayout: React.FC = () => {
@@ -43,7 +44,7 @@ export const AppLayout: React.FC = () => {
           className={classes.content}
         >
           <Switch>
-            {routes.map(route => (
+            {getProtectedRoutesByRole(routes).map(route => (
               <Route
                 key={route.id}
                 path={

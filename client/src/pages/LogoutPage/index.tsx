@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Typography } from "@material-ui/core";
-import { userLogout } from "@store/slices/auth";
+import { selectIsLoggedIn, userLogout } from "@store/slices/auth";
 import { R } from "@resources/res";
 import { routesPaths } from "@resources/res.routesPaths";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
@@ -14,13 +14,17 @@ export const LogoutPage: React.FC = () => {
   const history = useHistory();
   const mediumMediaBreakpointMatches = useMediumBrekpointMatchesUp();
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const goToMainPage = () => {
     history.push(routesPaths.home);
   };
 
   useEffect(() => {
-    dispatch(userLogout());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(userLogout());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <Grid
