@@ -31,6 +31,7 @@ import RightArrowIcon from "@images/icons/right_arrow_icon.png";
 import DownArrowIcon from "@images/icons/down_arrow_icon.png";
 import SuccessCheckIcon from "@images/icons/success_check_icon.png";
 import LockIcon from "@images/icons/lock_icon.png";
+import NotFoundIcon from "@images/icons/not_found_icon.svg";
 
 export interface Images {
   backgrounds: {
@@ -70,6 +71,7 @@ export interface Images {
     readonly DownArrowIcon: Image;
     readonly SuccessCheckIcon: Image;
     readonly LockIcon: Image;
+    readonly NotFoundIcon: Image;
   };
 }
 
@@ -109,5 +111,6 @@ export const images: Images = {
     DownArrowIcon,
     SuccessCheckIcon,
     LockIcon,
+    NotFoundIcon,
   },
 };

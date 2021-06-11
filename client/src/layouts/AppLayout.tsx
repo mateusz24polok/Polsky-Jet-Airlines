@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { Grid } from "@material-ui/core";
+import { NonContentPage } from "@pages/NonContentPage";
 import { Footer } from "@containers/MainPage/Footer";
 import { AppBar } from "@containers/MainPage/AppBar";
 import { SignupPopup } from "@components/auth/SignupPopup";
@@ -59,6 +60,7 @@ export const AppLayout: React.FC = () => {
                 exact={true}
               />
             ))}
+            <NonContentPage />
           </Switch>
         </Grid>
         <Grid item className={classes.footer}>
