@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -12,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { GenericPriceText } from "@components/shared/GenericPriceText";
 import { CustomCheckbox } from "@components/shared/CustomCheckbox";
+import { selectIsLoggedIn, showLoginPopup } from "@store/slices/auth";
 import { getNextDateAfterTimeElapsed } from "@utils/dateUtils";
 import { Flight } from "@appTypes/flight";
 import { useStyles } from "./styles";
@@ -37,6 +40,14 @@ export const ConditionConfirmationStep: React.FC<Props> = ({
     startingDate,
     estimatedFlightTime,
   } = flight;
+
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const handleLoginPopupOpen = () => {
+    dispatch(showLoginPopup());
+  };
+
   return (
     <>
       <Typography className={classes.title} variant="h5" align="center">
@@ -103,10 +114,20 @@ export const ConditionConfirmationStep: React.FC<Props> = ({
           <TableFooter>
             <TableRow>
               <TableCell>
-                <CustomCheckbox
-                  name="confirmPurchase"
-                  label="Potwierdź chęć zamówienia"
-                />
+                {isLoggedIn ? (
+                  <CustomCheckbox
+                    name="confirmPurchase"
+                    label="Potwierdź chęć zamówienia"
+                  />
+                ) : (
+                  <Button
+                    className={classes.loginButton}
+                    variant="contained"
+                    onClick={handleLoginPopupOpen}
+                  >
+                    Zaloguj się aby móc zamówić bilet
+                  </Button>
+                )}
               </TableCell>
             </TableRow>
           </TableFooter>

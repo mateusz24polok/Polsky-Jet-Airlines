@@ -61,9 +61,10 @@ export const InfoGenericPage: React.FC<Props> = ({
             {buttonsGroup.buttons.map(button => (
               <Button
                 key={button.title + Date.now().toLocaleString()}
-                className={classes.button}
+                className={`${classes.button} ${button.className ?? ""}`}
                 variant="contained"
                 onClick={button.onClick}
+                style={button.style}
               >
                 {button.title}
               </Button>
