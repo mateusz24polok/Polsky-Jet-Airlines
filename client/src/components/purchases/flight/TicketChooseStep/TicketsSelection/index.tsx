@@ -1,32 +1,39 @@
 import React from "react";
 import { Paper, Typography } from "@material-ui/core";
 import { CustomTextField } from "@components/shared/CustomTextField";
+import { Flight } from "@appTypes/flight";
 import { useStyles } from "./styles";
 
 interface Props {
+  flight: Flight;
   amountSelectedEconomyTickets: number;
   amountSelectedPremiumTickets: number;
   amountSelectedStandardTickets: number;
 }
 
 export const TicketsSelection: React.FC<Props> = ({
+  flight,
   amountSelectedEconomyTickets,
   amountSelectedPremiumTickets,
   amountSelectedStandardTickets,
 }) => {
   const classes = useStyles();
+  const { tickets } = flight;
 
   const amountSelectedEconomyTicketsError =
     typeof amountSelectedEconomyTickets !== "number" ||
-    amountSelectedEconomyTickets < 0;
+    amountSelectedEconomyTickets < 0 ||
+    amountSelectedEconomyTickets > tickets.economy.amount;
 
   const amountSelectedStandardTicketsError =
     typeof amountSelectedStandardTickets !== "number" ||
-    amountSelectedStandardTickets < 0;
+    amountSelectedStandardTickets < 0 ||
+    amountSelectedStandardTickets > tickets.standard.amount;
 
   const amountSelectedPremiumTicketsError =
     typeof amountSelectedPremiumTickets !== "number" ||
-    amountSelectedPremiumTickets < 0;
+    amountSelectedPremiumTickets < 0 ||
+    amountSelectedPremiumTickets > tickets.premium.amount;
 
   return (
     <Paper className={classes.paper}>
@@ -40,7 +47,12 @@ export const TicketsSelection: React.FC<Props> = ({
         label="Liczba biletów klasy ekonomicznej"
         variant="outlined"
         fullWidth={true}
-        InputProps={{ inputProps: { min: 0, max: 30 } }}
+        InputProps={{
+          inputProps: {
+            min: 0,
+            max: tickets.economy.amount,
+          },
+        }}
         error={amountSelectedEconomyTicketsError}
         helperText={
           amountSelectedEconomyTicketsError &&
@@ -55,7 +67,12 @@ export const TicketsSelection: React.FC<Props> = ({
         label="Liczba biletów klasy standard"
         variant="outlined"
         fullWidth={true}
-        InputProps={{ inputProps: { min: 0, max: 30 } }}
+        InputProps={{
+          inputProps: {
+            min: 0,
+            max: tickets.standard.amount,
+          },
+        }}
         error={amountSelectedStandardTicketsError}
         helperText={
           amountSelectedStandardTicketsError &&
@@ -69,7 +86,12 @@ export const TicketsSelection: React.FC<Props> = ({
         label="Liczba biletów klasy premium"
         variant="outlined"
         fullWidth={true}
-        InputProps={{ inputProps: { min: 0, max: 30 } }}
+        InputProps={{
+          inputProps: {
+            min: 0,
+            max: tickets.premium.amount,
+          },
+        }}
         error={amountSelectedPremiumTicketsError}
         helperText={
           amountSelectedPremiumTicketsError &&

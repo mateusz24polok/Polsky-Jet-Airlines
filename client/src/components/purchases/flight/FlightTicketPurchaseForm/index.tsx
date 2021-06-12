@@ -51,6 +51,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
   }, []);
 
   if (flight) {
+    const { tickets } = flight;
     return !isPurchaseCompleted ? (
       <Formik
         enableReinitialize={true}
@@ -80,8 +81,11 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
               values.standardTickets === 0 &&
               values.premiumTickets === 0) ||
             values.economyTickets < 0 ||
+            values.economyTickets > tickets.economy.amount ||
             values.standardTickets < 0 ||
+            values.standardTickets > tickets.standard.amount ||
             values.premiumTickets < 0 ||
+            values.premiumTickets > tickets.premium.amount ||
             typeof values.economyTickets !== "number" ||
             typeof values.standardTickets !== "number" ||
             typeof values.premiumTickets !== "number";

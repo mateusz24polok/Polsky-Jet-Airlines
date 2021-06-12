@@ -22,6 +22,7 @@ export const TicketChooseStep: React.FC<Props> = ({
     <Grid container wrap="nowrap" spacing={4}>
       <Grid item xs={4}>
         <TicketsSelection
+          flight={flight}
           amountSelectedEconomyTickets={amountSelectedEconomyTickets}
           amountSelectedPremiumTickets={amountSelectedPremiumTickets}
           amountSelectedStandardTickets={amountSelectedStandardTickets}
