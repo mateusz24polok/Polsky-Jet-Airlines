@@ -14,7 +14,7 @@ export interface IUser {
   role: Role;
   password: string | undefined;
   passwordConfirm: string | undefined;
-  purchases: PurchaseBaseDocument["_id"];
+  purchases: Array<PurchaseBaseDocument["_id"]>;
   correctPassword: (
     candidatePassword: string,
     userPassword: string
@@ -61,8 +61,9 @@ const userSchema = new Schema({
     },
   },
   purchases: {
-    type: mongoose.Schema.Types.ObjectId,
-    // required: true,
+    type: [mongoose.Schema.Types.ObjectId],
+    required: true,
+    default: [],
     ref: "Purchase",
   },
 });
