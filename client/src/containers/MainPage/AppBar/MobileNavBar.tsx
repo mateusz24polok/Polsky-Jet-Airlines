@@ -14,21 +14,23 @@ import { AccountBar } from "@components/mainPage/appBar/AccountBar";
 import { NavList } from "@components/mainPage/appBar/NavList";
 import { selectIsLoggedIn } from "@store/slices/auth";
 import { R } from "@resources/res";
-import { navRoutes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { useSmallBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import { Route } from "@appTypes/routes";
 import { useStyles } from "./styles";
 
 interface Props {
   onSignupClick?: () => void;
   onLoginClick?: () => void;
   onLogoutClick?: () => void;
+  navRoutes: Route[];
 }
 
 export const MobileNavBar = ({
   onLoginClick,
   onLogoutClick,
   onSignupClick,
+  navRoutes,
 }: Props): JSX.Element => {
   const classes = useStyles();
 

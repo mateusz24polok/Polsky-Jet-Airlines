@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { SideMenu } from "@components/management/SideMenu";
-import { managementRoutes } from "@resources/res.routes";
+import { routes } from "@resources/res.routes";
+import { getManagementRoutes } from "@utils/routesUtils";
 import { useStyles } from "./styles";
 
 export const ManagementPage: React.FC = () => {
@@ -19,7 +20,7 @@ export const ManagementPage: React.FC = () => {
       </Grid>
       <Grid className={classes.dataContent} item xs={10}>
         <Switch>
-          {managementRoutes.map(managementRoute => (
+          {getManagementRoutes(routes).map(managementRoute => (
             <Route
               key={managementRoute.id}
               exact={managementRoute.exact}

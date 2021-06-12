@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form as FormikForm } from "formik";
 import { Box, Typography } from "@material-ui/core";
+import { SuccessfulPurchasePage } from "@pages/SuccessfulPurchasePage";
 import { MultiStepperForm } from "@components/shared/MultiStepperForm";
 import { WeatherInfoAcceptStep } from "@components/purchases/flight/WeatherInfoAcceptStep";
 import { TicketChooseStep } from "@components/purchases/flight/TicketChooseStep";
@@ -39,6 +40,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
   const flight = useSelector((state: RootState) =>
     selectFlightById(state, flightId),
   );
+  const [isPurchaseCompleted, setIsPurchaseCompleted] = useState(false);
 
   useEffect(() => {
     if (flights.length === 0) {
@@ -48,7 +50,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
   }, []);
 
   if (flight) {
-    return (
+    return !isPurchaseCompleted ? (
       <Formik
         enableReinitialize={true}
         initialValues={formInitialValues}
@@ -64,6 +66,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
               premium: values.premiumTickets,
             },
           };
+          setIsPurchaseCompleted(true);
           dispatch(addPurchase(flightTicketPurchaseRequest));
         }}
       >
@@ -127,6 +130,8 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
           );
         }}
       </Formik>
+    ) : (
+      <SuccessfulPurchasePage />
     );
   }
 

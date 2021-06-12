@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { Grid } from "@material-ui/core";
+import { NonContentPage } from "@pages/NonContentPage";
 import { Footer } from "@containers/MainPage/Footer";
 import { AppBar } from "@containers/MainPage/AppBar";
 import { SignupPopup } from "@components/auth/SignupPopup";
@@ -9,6 +10,7 @@ import { SnackBar } from "@components/shared/SnackBar";
 import { routes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { theme } from "@resources/theme";
+import { getProtectedRoutesByRole } from "@utils/routesUtils";
 import { useStyles } from "./styles";
 
 export const AppLayout: React.FC = () => {
@@ -24,6 +26,9 @@ export const AppLayout: React.FC = () => {
         setContentBackgroundColor(theme.palette.brandOrange);
         break;
       case routesPaths.logout:
+        setContentBackgroundColor(theme.palette.brandOrange);
+        break;
+      case routesPaths.nonAuthorized:
         setContentBackgroundColor(theme.palette.brandOrange);
         break;
       default:
@@ -43,7 +48,7 @@ export const AppLayout: React.FC = () => {
           className={classes.content}
         >
           <Switch>
-            {routes.map(route => (
+            {getProtectedRoutesByRole(routes).map(route => (
               <Route
                 key={route.id}
                 path={
@@ -55,6 +60,7 @@ export const AppLayout: React.FC = () => {
                 exact={true}
               />
             ))}
+            <NonContentPage />
           </Switch>
         </Grid>
         <Grid item className={classes.footer}>
