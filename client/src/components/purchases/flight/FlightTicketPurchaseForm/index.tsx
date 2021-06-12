@@ -12,7 +12,7 @@ import {
   selectFlightById,
   selectFlights,
 } from "@store/slices/flights";
-import { addPurchase } from "@store/slices/user";
+import { addPurchase, selectUserId } from "@store/slices/user";
 import { RootState } from "@store/setupStore";
 import { StepperFormStep } from "@appTypes/shared/form";
 import {
@@ -36,6 +36,7 @@ const formInitialValues: FlightTicketPurchaseFormValues = {
 
 export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
   const dispatch = useDispatch();
+  const userId = useSelector(selectUserId);
   const flights = useSelector(selectFlights);
   const flight = useSelector((state: RootState) =>
     selectFlightById(state, flightId),
@@ -55,19 +56,22 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
         enableReinitialize={true}
         initialValues={formInitialValues}
         onSubmit={values => {
-          const flightTicketPurchaseRequest: FlightTicketPurchaseRequest = {
-            purchaseType: values.purchaseType,
-            flight: flightId,
-            confirmPurchase: values.confirmPurchase,
-            weatherInfoAccept: values.weatherInfoAccept,
-            purchasedTickets: {
-              economy: values.economyTickets,
-              standard: values.standardTickets,
-              premium: values.premiumTickets,
-            },
-          };
-          setIsPurchaseCompleted(true);
-          dispatch(addPurchase(flightTicketPurchaseRequest));
+          if (userId) {
+            const flightTicketPurchaseRequest: FlightTicketPurchaseRequest = {
+              purchaseType: values.purchaseType,
+              flight: flightId,
+              confirmPurchase: values.confirmPurchase,
+              weatherInfoAccept: values.weatherInfoAccept,
+              orderingUser: userId,
+              purchasedTickets: {
+                economy: values.economyTickets,
+                standard: values.standardTickets,
+                premium: values.premiumTickets,
+              },
+            };
+            setIsPurchaseCompleted(true);
+            dispatch(addPurchase(flightTicketPurchaseRequest));
+          }
         }}
       >
         {({ submitForm, values }) => {

@@ -18,7 +18,7 @@ export interface FlightTicketPurchaseRequest {
   confirmPurchase: boolean;
   weatherInfoAccept: boolean;
   flight: string;
-  orderindUser: string;
+  orderingUser: string;
   purchasedTickets: {
     economy: number;
     standard: number;

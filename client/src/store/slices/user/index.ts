@@ -71,6 +71,7 @@ const userSlice = createSlice({
 
 export const selectUserState = (state: RootState) => state.user;
 export const selectUserRole = (state: RootState) => selectUserState(state).role;
+export const selectUserId = (state: RootState) => selectUserState(state).id;
 
 export const {
   addPurchase,
