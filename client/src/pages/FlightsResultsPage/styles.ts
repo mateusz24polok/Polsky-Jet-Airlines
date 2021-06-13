@@ -5,8 +5,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.brandBlack,
     fontFamily: "Bangers",
     marginBottom: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
-      marginTop: theme.spacing(8),
-    },
   },
 }));

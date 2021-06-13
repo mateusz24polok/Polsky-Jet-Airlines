@@ -33,6 +33,7 @@ export const InfoGenericPage: React.FC<Props> = ({
     >
       {icon ? (
         <img
+          className={classes.icon}
           src={icon}
           alt={iconAltDescription || "icon"}
           width={mediumMediaBreakpointMatches ? 120 : 60}
@@ -41,7 +42,7 @@ export const InfoGenericPage: React.FC<Props> = ({
       ) : null}
       <Typography
         className={classes.title}
-        variant={mediumMediaBreakpointMatches ? "h4" : "h5"}
+        variant={mediumMediaBreakpointMatches ? "h4" : "h6"}
         align="center"
       >
         {title}
@@ -49,7 +50,7 @@ export const InfoGenericPage: React.FC<Props> = ({
       {subtitle ? (
         <Typography
           className={classes.title}
-          variant={mediumMediaBreakpointMatches ? "h5" : "h6"}
+          variant={mediumMediaBreakpointMatches ? "h5" : "subtitle1"}
           align="center"
         >
           {subtitle}
@@ -57,7 +58,7 @@ export const InfoGenericPage: React.FC<Props> = ({
       ) : null}
       {buttonsGroup ? (
         <Grid className={classes.buttonsGroup} item>
-          <Grid container direction={buttonsGroup.direction}>
+          <Grid container direction={buttonsGroup.direction} justify="center">
             {buttonsGroup.buttons.map(button => (
               <Button
                 key={button.title + Date.now().toLocaleString()}

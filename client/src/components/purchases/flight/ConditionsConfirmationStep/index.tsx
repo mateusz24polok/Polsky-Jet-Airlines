@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  Box,
   Button,
   Paper,
   Table,
@@ -49,7 +50,7 @@ export const ConditionConfirmationStep: React.FC<Props> = ({
   };
 
   return (
-    <>
+    <Box m={2}>
       <Typography className={classes.title} variant="h5" align="center">
         Podusmowanie zamówienia
       </Typography>
@@ -133,6 +134,6 @@ export const ConditionConfirmationStep: React.FC<Props> = ({
           </TableFooter>
         </Table>
       </TableContainer>
-    </>
+    </Box>
   );
 };

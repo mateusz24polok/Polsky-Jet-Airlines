@@ -1,10 +1,10 @@
 import { Theme, makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
+  container: {
     padding: theme.spacing(4),
-    [theme.breakpoints.down("md")]: {
-      margin: theme.spacing(2),
-    },
+  },
+  title: {
+    padding: theme.spacing(2),
   },
 }));
