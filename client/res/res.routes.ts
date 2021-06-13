@@ -4,6 +4,7 @@ import { HomePage } from "@pages/HomePage";
 import { LogoutPage } from "@pages/LogoutPage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
+import { UserDetailsPage } from "@pages/UserDetailsPage";
 import { FlightPurchasePage } from "@pages/FlightPurchasePage";
 import { NonAuthorizedPage } from "@pages/NonAuthorizedPage";
 import { AirportsDetailsTable } from "@components/management/AirportsDetailsTable";
@@ -55,6 +56,11 @@ export const routes: Route[] = [
     id: "flight",
     path: routesPaths.flight,
     component: FlightPurchasePage,
+  },
+  {
+    id: "user",
+    path: routesPaths.user,
+    component: UserDetailsPage,
   },
   {
     id: "management",
