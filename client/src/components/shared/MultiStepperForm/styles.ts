@@ -12,8 +12,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: theme.spacing(1),
   },
   buttonsGroup: {
-    position: "absolute",
-    bottom: theme.spacing(1),
-    right: theme.spacing(2),
+    [theme.breakpoints.up("md")]: {
+      position: "absolute",
+      bottom: theme.spacing(1),
+      right: theme.spacing(2),
+    },
+    textAlign: "center",
+    marginTop: theme.spacing(2),
   },
 }));

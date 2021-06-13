@@ -30,48 +30,50 @@ export const TicketsPriceAndAvailability: React.FC<Props> = ({
   const { tickets } = flight;
 
   return (
-    <TableContainer className={classes.paper} component={Paper}>
-      <Typography variant="h6" align="center">
-        Dostępność biletów
-      </Typography>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Klasa</TableCell>
-            <TableCell align="center">Dostępne bilety</TableCell>
-            <TableCell align="center">Cena pojedynczego biletu</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell align="justify">Ekonomiczna</TableCell>
-            <TableCell align="center">
-              {tickets.economy.amount - amountSelectedEconomyTickets}
-            </TableCell>
-            <TableCell align="center">
-              <GenericPriceText valuePLN={tickets.economy.price} />
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Standard</TableCell>
-            <TableCell align="center">
-              {tickets.standard.amount - amountSelectedStandardTickets}
-            </TableCell>
-            <TableCell align="center">
-              <GenericPriceText valuePLN={tickets.standard.price} />
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Premium</TableCell>
-            <TableCell align="center">
-              {tickets.premium.amount - amountSelectedPremiumTickets}
-            </TableCell>
-            <TableCell align="center">
-              <GenericPriceText valuePLN={tickets.premium.price} />
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className={classes.container}>
+      <TableContainer className={classes.paper} component={Paper}>
+        <Typography variant="h6" align="center">
+          Dostępność biletów
+        </Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Klasa</TableCell>
+              <TableCell align="center">Dostępne bilety</TableCell>
+              <TableCell align="center">Cena pojedynczego biletu</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell align="justify">Ekonomiczna</TableCell>
+              <TableCell align="center">
+                {tickets.economy.amount - amountSelectedEconomyTickets}
+              </TableCell>
+              <TableCell align="center">
+                <GenericPriceText valuePLN={tickets.economy.price} />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Standard</TableCell>
+              <TableCell align="center">
+                {tickets.standard.amount - amountSelectedStandardTickets}
+              </TableCell>
+              <TableCell align="center">
+                <GenericPriceText valuePLN={tickets.standard.price} />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Premium</TableCell>
+              <TableCell align="center">
+                {tickets.premium.amount - amountSelectedPremiumTickets}
+              </TableCell>
+              <TableCell align="center">
+                <GenericPriceText valuePLN={tickets.premium.price} />
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };

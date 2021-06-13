@@ -14,6 +14,7 @@ import {
 } from "@store/slices/flights";
 import { addPurchase, selectUserId } from "@store/slices/user";
 import { RootState } from "@store/setupStore";
+import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { StepperFormStep } from "@appTypes/shared/form";
 import {
   FlightTicketPurchaseFormValues,
@@ -35,6 +36,7 @@ const formInitialValues: FlightTicketPurchaseFormValues = {
 };
 
 export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
+  const mediumBreakpointsMatches = useMediumBrekpointMatchesUp();
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
   const flights = useSelector(selectFlights);
@@ -125,7 +127,7 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
           ];
           return (
             <FormikForm>
-              <Box mb={8}>
+              <Box mb={mediumBreakpointsMatches ? 8 : 2}>
                 <MultiStepperForm
                   steps={steps}
                   onStepperFinish={submitForm}

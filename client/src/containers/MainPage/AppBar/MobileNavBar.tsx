@@ -80,7 +80,11 @@ export const MobileNavBar = ({
             </Grid>
             <Grid item sm={6} xs={10}>
               {isLoggedIn ? (
-                <AccountBar onLogoutClick={onLogoutClick} isMobileView />
+                <AccountBar
+                  onLogoutClick={onLogoutClick}
+                  isMobileView
+                  onMenuIconClick={handleExpandClick}
+                />
               ) : (
                 <LoginBar
                   onLoginClick={onLoginClick}

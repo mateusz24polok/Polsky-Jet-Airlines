@@ -47,7 +47,7 @@ export const WeatherInfoAcceptStep: React.FC<Props> = ({
     const { startingCityWeather, destinationCityWeather } = weather;
     return (
       <>
-        <Grid container justify="space-around" spacing={2}>
+        <Grid container justify="space-around">
           <Grid item>
             <Typography
               className={classes.cardTitle}

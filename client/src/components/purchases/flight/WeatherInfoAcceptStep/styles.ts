@@ -5,9 +5,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: theme.spacing(2),
   },
   checkbox: {
-    position: "absolute",
-    left: theme.spacing(2),
-    bottom: theme.spacing(1),
+    [theme.breakpoints.up("md")]: {
+      position: "absolute",
+      left: theme.spacing(2),
+      bottom: theme.spacing(1),
+    },
+    textAlign: "center",
+    marginTop: theme.spacing(2),
   },
   circular: {
     color: theme.palette.brandBlack,
