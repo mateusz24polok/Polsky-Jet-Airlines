@@ -3,26 +3,31 @@ import {
   PutEffect,
   call,
   put,
+  select,
   takeLatest,
 } from "@redux-saga/core/effects";
 import {
   addPurchase,
   addPurchaseError,
   addPurchaseSuccess,
+  fetchUserDetails,
+  selectUserId,
 } from "@store/slices/user";
 import { postFlightPurchaseService } from "@services/purchases";
-import { FlightTicketPurchaseRequest } from "@appTypes/purchases";
+import { SelectEffect } from "redux-saga/effects";
 
 function* addPurchaseSagaWorker(
   addPurchaseAction: ReturnType<typeof addPurchase>,
-): Generator<void | CallEffect | PutEffect, void, FlightTicketPurchaseRequest> {
+): Generator<void | CallEffect | PutEffect | SelectEffect, void, string> {
   try {
-    const flightPurchase = yield call(
+    yield call(
       postFlightPurchaseService,
       addPurchaseAction.payload.flight,
       addPurchaseAction.payload,
     );
-    yield put(addPurchaseSuccess(flightPurchase));
+    const userId = yield select(selectUserId);
+    yield put(fetchUserDetails(userId));
+    yield put(addPurchaseSuccess());
   } catch (error) {
     yield put(addPurchaseError());
   }

@@ -1,7 +1,17 @@
+import { IPurchase } from "@appTypes/purchases";
+
 export enum UserRole {
   NONE = "NONE",
   USER = "USER",
   ADMIN = "ADMIN",
+}
+
+export interface IUser {
+  _id: string;
+  role: UserRole;
+  purchases: IPurchase[];
+  name: string;
+  email: string;
 }
 
 export interface SignupRequest {
@@ -26,4 +36,9 @@ export interface UserSignupAndLoginResponse {
 export interface LoginFormAndRequest {
   email: string;
   password: string;
+}
+
+export interface UserServiceResponse {
+  status: string;
+  data: IUser;
 }

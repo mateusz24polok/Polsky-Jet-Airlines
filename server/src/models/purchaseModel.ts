@@ -1,5 +1,27 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 import { IFlight } from "./flightModel";
+import { IUser } from "./userModel";
+
+enum purchaseType {
+  EUROPE = "FLIGHT",
+  CAR = "CAR",
+  HOTEL = "HOTEL",
+}
+
+export interface IPurchase {
+  purchaseType: purchaseType;
+  flight: IFlight;
+  confirmPurchase: boolean;
+  weatherInfoAccept: boolean;
+  orderingUser: IUser;
+  purchasedTickets: {
+    economy: number;
+    standard: number;
+    premium: number;
+  };
+}
+
+export interface PurchaseBaseDocument extends IPurchase, Document {}
 
 export const purchaseSchema = new Schema({
   purchaseType: {
@@ -32,6 +54,11 @@ export const purchaseSchema = new Schema({
       message: "Flight weather conditions has to be confirmed",
     },
   },
+  orderingUser: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
   purchasedTickets: {
     type: {
       economy: Number,
@@ -41,26 +68,6 @@ export const purchaseSchema = new Schema({
     required: true,
   },
 });
-
-enum purchaseType {
-  EUROPE = "FLIGHT",
-  CAR = "CAR",
-  HOTEL = "HOTEL",
-}
-
-interface IPurchase {
-  purchaseType: purchaseType;
-  flight: IFlight;
-  confirmPurchase: boolean;
-  weatherInfoAccept: boolean;
-  purchasedTickets: {
-    economy: number;
-    standard: number;
-    premium: number;
-  };
-}
-
-export interface PurchaseBaseDocument extends IPurchase, Document {}
 
 export const Purchase = mongoose.model<
   PurchaseBaseDocument,

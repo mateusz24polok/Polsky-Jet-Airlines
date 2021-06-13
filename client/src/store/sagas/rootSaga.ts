@@ -11,6 +11,7 @@ import {
   loginUserSaga,
   logoutUserSaga,
   registerNewUserSaga,
+  updateUserDetailsSaga,
 } from "@store/sagas/auth";
 
 export function* rootSaga() {
@@ -25,5 +26,6 @@ export function* rootSaga() {
     registerNewUserSaga(),
     loginUserSaga(),
     logoutUserSaga(),
+    updateUserDetailsSaga(),
   ]);
 }
