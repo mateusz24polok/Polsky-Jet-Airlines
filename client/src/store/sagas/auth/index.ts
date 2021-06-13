@@ -19,18 +19,28 @@ import {
   userLogoutError,
   userLogoutSuccess,
 } from "@store/slices/auth";
-import { clearUserDetails, updateUserDetails } from "@store/slices/user";
+import {
+  clearUserDetails,
+  fetchUserDetails,
+  fetchUserDetailsError,
+  fetchUserDetailsSuccess,
+  setUserDetailsAfterLogin,
+} from "@store/slices/user";
 import { addSnackbar } from "@store/slices/app";
 import {
   getLogoutUserService,
   postLoginUserService,
   postRegisterNewUserService,
 } from "@services/auth";
+import { getUserService } from "@services/user";
 import {
   removeJwtFromLocalStorage,
   setJwtInLocalStorage,
 } from "@utils/authUtils";
-import { UserSignupAndLoginResponse } from "@appTypes/user";
+import {
+  UserServiceResponse,
+  UserSignupAndLoginResponse,
+} from "@appTypes/user";
 import { ApiResponseError } from "@appTypes/shared/ajax";
 
 function* registerNewUserSagaWorker(
@@ -68,7 +78,7 @@ function* loginUserSagaWorker(
   try {
     const userData = yield call(postLoginUserService, loginUserAction.payload);
     yield put(userLoginSuccess());
-    yield put(updateUserDetails(userData));
+    yield put(setUserDetailsAfterLogin(userData));
     const lastAuthActivityMessage = yield select(selectLastAuthActivityMessage);
     yield put(
       addSnackbar({
@@ -118,6 +128,28 @@ function* logoutUserSagaWorker(): Generator<
   }
 }
 
+function* updateUserDetailsSagaWorker(
+  fetchUserDetailsAction: ReturnType<typeof fetchUserDetails>,
+): Generator<
+  CallEffect | PutEffect | SelectEffect | void,
+  void,
+  UserServiceResponse
+> {
+  try {
+    const userData = yield call(getUserService, fetchUserDetailsAction.payload);
+    yield put(userLoginSuccess());
+    yield put(fetchUserDetailsSuccess(userData));
+  } catch (error) {
+    yield put(fetchUserDetailsError());
+    yield put(
+      addSnackbar({
+        message: "Błąd pobrania danych użytkownika",
+        options: { variant: "error" },
+      }),
+    );
+  }
+}
+
 export function* registerNewUserSaga() {
   yield takeLatest(registerNewUser.type, registerNewUserSagaWorker);
 }
@@ -128,4 +160,8 @@ export function* loginUserSaga() {
 
 export function* logoutUserSaga() {
   yield takeLatest(userLogout.type, logoutUserSagaWorker);
+}
+
+export function* updateUserDetailsSaga() {
+  yield takeLatest(fetchUserDetails.type, updateUserDetailsSagaWorker);
 }

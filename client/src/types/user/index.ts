@@ -39,6 +39,6 @@ export interface LoginFormAndRequest {
 }
 
 export interface UserServiceResponse {
+  status: string;
   data: IUser;
-  flightsCount: number;
 }

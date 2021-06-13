@@ -1,7 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/setupStore";
-import { FlightTicketPurchaseRequest } from "@appTypes/purchases";
-import { UserRole, UserSignupAndLoginResponse } from "@appTypes/user";
+import { FlightTicketPurchaseRequest, IPurchase } from "@appTypes/purchases";
+import {
+  UserRole,
+  UserServiceResponse,
+  UserSignupAndLoginResponse,
+} from "@appTypes/user";
 
 interface UserState {
   id: string | null;
@@ -9,7 +13,7 @@ interface UserState {
   role: UserRole | null;
   email: string | null;
   jwtToken: string | null;
-  purchases: FlightTicketPurchaseRequest | null;
+  purchases: IPurchase[] | null;
   isProgress: boolean;
   isError: boolean;
 }
@@ -37,21 +41,15 @@ const userSlice = createSlice({
       state.isProgress = true;
       state.isError = false;
     },
-    addPurchaseSuccess: (
-      state: UserState,
-      action: PayloadAction<FlightTicketPurchaseRequest>,
-    ) => {
+    addPurchaseSuccess: (state: UserState) => {
       state.isProgress = false;
       state.isError = false;
-      if (action.payload) {
-        state.purchases = action.payload;
-      }
     },
     addPurchaseError: (state: UserState) => {
       state.isProgress = false;
       state.isError = true;
     },
-    updateUserDetails: (
+    setUserDetailsAfterLogin: (
       state: UserState,
       action: PayloadAction<UserSignupAndLoginResponse>,
     ) => {
@@ -63,6 +61,29 @@ const userSlice = createSlice({
         state.role = user.role;
         state.jwtToken = token;
       }
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    fetchUserDetails: (state: UserState, action: PayloadAction<string>) => {
+      state.isProgress = true;
+      state.isError = false;
+    },
+    fetchUserDetailsSuccess: (
+      state: UserState,
+      action: PayloadAction<UserServiceResponse>,
+    ) => {
+      if (action.payload) {
+        const { data } = action.payload;
+        const { _id, email, name, purchases, role } = data;
+        state.id = _id;
+        state.email = email;
+        state.name = name;
+        state.purchases = purchases;
+        state.role = role;
+      }
+    },
+    fetchUserDetailsError: (state: UserState) => {
+      state.isProgress = false;
+      state.isError = true;
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     clearUserDetails: (state: UserState) => initialState,
@@ -77,7 +98,10 @@ export const {
   addPurchase,
   addPurchaseError,
   addPurchaseSuccess,
-  updateUserDetails,
+  setUserDetailsAfterLogin,
+  fetchUserDetails,
+  fetchUserDetailsError,
+  fetchUserDetailsSuccess,
   clearUserDetails,
 } = userSlice.actions;
 
