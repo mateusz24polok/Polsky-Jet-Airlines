@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: theme.spacing(1),
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
-    marginTop: theme.spacing(11),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
     backgroundColor: theme.palette.searchEngineBackground,
     [theme.breakpoints.up("md")]: {

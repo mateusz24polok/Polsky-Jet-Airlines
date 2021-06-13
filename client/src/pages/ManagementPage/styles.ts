@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     // 100vh - footer mobile height
     minHeight: "calc(100vh - 272px)",
-    marginTop: 74,
+    marginTop: theme.spacing(1),
     [theme.breakpoints.up("md")]: {
       // 100vh - footer desktop height - header height
       minHeight: "calc(100vh - 108px - 74px)",

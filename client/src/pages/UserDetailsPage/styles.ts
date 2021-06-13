@@ -4,4 +4,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     padding: theme.spacing(4),
   },
+  title: {
+    padding: theme.spacing(2),
+  },
 }));
