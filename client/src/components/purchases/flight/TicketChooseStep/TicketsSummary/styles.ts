@@ -2,8 +2,6 @@ import { Theme, makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    [theme.breakpoints.down("md")]: {
-      margin: theme.spacing(2),
-    },
+    margin: theme.spacing(2),
   },
 }));

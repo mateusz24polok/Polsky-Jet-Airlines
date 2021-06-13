@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Grid, IconButton, Menu, MenuItem } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { CurrenciesSelect } from "@components/mainPage/appBar/CurrenciesSelect";
+import { selectUserId } from "@store/slices/user";
 import { useStyles } from "./styles";
 
 interface Props {
@@ -17,6 +20,9 @@ export const AccountBar: React.FC<Props> = ({
   onMenuIconClick,
 }) => {
   const classes = useStyles();
+  const history = useHistory();
+  const userId = useSelector(selectUserId);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -38,7 +44,9 @@ export const AccountBar: React.FC<Props> = ({
 
   const handleMyAccountClick = () => {
     handleMenuClose();
-    console.log("Go to my account - future feature");
+    if (userId) {
+      history.push(`/user/${userId}`);
+    }
   };
 
   const renderProfileMenu = () => (

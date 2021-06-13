@@ -25,4 +25,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.brandBlack,
     },
   },
+  icon: {
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(3),
+    },
+  },
 }));
