@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import { app } from "./app";
+import {
+  checkIfUploadsDirectoryExists,
+  makeUploadsDirectory,
+} from "./utils/uploadUtils";
 
 process.on("uncaughtException", (error: Error) => {
   console.log("Process will shut down due to synchronus error");
@@ -12,6 +16,10 @@ process.on("uncaughtException", (error: Error) => {
 dotenv.config({
   path: path.join(__dirname, "config.env"),
 });
+
+if (!checkIfUploadsDirectoryExists()) {
+  makeUploadsDirectory();
+}
 
 const port: number | string = process.env.PORT || 5000;
 
