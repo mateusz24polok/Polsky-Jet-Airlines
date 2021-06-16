@@ -1,6 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/setupStore";
+import { getJwtFromLocalStorage, getTokenValidity } from "@utils/authUtils";
 import { LoginFormAndRequest, SignupRequest } from "@appTypes/user";
+
+const jwt = getJwtFromLocalStorage();
 
 interface AuthState {
   isLoginPopupShown: boolean;
@@ -19,7 +22,7 @@ const initialState: AuthState = {
   isProgress: false,
   lastActivityMessage: "",
   errorMessage: "",
-  isLoggedIn: false,
+  isLoggedIn: getTokenValidity(jwt),
 };
 
 const authSlice = createSlice({
