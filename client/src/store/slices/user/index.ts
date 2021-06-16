@@ -1,11 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/setupStore";
+import {
+  getJwtFromLocalStorage,
+  getTokenValidity,
+  getUserIdFromJwt,
+} from "@utils/authUtils";
 import { FlightTicketPurchaseRequest, IPurchase } from "@appTypes/purchases";
 import {
   UserRole,
   UserServiceResponse,
   UserSignupAndLoginResponse,
 } from "@appTypes/user";
+
+const jwt = getJwtFromLocalStorage();
 
 interface UserState {
   id: string | null;
@@ -19,7 +26,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  id: null,
+  id: getTokenValidity(jwt) ? getUserIdFromJwt(jwt) : null,
   name: null,
   email: null,
   jwtToken: null,
