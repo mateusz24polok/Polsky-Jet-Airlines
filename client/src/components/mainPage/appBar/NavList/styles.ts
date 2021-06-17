@@ -9,5 +9,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   routerLink: {
     color: "inherit",
     textDecoration: "none",
+    cursor: "pointer",
   },
 }));

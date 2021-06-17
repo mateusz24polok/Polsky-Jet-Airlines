@@ -17,6 +17,7 @@ export interface NestedRoute {
 export interface Route {
   id: string;
   path: string;
+  scrollable?: boolean;
   label?: string;
   component?:
     | React.ComponentClass<unknown>
