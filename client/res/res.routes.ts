@@ -46,6 +46,7 @@ export const routes: Route[] = [
     label: "O nas",
     component: HomePage,
     appBarElement: true,
+    scrollable: true,
   },
   {
     id: "searchFlightsList",
