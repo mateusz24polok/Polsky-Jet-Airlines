@@ -3,6 +3,7 @@ import { RootState } from "@store/setupStore";
 import {
   getJwtFromLocalStorage,
   getTokenValidity,
+  getUserFromLocalStorage,
   getUserIdFromJwt,
 } from "@utils/authUtils";
 import { FlightTicketPurchaseRequest, IPurchase } from "@appTypes/purchases";
@@ -13,6 +14,7 @@ import {
 } from "@appTypes/user";
 
 const jwt = getJwtFromLocalStorage();
+const user = getUserFromLocalStorage(jwt);
 
 interface UserState {
   id: string | null;
@@ -27,11 +29,11 @@ interface UserState {
 
 const initialState: UserState = {
   id: getTokenValidity(jwt) ? getUserIdFromJwt(jwt) : null,
-  name: null,
-  email: null,
-  jwtToken: null,
-  role: UserRole.NONE,
-  purchases: null,
+  name: user?.name ?? null,
+  email: user?.email ?? null,
+  jwtToken: jwt || null,
+  role: user?.role ?? UserRole.NONE,
+  purchases: user?.purchases ?? null,
   isError: false,
   isProgress: false,
 };

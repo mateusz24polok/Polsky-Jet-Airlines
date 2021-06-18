@@ -25,12 +25,7 @@ export interface SignupRequest {
 export interface UserSignupAndLoginResponse {
   status: string;
   token: string;
-  user: {
-    role: UserRole;
-    _id: string;
-    name: string;
-    email: string;
-  };
+  user: IUser;
 }
 
 export interface LoginFormAndRequest {
