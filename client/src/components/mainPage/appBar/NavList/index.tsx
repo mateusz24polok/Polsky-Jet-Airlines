@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { Grid, Typography } from "@material-ui/core";
+import { routesPaths } from "@resources/res.routesPaths";
 import { Route } from "@appTypes/routes";
 import { useStyles } from "./styles";
 
@@ -11,11 +12,15 @@ interface Props {
 
 export const NavList: React.FC<Props> = ({ navRoutes }) => {
   const classes = useStyles();
+  const location = useLocation();
+  const { pathname } = location;
+  console.log(location);
   return (
     <>
       {navRoutes.map(route => (
         <Grid key={route.id} item>
-          {route.scrollable ? (
+          {(route.scrollable && pathname === routesPaths.home) ||
+          pathname === route.path ? (
             <ScrollLink
               className={classes.routerLink}
               to={route.id}
