@@ -24,7 +24,10 @@ export const CustomFileUploadInput = ({ name, ...otherProps }: Props) => {
   };
 
   const handleClearFile = () => {
-    if (fileInputRef.current?.files) {
+    if (otherProps.inputRef) {
+      (otherProps.inputRef as React.MutableRefObject<HTMLInputElement>).current.value =
+        "";
+    } else if (fileInputRef.current?.files) {
       fileInputRef.current.value = "";
     }
     setFieldValue(name, null);
@@ -42,7 +45,15 @@ export const CustomFileUploadInput = ({ name, ...otherProps }: Props) => {
 
   return (
     <Grid container alignItems="center">
-      <Input inputRef={fileInputRef} {...configInput} />
+      <label className={classes.label} htmlFor="imageUpload">
+        <Input
+          id="imageUpload"
+          className={classes.input}
+          inputRef={otherProps.inputRef || fileInputRef}
+          {...configInput}
+        />
+        Dodaj zdjęcie
+      </label>
       <Button
         className={classes.button}
         color="secondary"
@@ -50,7 +61,7 @@ export const CustomFileUploadInput = ({ name, ...otherProps }: Props) => {
         type="button"
         onClick={handleClearFile}
       >
-        X
+        Usuń zdjęcie
       </Button>
     </Grid>
   );

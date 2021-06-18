@@ -1,7 +1,9 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import React from "react";
 
 declare module "@material-ui/core/styles/createPalette" {
   interface Palette {
+    projectIndigo: React.CSSProperties["color"];
     brandBlack: React.CSSProperties["color"];
     brandOrange: React.CSSProperties["color"];
     brandWhite: React.CSSProperties["color"];
@@ -12,6 +14,7 @@ declare module "@material-ui/core/styles/createPalette" {
     mainGray: React.CSSProperties["color"];
   }
   interface PaletteOptions {
+    projectIndigo?: React.CSSProperties["color"];
     brandBlack?: React.CSSProperties["color"];
     brandOrange?: React.CSSProperties["color"];
     brandWhite?: React.CSSProperties["color"];
@@ -25,6 +28,7 @@ declare module "@material-ui/core/styles/createPalette" {
 
 export const theme = createMuiTheme({
   palette: {
+    projectIndigo: "#3f51b5",
     brandBlack: "#040809",
     brandOrange: "#e26023",
     brandWhite: "#eaf4f3",
