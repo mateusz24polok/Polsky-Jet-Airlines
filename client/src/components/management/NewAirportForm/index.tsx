@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Box, Button, Grid, Paper } from "@material-ui/core";
 import { Formik, Form as FormikForm } from "formik";
@@ -16,6 +16,7 @@ import { useStyles } from "./styles";
 export const NewAirportForm: React.FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const fileInputRef = useRef<HTMLInputElement>();
 
   const continentsFormOptions: OptionFormItem<Continent>[] = continents.map(
     continent => ({
@@ -44,6 +45,12 @@ export const NewAirportForm: React.FC = () => {
           enableReinitialize={true}
           initialValues={formInitialValues}
           validationSchema={NewAirportSchema}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          onReset={values => {
+            if (fileInputRef.current) {
+              fileInputRef.current.value = "";
+            }
+          }}
           onSubmit={values => {
             const formData = new FormData();
             formData.append("airport", values.airport);
@@ -125,8 +132,22 @@ export const NewAirportForm: React.FC = () => {
                   />
                 </Grid>
                 <Grid item>
-                  <CustomFileUploadInput name="airportPhoto" />
+                  <CustomFileUploadInput
+                    name="airportPhoto"
+                    inputRef={fileInputRef}
+                  />
                 </Grid>
+                {values.airportPhoto && (
+                  <Grid item>
+                    <Box m={2}>
+                      <img
+                        width={200}
+                        src={URL.createObjectURL(values.airportPhoto)}
+                        alt="Airport"
+                      />
+                    </Box>
+                  </Grid>
+                )}
                 <Grid item>
                   <Button
                     className={classes.button}
