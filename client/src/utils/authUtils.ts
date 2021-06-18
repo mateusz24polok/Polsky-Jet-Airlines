@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { Jwt } from "@appTypes/shared/jwt";
+import { IUser } from "@appTypes/user";
 
 export const setJwtInLocalStorage = (jwt: string): void => {
   if (window.localStorage) {
@@ -36,4 +37,29 @@ export const getTokenValidity = (jwt: string) => {
     );
   }
   return false;
+};
+
+export const setUserInLocalStorage = (userData: IUser) => {
+  if (userData) {
+    const { _id, email, name, purchases, role } = userData;
+    const userDataJSON = JSON.stringify({
+      id: _id,
+      email,
+      name,
+      purchases,
+      role,
+    });
+    if (window.localStorage) {
+      localStorage.setItem("user", userDataJSON);
+    }
+  }
+};
+
+export const getUserFromLocalStorage = (jwt: string) => {
+  if (getTokenValidity(jwt)) {
+    return localStorage && localStorage.getItem("user")
+      ? (JSON.parse(localStorage.getItem("user") as string) as IUser)
+      : null;
+  }
+  return null;
 };

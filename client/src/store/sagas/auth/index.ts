@@ -36,6 +36,7 @@ import { getUserService } from "@services/user";
 import {
   removeJwtFromLocalStorage,
   setJwtInLocalStorage,
+  setUserInLocalStorage,
 } from "@utils/authUtils";
 import {
   UserServiceResponse,
@@ -87,6 +88,7 @@ function* loginUserSagaWorker(
       }),
     );
     yield setJwtInLocalStorage(userData.token);
+    yield setUserInLocalStorage(userData.user);
   } catch (error) {
     yield put(userLoginError((error as ApiResponseError).message));
     const lastAuthActivityMessage = yield select(selectLastAuthActivityMessage);

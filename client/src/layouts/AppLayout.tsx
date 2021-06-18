@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { NonContentPage } from "@pages/NonContentPage";
@@ -8,7 +7,6 @@ import { AppBar } from "@containers/MainPage/AppBar";
 import { SignupPopup } from "@components/auth/SignupPopup";
 import { LoginPopup } from "@components/auth/LoginPopup";
 import { SnackBar } from "@components/shared/SnackBar";
-import { fetchUserDetails, selectUserId } from "@store/slices/user";
 import { routes } from "@resources/res.routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { theme } from "@resources/theme";
@@ -16,7 +14,6 @@ import { getProtectedRoutesByRole } from "@utils/routesUtils";
 import { useStyles } from "./styles";
 
 export const AppLayout: React.FC = () => {
-  const dispatch = useDispatch();
   const [contentBackgroundColor, setContentBackgroundColor] = useState<
     React.CSSProperties["color"]
   >("white");
@@ -38,16 +35,6 @@ export const AppLayout: React.FC = () => {
         setContentBackgroundColor("white");
     }
   }, [location.pathname]);
-
-  // Here must be fetched userDetails (if there is an access to user id), because when user has ADMIN
-  // He has to have access to managment system which appear on navbar on the base of ADMIN role
-
-  const userId = useSelector(selectUserId);
-  useEffect(() => {
-    if (userId) {
-      dispatch(fetchUserDetails(userId));
-    }
-  }, [dispatch, userId]);
 
   return (
     <>
