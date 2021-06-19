@@ -2,6 +2,7 @@ import { Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
 import { HotelsPage } from "@pages/HotelsPage";
+import { CarsPage } from "@pages/CarsPage";
 import { LogoutPage } from "@pages/LogoutPage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
@@ -38,7 +39,7 @@ export const routes: Route[] = [
     id: "cars",
     path: routesPaths.offerCars,
     label: "Samochody",
-    component: HomePage,
+    component: CarsPage,
     appBarElement: true,
   },
   {

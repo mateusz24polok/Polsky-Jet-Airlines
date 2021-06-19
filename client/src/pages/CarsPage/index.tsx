@@ -5,7 +5,7 @@ import { R } from "@resources/res";
 import { routesPaths } from "@resources/res.routesPaths";
 import { InfoPageButtonsGroup } from "@appTypes/shared/components";
 
-export const HotelsPage: React.FC = () => {
+export const CarsPage: React.FC = () => {
   const history = useHistory();
   const goToMainPage = () => {
     history.push(routesPaths.home);
@@ -18,14 +18,14 @@ export const HotelsPage: React.FC = () => {
 
   return (
     <InfoGenericPage
-      title="Hotele już wkrótce w ofercie Polsky Jet"
-      icon={R.images.fallback.HotelFallbackPhoto}
-      iconAltDescription="Hotel"
+      title="Wypożyczenie samochodu już wkrótce w Polsky Jet"
+      icon={R.images.fallback.CarFallbackPhoto}
+      iconAltDescription="Auto"
       desktopIconWidth={300}
       desktopIconHeight="auto"
-      mobileIconWidth={120}
+      mobileIconWidth={180}
       mobileIconHeight="auto"
-      subtitle="Obecnie nasz zespół przygotowuje dla Ciebie ofertę hoteli aby jeszcze bardziej ułatwić Ci podróż."
+      subtitle="Przygotowujemy dla Ciebie ofertę samochodów do wypożyczenia, aby jeszcze bardziej ułatwić Ci podróż."
       buttonsGroup={buttonsGroup}
     />
   );

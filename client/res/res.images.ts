@@ -7,6 +7,7 @@ import FlightSearchEngineSectionBackground from "@images/flight_search_engine_ba
 import AirportFallbackPhoto from "@images/fallbackImages/airport_fallback_image.jpg";
 import WeatherFallbackIcon from "@images/fallbackImages/weather_fallback_icon.png";
 import HotelFallbackPhoto from "@images/fallbackImages/hotel_fallback_image.jpg";
+import CarFallbackPhoto from "@images/fallbackImages/car_fallback_image.jpg";
 
 import LogoFullBig from "@images/logo/full_logo_big.png";
 import LogoFullSmall from "@images/logo/full_logo_small.png";
@@ -85,6 +86,7 @@ export interface Images {
     readonly AirportFallbackPhoto: Image;
     readonly WeatherFallbackIcon: Image;
     readonly HotelFallbackPhoto: Image;
+    readonly CarFallbackPhoto: Image;
   };
 }
 
@@ -131,5 +133,6 @@ export const images: Images = {
     AirportFallbackPhoto,
     WeatherFallbackIcon,
     HotelFallbackPhoto,
+    CarFallbackPhoto,
   },
 };
