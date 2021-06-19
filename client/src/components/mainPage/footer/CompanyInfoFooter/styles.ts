@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     height: (props: Props) => props.logoHeight || 80,
     width: (props: Props) => props.logoWidth || "auto",
   },
-  logoMediumBreakpoing: {
+  logoMediumBreakpoint: {
     marginBottom: -16,
   },
   logoGridContainer: {

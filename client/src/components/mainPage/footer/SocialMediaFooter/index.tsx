@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, IconButton, Typography } from "@material-ui/core";
+import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { SocialMedia } from "@appTypes/shared/socialMedia";
 import { useStyles } from "./styles";
 
@@ -12,13 +13,19 @@ export interface Props {
 export const SocialMediaFooter: React.FC<Props> = props => {
   const { socialMediaFooterTitle, socialMediaList } = props;
   const classes = useStyles(props);
+  const mediumBreakpointsMatches = useMediumBrekpointMatchesUp();
   return (
     <Grid container direction="column" alignItems="center">
-      <Grid item>
-        <Typography variant="h5" className={classes.footerTitleTypography}>
-          {socialMediaFooterTitle}
-        </Typography>
-      </Grid>
+      {mediumBreakpointsMatches && (
+        <Grid item>
+          <Typography
+            variant={mediumBreakpointsMatches ? "h5" : "h6"}
+            className={classes.footerTitleTypography}
+          >
+            {socialMediaFooterTitle}
+          </Typography>
+        </Grid>
+      )}
       <Grid
         className={classes.socialMediaIconsContainer}
         item

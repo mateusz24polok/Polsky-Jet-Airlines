@@ -1,6 +1,7 @@
 import { Route } from "@appTypes/routes";
 import { routesPaths } from "@resources/res.routesPaths";
 import { HomePage } from "@pages/HomePage";
+import { HotelsPage } from "@pages/HotelsPage";
 import { LogoutPage } from "@pages/LogoutPage";
 import { FlightsResultPage } from "@pages/FlightsResultsPage";
 import { ManagementPage } from "@pages/ManagementPage";
@@ -30,7 +31,7 @@ export const routes: Route[] = [
     id: "hotels",
     path: routesPaths.offerHotels,
     label: "Hotele",
-    component: HomePage,
+    component: HotelsPage,
     appBarElement: true,
   },
   {
