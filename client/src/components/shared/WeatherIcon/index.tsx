@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@material-ui/core";
+import { getWeatherFallbackIconOnImgError } from "@utils/imageUtils";
 
 interface Props {
   iconCode: string;
@@ -11,7 +12,11 @@ export const WeatherIcon: React.FC<Props> = ({ altDescription, iconCode }) => {
 
   return (
     <Box>
-      <img src={weatherIconLink} alt={altDescription} />
+      <img
+        src={weatherIconLink}
+        alt={altDescription}
+        onError={getWeatherFallbackIconOnImgError}
+      />
     </Box>
   );
 };

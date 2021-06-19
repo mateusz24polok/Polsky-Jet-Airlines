@@ -2,6 +2,9 @@ import { Image } from "@appTypes/shared/image";
 
 import FlightSearchEngineSectionBackground from "@images/flight_search_engine_background.jpg";
 
+import AirportFallbackPhoto from "@images/fallbackImages/airport_fallback_image.jpg";
+import WeatherFallbackIcon from "@images/fallbackImages/weather_fallback_icon.png";
+
 import LogoFullBig from "@images/logo/full_logo_big.png";
 import LogoFullSmall from "@images/logo/full_logo_small.png";
 import ImageLogo from "@images/logo/image_logo.png";
@@ -75,6 +78,10 @@ export interface Images {
     readonly NotFoundIcon: Image;
     readonly ShoppingSuccessfulIcon: Image;
   };
+  fallback: {
+    readonly AirportFallbackPhoto: Image;
+    readonly WeatherFallbackIcon: Image;
+  };
 }
 
 export const images: Images = {
@@ -115,5 +122,9 @@ export const images: Images = {
     LockIcon,
     NotFoundIcon,
     ShoppingSuccessfulIcon,
+  },
+  fallback: {
+    AirportFallbackPhoto,
+    WeatherFallbackIcon,
   },
 };
