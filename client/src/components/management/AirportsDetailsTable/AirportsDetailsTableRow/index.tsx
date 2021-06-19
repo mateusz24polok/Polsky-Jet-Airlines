@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, TableCell, TableRow } from "@material-ui/core";
+import { getAirportFallbackImageOnImgError } from "@utils/imageUtils";
 import { Image } from "@appTypes/shared/image";
 import { Airport } from "@appTypes/airport";
 
@@ -20,7 +21,12 @@ export const AirportDetailsTableRow: React.FC<Props> = ({
 }) => {
   const renderAirportNameCell = (): JSX.Element => (
     <Grid>
-      <img src={image} width={100} alt={city} />
+      <img
+        onError={getAirportFallbackImageOnImgError}
+        src={image}
+        width={100}
+        alt={city}
+      />
       <p>{`${airport} (${airportKey})`}</p>
     </Grid>
   );

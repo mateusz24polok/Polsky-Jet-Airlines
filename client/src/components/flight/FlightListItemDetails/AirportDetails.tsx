@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-import { Image } from "@appTypes/shared/image";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { useLargeBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
+import { getAirportFallbackImageOnImgError } from "@utils/imageUtils";
+import { Image } from "@appTypes/shared/image";
 
 interface Props {
   date: string;
@@ -45,7 +46,13 @@ export const AirportDetails: React.FC<Props> = ({
     <Grid container direction="row" alignItems="center">
       {largeMediaBreakpointMatches && (
         <Grid item>
-          <img className={classes.photo} src={photo} alt={city} height={120} />
+          <img
+            className={classes.photo}
+            src={photo}
+            alt={city}
+            height={120}
+            onError={getAirportFallbackImageOnImgError}
+          />
         </Grid>
       )}
       <Grid item>{renderDetailsText()}</Grid>
