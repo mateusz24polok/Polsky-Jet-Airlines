@@ -3,7 +3,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 import { GenericPriceText } from "@components/shared/GenericPriceText";
 import { Flight } from "@appTypes/flight";
 
-type Props = Omit<Flight, "_id" | "status">;
+type Props = Omit<Flight, "_id" | "status" | "weather">;
 
 export const FlightsDetailsTableRow: React.FC<Props> = ({
   startingCity,
