@@ -9,6 +9,10 @@ interface Props {
   buttonsGroup?: InfoPageButtonsGroup;
   icon?: Image;
   iconAltDescription?: string;
+  desktopIconHeight?: number | "auto";
+  desktopIconWidth?: number | "auto";
+  mobileIconHeight?: number | "auto";
+  mobileIconWidth?: number | "auto";
   title: string;
   subtitle?: string;
 }
@@ -17,6 +21,10 @@ export const InfoGenericPage: React.FC<Props> = ({
   buttonsGroup,
   icon,
   iconAltDescription,
+  desktopIconHeight,
+  desktopIconWidth,
+  mobileIconHeight,
+  mobileIconWidth,
   subtitle,
   title,
 }) => {
@@ -36,8 +44,16 @@ export const InfoGenericPage: React.FC<Props> = ({
           className={classes.icon}
           src={icon}
           alt={iconAltDescription || "icon"}
-          width={mediumMediaBreakpointMatches ? 120 : 60}
-          height={mediumMediaBreakpointMatches ? 120 : 60}
+          width={
+            mediumMediaBreakpointMatches
+              ? desktopIconWidth || 120
+              : mobileIconWidth || 60
+          }
+          height={
+            mediumMediaBreakpointMatches
+              ? desktopIconHeight || 120
+              : mobileIconHeight || 60
+          }
         />
       ) : null}
       <Typography

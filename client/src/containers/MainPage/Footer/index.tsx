@@ -15,6 +15,7 @@ export const Footer: React.FC = () => {
 
   const renderLeftSideFooter = (): JSX.Element => (
     <CompanyInfoFooter
+      logoHeight={mediumBreakpointsMatches ? 80 : 50}
       brandCity={ContactData.city}
       brandName={ContactData.brandName}
       brandStreet={ContactData.street}
@@ -34,6 +35,7 @@ export const Footer: React.FC = () => {
     <SocialMediaFooter
       socialMediaFooterTitle="Sledź nas na:"
       socialMediaList={FooterSocialMedia}
+      socialMediaIconFontSize={mediumBreakpointsMatches ? 48 : 24}
     />
   );
 

@@ -26,7 +26,7 @@ export const CompanyInfoFooter: React.FC<Props> = props => {
 
   const extraMediumBreakpointClassForLogo = mediumBreakpointsMatches
     ? ""
-    : classes.logoMediumBreakpoing;
+    : classes.logoMediumBreakpoint;
 
   return (
     <Grid justify="center" container wrap="nowrap" alignItems="center">

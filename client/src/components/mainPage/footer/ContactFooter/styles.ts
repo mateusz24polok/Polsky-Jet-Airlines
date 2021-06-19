@@ -6,9 +6,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: "Bangers",
   },
   footerTitleTypography: {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(1),
     color: theme.palette.footerBlue,
     textTransform: "uppercase",
     fontFamily: "Bangers",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: theme.spacing(2),
+    },
   },
 }));

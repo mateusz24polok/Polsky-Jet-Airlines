@@ -1,9 +1,13 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Image } from "@appTypes/shared/image";
 
 import FlightSearchEngineSectionBackground from "@images/flight_search_engine_background.jpg";
 
 import AirportFallbackPhoto from "@images/fallbackImages/airport_fallback_image.jpg";
 import WeatherFallbackIcon from "@images/fallbackImages/weather_fallback_icon.png";
+import HotelFallbackPhoto from "@images/fallbackImages/hotel_fallback_image.jpg";
+import CarFallbackPhoto from "@images/fallbackImages/car_fallback_image.jpg";
 
 import LogoFullBig from "@images/logo/full_logo_big.png";
 import LogoFullSmall from "@images/logo/full_logo_small.png";
@@ -81,6 +85,8 @@ export interface Images {
   fallback: {
     readonly AirportFallbackPhoto: Image;
     readonly WeatherFallbackIcon: Image;
+    readonly HotelFallbackPhoto: Image;
+    readonly CarFallbackPhoto: Image;
   };
 }
 
@@ -126,5 +132,7 @@ export const images: Images = {
   fallback: {
     AirportFallbackPhoto,
     WeatherFallbackIcon,
+    HotelFallbackPhoto,
+    CarFallbackPhoto,
   },
 };
