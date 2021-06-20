@@ -6,4 +6,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: "Bangers",
     marginBottom: theme.spacing(1),
   },
+  circularProgress: {
+    color: theme.palette.brandBlack,
+  },
+  circularProgressContainer: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
 }));
