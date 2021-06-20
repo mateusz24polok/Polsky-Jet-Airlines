@@ -35,6 +35,7 @@ import {
 import { getUserService } from "@services/user";
 import {
   removeJwtFromLocalStorage,
+  removeUserFromLocalStorage,
   setJwtInLocalStorage,
   setUserInLocalStorage,
 } from "@utils/authUtils";
@@ -111,6 +112,7 @@ function* logoutUserSagaWorker(): Generator<
     yield put(userLogoutSuccess());
     yield put(clearUserDetails());
     yield call(removeJwtFromLocalStorage);
+    yield call(removeUserFromLocalStorage);
     const lastAuthActivityMessage = yield select(selectLastAuthActivityMessage);
     yield put(
       addSnackbar({

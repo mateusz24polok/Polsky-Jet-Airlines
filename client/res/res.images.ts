@@ -40,6 +40,7 @@ import SuccessCheckIcon from "@images/icons/success_check_icon.png";
 import LockIcon from "@images/icons/lock_icon.png";
 import NotFoundIcon from "@images/icons/not_found_icon.svg";
 import ShoppingSuccessfulIcon from "@images/icons/shopping_successful_icon.png";
+import NotAvailableOnMobileDevicesIcon from "@images/icons/not_available_on_mobile_icon.png";
 
 export interface Images {
   backgrounds: {
@@ -81,6 +82,7 @@ export interface Images {
     readonly LockIcon: Image;
     readonly NotFoundIcon: Image;
     readonly ShoppingSuccessfulIcon: Image;
+    readonly NotAvailableOnMobileDevicesIcon: Image;
   };
   fallback: {
     readonly AirportFallbackPhoto: Image;
@@ -128,6 +130,7 @@ export const images: Images = {
     LockIcon,
     NotFoundIcon,
     ShoppingSuccessfulIcon,
+    NotAvailableOnMobileDevicesIcon,
   },
   fallback: {
     AirportFallbackPhoto,

@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { List } from "@material-ui/core";
-import { managementMenuData } from "@resources/data/management";
+import { managementMenuData as managementMenuInitialData } from "@resources/data/management";
+import { routesPaths } from "@resources/res.routesPaths";
 import { ButtonMenuItemInterface } from "@appTypes/shared/collapsibleMenu";
 import { CollapsibleMenuItem } from "./CollapsibleMenuItem";
 import { ButtonMenuItem } from "./ButtonMenuItem";
 import {
-  getInitialMenuChoicePath,
-  setMenuStateAfterButtonMenuItemClick,
+  getManagementMenuWithChoice,
   setMenuStateAfterCollapsibleMenuItemExtend,
 } from "./helpers";
 
 export const SideMenu: React.FC = () => {
   const history = useHistory();
-  const [menuState, setMenuState] = useState(managementMenuData);
-
-  useEffect(() => {
-    const initialMenuChoicePath = getInitialMenuChoicePath(managementMenuData);
-    history.push(initialMenuChoicePath);
-  }, [history]);
+  const location = useLocation();
+  const [menuState, setMenuState] = useState(
+    getManagementMenuWithChoice(managementMenuInitialData, location.pathname),
+  );
 
   const handleExpand = (collapsibleMenuItemId: string | number) => {
     setMenuState(previousMenuState =>
@@ -30,13 +28,7 @@ export const SideMenu: React.FC = () => {
   };
 
   const handleMenuButtonClick = (buttonMenuItem: ButtonMenuItemInterface) => {
-    setMenuState(previousMenuState =>
-      setMenuStateAfterButtonMenuItemClick(
-        previousMenuState,
-        buttonMenuItem.id,
-      ),
-    );
-    history.push(buttonMenuItem.path || "/");
+    history.push(buttonMenuItem.path || routesPaths.management);
   };
 
   return (

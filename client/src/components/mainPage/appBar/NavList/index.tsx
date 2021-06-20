@@ -14,7 +14,6 @@ export const NavList: React.FC<Props> = ({ navRoutes }) => {
   const classes = useStyles();
   const location = useLocation();
   const { pathname } = location;
-  console.log(location);
   return (
     <>
       {navRoutes.map(route => (

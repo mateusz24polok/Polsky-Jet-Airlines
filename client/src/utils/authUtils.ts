@@ -55,6 +55,12 @@ export const setUserInLocalStorage = (userData: IUser) => {
   }
 };
 
+export const removeUserFromLocalStorage = (): void => {
+  if (window.localStorage && localStorage.getItem("user")) {
+    localStorage.removeItem("user");
+  }
+};
+
 export const getUserFromLocalStorage = (jwt: string) => {
   if (getTokenValidity(jwt)) {
     return localStorage && localStorage.getItem("user")
