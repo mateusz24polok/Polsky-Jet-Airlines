@@ -19,6 +19,7 @@ import {
   selectIsProgress,
 } from "@store/slices/flights";
 import { FlightsDetailsTableRow } from "./FlightsDetailsTableRow";
+import { NoFlightsFallback } from "./NoFlightsFallback";
 import { useStyles } from "./styles";
 
 export const FlightsDetailsTable: React.FC = () => {
@@ -44,36 +45,42 @@ export const FlightsDetailsTable: React.FC = () => {
         </Grid>
       ) : (
         <>
-          <ManagementSiteTitle title="Polsku Jet Flights" />
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Flight</TableCell>
-                  <TableCell align="center">Start Date</TableCell>
-                  <TableCell align="center">Start Airport</TableCell>
-                  <TableCell align="center">Destination Airport</TableCell>
-                  <TableCell align="center">Flight Time</TableCell>
-                  <TableCell align="center">Tickets Left</TableCell>
-                  <TableCell align="center">Tickets Prices</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {flights.map(flight => (
-                  <FlightsDetailsTableRow
-                    key={flight._id}
-                    destinationAirport={flight.destinationAirport}
-                    destinationCity={flight.destinationCity}
-                    estimatedFlightTime={flight.estimatedFlightTime}
-                    startingAirport={flight.startingAirport}
-                    startingCity={flight.startingCity}
-                    startingDate={flight.startingDate}
-                    tickets={flight.tickets}
-                  />
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {flights.length > 0 ? (
+            <>
+              <ManagementSiteTitle title="Polsku Jet Flights" />
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">Flight</TableCell>
+                      <TableCell align="center">Start Date</TableCell>
+                      <TableCell align="center">Start Airport</TableCell>
+                      <TableCell align="center">Destination Airport</TableCell>
+                      <TableCell align="center">Flight Time</TableCell>
+                      <TableCell align="center">Tickets Left</TableCell>
+                      <TableCell align="center">Tickets Prices</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {flights.map(flight => (
+                      <FlightsDetailsTableRow
+                        key={flight._id}
+                        destinationAirport={flight.destinationAirport}
+                        destinationCity={flight.destinationCity}
+                        estimatedFlightTime={flight.estimatedFlightTime}
+                        startingAirport={flight.startingAirport}
+                        startingCity={flight.startingCity}
+                        startingDate={flight.startingDate}
+                        tickets={flight.tickets}
+                      />
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </>
+          ) : (
+            <NoFlightsFallback />
+          )}
         </>
       )}
     </Box>
