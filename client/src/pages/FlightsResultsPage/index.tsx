@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
+import { CircularProgress, Grid, Typography } from "@material-ui/core";
+import { NoFlightResultPage } from "@pages/NoFlightResultPage";
+import { FlightListContainer } from "@containers/FlightListContainer";
+import { FlightListItem } from "@components/flight/FlightListItem";
 import {
   fetchFlights,
   selectFlights,
@@ -10,8 +13,6 @@ import {
 import { prepareObjectFromQueryParamsURL } from "@utils/urlUtils";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { FlightsSearchFilters } from "@appTypes/flight";
-import { FlightListContainer } from "@containers/FlightListContainer";
-import { FlightListItem } from "@components/flight/FlightListItem";
 import { useStyles } from "./styles";
 
 export const FlightsResultPage: React.FC = () => {
@@ -47,19 +48,30 @@ export const FlightsResultPage: React.FC = () => {
       justify="space-around"
       direction={mediumMediaBreakpointMatches ? "column" : "row"}
     >
+      {renderFlightsListTitle()}
       {flights.map(flight => (
         <FlightListItem key={flight._id} flight={flight} />
       ))}
     </Grid>
   );
 
-  const renderFallbackView = (): JSX.Element => <h2>Brak wyników</h2>;
+  const renderFallbackView = (): JSX.Element => <NoFlightResultPage />;
 
-  const renderLoadingView = (): JSX.Element => <h2>Ładowanie wyników...</h2>;
+  const renderLoadingView = (): JSX.Element => {
+    return (
+      <Grid
+        className={classes.circularProgressContainer}
+        container
+        justify="center"
+        alignItems="center"
+      >
+        <CircularProgress className={classes.circularProgress} size={64} />
+      </Grid>
+    );
+  };
 
   return (
     <FlightListContainer>
-      {renderFlightsListTitle()}
       {isProgress
         ? renderLoadingView()
         : flights.length > 0
