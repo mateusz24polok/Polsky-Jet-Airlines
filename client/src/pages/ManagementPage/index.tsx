@@ -1,8 +1,9 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { SideMenu } from "@components/management/SideMenu";
 import { routes } from "@resources/res.routes";
+import { routesPaths } from "@resources/res.routesPaths";
 import { getManagementRoutes } from "@utils/routesUtils";
 import { useMediumBrekpointMatchesUp } from "@utils/mediaQuerriesUtils";
 import { ManagementNotAvailableOnMobileDevicesPage } from "./NotAvailableOnMobileDevicesPage";
@@ -34,7 +35,7 @@ export const ManagementPage: React.FC = () => {
                 />
               ))}
               <Route>
-                <h1>{`Management site you're trying to reach doesn't exist`}</h1>
+                <Redirect to={routesPaths.managementAirportsDetails} />
               </Route>
             </Switch>
           </Grid>

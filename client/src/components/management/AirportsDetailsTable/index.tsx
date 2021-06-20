@@ -20,6 +20,7 @@ import {
 } from "@store/slices/airports";
 import { R } from "@resources/res";
 import { AirportDetailsTableRow } from "./AirportsDetailsTableRow";
+import { NoAirportsFallback } from "./NoAirportsFallback";
 import { useStyles } from "./styles";
 
 export const AirportsDetailsTable: React.FC = () => {
@@ -45,39 +46,45 @@ export const AirportsDetailsTable: React.FC = () => {
         </Grid>
       ) : (
         <>
-          <ManagementSiteTitle title="Polsky Jet Airports" />
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Airport Name</TableCell>
-                  <TableCell align="center">Place</TableCell>
-                  <TableCell align="center">Continent</TableCell>
-                  <TableCell align="center">Starting Point</TableCell>
-                  <TableCell align="center">Destination Point</TableCell>
-                  <TableCell align="center">Terminals</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {airports.map(airport => (
-                  <AirportDetailsTableRow
-                    key={airport._id}
-                    image={
-                      airport.airportPhoto || R.images.cities.BrusselsPhoto
-                    }
-                    airport={airport.airport}
-                    airportKey={airport.airportKey}
-                    city={airport.city}
-                    continent={airport.continent}
-                    country={airport.country}
-                    destinationPoint={airport.destinationPoint}
-                    startingPoint={airport.startingPoint}
-                    terminals={airport.terminals}
-                  />
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {airports.length > 0 ? (
+            <>
+              <ManagementSiteTitle title="Polsky Jet Airports" />
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">Airport Name</TableCell>
+                      <TableCell align="center">Place</TableCell>
+                      <TableCell align="center">Continent</TableCell>
+                      <TableCell align="center">Starting Point</TableCell>
+                      <TableCell align="center">Destination Point</TableCell>
+                      <TableCell align="center">Terminals</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {airports.map(airport => (
+                      <AirportDetailsTableRow
+                        key={airport._id}
+                        image={
+                          airport.airportPhoto || R.images.cities.BrusselsPhoto
+                        }
+                        airport={airport.airport}
+                        airportKey={airport.airportKey}
+                        city={airport.city}
+                        continent={airport.continent}
+                        country={airport.country}
+                        destinationPoint={airport.destinationPoint}
+                        startingPoint={airport.startingPoint}
+                        terminals={airport.terminals}
+                      />
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </>
+          ) : (
+            <NoAirportsFallback />
+          )}
         </>
       )}
     </Box>
