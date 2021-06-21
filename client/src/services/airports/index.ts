@@ -1,12 +1,13 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { store } from "@store/setupStore";
+import { getAuthorizationHeader } from "@utils/authUtils";
 import {
   AirportServiceResponse,
   CreateAirportRequestFormData,
 } from "@appTypes/airport";
+import { createAxiosApiInstance } from "../genericApiInstance";
 
-const airportsAxiosInstance = axios.create({
-  baseURL: `${process.env.api as string}/api/v1/airports`,
-});
+const airportsAxiosInstance = createAxiosApiInstance("/api/v1/airports");
 
 export const getAirportService = async (): Promise<AirportServiceResponse> => {
   try {
@@ -24,7 +25,11 @@ export const postAirportService = async (
   newAirport: CreateAirportRequestFormData,
 ) => {
   try {
-    await airportsAxiosInstance.post("/", newAirport);
+    await airportsAxiosInstance.post("/", newAirport, {
+      headers: {
+        ...getAuthorizationHeader(store.getState().user.jwtToken),
+      },
+    });
   } catch (err) {
     console.log(err);
     throw new Error(err);
