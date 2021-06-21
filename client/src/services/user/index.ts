@@ -1,9 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { store } from "@store/setupStore";
+import { getAuthorizationHeader } from "@utils/authUtils";
 import { UserServiceResponse } from "@appTypes/user";
+import { createAxiosApiInstance } from "../genericApiInstance";
 
-const userAxiosInstance = axios.create({
-  baseURL: `${process.env.api as string}/api/v1/user`,
-});
+const userAxiosInstance = createAxiosApiInstance("/api/v1/user");
 
 export const getUserService = async (
   userId: string,
@@ -11,6 +12,11 @@ export const getUserService = async (
   try {
     const user: AxiosResponse<UserServiceResponse> = await userAxiosInstance.get(
       `/${userId}`,
+      {
+        headers: {
+          ...getAuthorizationHeader(store.getState().user.jwtToken),
+        },
+      },
     );
     return user.data;
   } catch (error) {

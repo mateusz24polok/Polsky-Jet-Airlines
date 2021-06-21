@@ -1,5 +1,5 @@
 import express from "express";
-import { login, logout, signup } from "../controllers/authControllers";
+import { login, logout, protect, signup } from "../controllers/authControllers";
 import { getUser } from "../controllers/userControllers";
 
 export const userRouter = express.Router();
@@ -10,4 +10,4 @@ userRouter.post("/login", login);
 userRouter.get("/logout", logout);
 
 //User Routes
-userRouter.get("/:id", getUser);
+userRouter.get("/:id", protect, getUser);
