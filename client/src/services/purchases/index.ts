@@ -1,9 +1,11 @@
-import axios from "axios";
+import { store } from "@store/setupStore";
+import { getAuthorizationHeader } from "@utils/authUtils";
 import { FlightTicketPurchaseRequest } from "@appTypes/purchases";
+import { createAxiosApiInstance } from "../genericApiInstance";
 
-const flightPurchaseInstance = axios.create({
-  baseURL: `${process.env.api as string}/api/v1/purchase/flight`,
-});
+const flightPurchaseInstance = createAxiosApiInstance(
+  "/api/v1/purchase/flight",
+);
 
 export const postFlightPurchaseService = async (
   flightId: string,
@@ -13,6 +15,11 @@ export const postFlightPurchaseService = async (
     await flightPurchaseInstance.post(
       `/${flightId}`,
       flightPurchaseRequestBody,
+      {
+        headers: {
+          ...getAuthorizationHeader(store.getState().user.jwtToken),
+        },
+      },
     );
   } catch (err) {
     console.log(err);
