@@ -110,9 +110,9 @@ function* logoutUserSagaWorker(): Generator<
   try {
     yield call(getLogoutUserService);
     yield put(userLogoutSuccess());
-    yield put(clearUserDetails());
     yield call(removeJwtFromLocalStorage);
     yield call(removeUserFromLocalStorage);
+    yield put(clearUserDetails());
     const lastAuthActivityMessage = yield select(selectLastAuthActivityMessage);
     yield put(
       addSnackbar({

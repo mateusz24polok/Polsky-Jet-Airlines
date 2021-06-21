@@ -1,14 +1,15 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { store } from "@store/setupStore";
 import { prepareQueryParamsURLFromObject } from "@utils/urlUtils";
+import { getAuthorizationHeader } from "@utils/authUtils";
 import {
   CreateFlightRequest,
   FlightServiceResponse,
   FlightsSearchFilters,
 } from "@appTypes/flight";
+import { createAxiosApiInstance } from "../genericApiInstance";
 
-const flightAxiosInstance = axios.create({
-  baseURL: `${process.env.api as string}/api/v1/flights`,
-});
+const flightAxiosInstance = createAxiosApiInstance("/api/v1/flights");
 
 export const getFlightsService = async (
   filters?: FlightsSearchFilters,
@@ -28,7 +29,11 @@ export const getFlightsService = async (
 
 export const postFlightService = async (newFlight: CreateFlightRequest) => {
   try {
-    await flightAxiosInstance.post("/", newFlight);
+    await flightAxiosInstance.post("/", newFlight, {
+      headers: {
+        ...getAuthorizationHeader(store.getState().user.jwtToken),
+      },
+    });
   } catch (err) {
     console.log(err);
     throw new Error(err);

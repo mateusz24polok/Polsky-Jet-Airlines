@@ -69,3 +69,7 @@ export const getUserFromLocalStorage = (jwt: string) => {
   }
   return null;
 };
+
+export const getAuthorizationHeader = (jwt: string | null) => ({
+  Authorization: `Bearer ${jwt || ""}`,
+});
