@@ -28,12 +28,15 @@ export const UserPurchases: React.FC<Props> = ({ purchase }) => {
     selectSelectedCurrencyRateBasedOnPLN,
   );
 
-  const purchaseListElement = getFlightPurchaseListElement(
-    flight,
-    purchasedTickets,
-    selectedCurrency,
-    selectedCurrencyRateBasedOnPLN,
-  );
+  const purchaseListElement =
+    flight && purchasedTickets
+      ? getFlightPurchaseListElement(
+          flight,
+          purchasedTickets,
+          selectedCurrency,
+          selectedCurrencyRateBasedOnPLN,
+        )
+      : [];
 
   return (
     <Accordion>

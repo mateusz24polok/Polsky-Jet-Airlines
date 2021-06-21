@@ -3,7 +3,7 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 import { PurchaseBaseDocument } from "./purchaseModel";
 
-enum Role {
+export enum Role {
   USER = "USER",
   ADMIN = "ADMIN",
 }

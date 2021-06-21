@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, CookieOptions } from "express";
 import jwt from "jsonwebtoken";
 import { catchAsync } from "../utils/catchAsync";
 import { AppError } from "../utils/AppError";
-import { User, UserBaseDocument } from "../models/userModel";
+import { User, UserBaseDocument, Role } from "../models/userModel";
 
 interface JWT {
   id: string;
@@ -128,3 +128,13 @@ export const protect = catchAsync(
     next();
   }
 );
+
+export const restrictTo =
+  (role: Role) => (req: any, res: Response, next: NextFunction) => {
+    if (role !== req.user.role) {
+      return next(
+        new AppError("You do not have permission to perform this action", 403)
+      );
+    }
+    next();
+  };
