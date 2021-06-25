@@ -5,7 +5,11 @@ import { R } from "@resources/res";
 import { routesPaths } from "@resources/res.routesPaths";
 import { InfoPageButtonsGroup } from "@appTypes/shared/components";
 
-export const NoFlightResultPage: React.FC = () => {
+interface Props {
+  flightId: number | string;
+}
+
+export const IncorrectFlightNumberPage: React.FC<Props> = ({ flightId }) => {
   const history = useHistory();
   const goToFlightOfferPage = () => {
     history.push(routesPaths.offerFlights);
@@ -20,10 +24,10 @@ export const NoFlightResultPage: React.FC = () => {
 
   return (
     <InfoGenericPage
-      title="Brak Lotów w ofercie"
+      title="Nieprawidłowy numer lotu"
       icon={R.images.utilIcons.NoFlightResultIcon}
       iconAltDescription="Brak Lotów"
-      subtitle="Obecnie nie mamy w ofercie lotów spełniających twoje kryteria wyszukiwania. Przejdź do strony głównej i spróbuj raz jeszcze"
+      subtitle={`W naszej ofercie nie istnieje lot o numerze: ${flightId}`}
       buttonsGroup={buttonsGroup}
     />
   );
