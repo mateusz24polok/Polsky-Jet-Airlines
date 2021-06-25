@@ -17,7 +17,8 @@ export const NewAirportSchema = Yup.object().shape({
   startingPoint: Yup.boolean().required(
     "Zdecyduj czy lotnisko jest punktem startowym",
   ),
-  terminals: Yup.string().required(
-    "Wprowadź dostępne terminale nowego lotniska",
-  ),
+  //TODO: Unhide terminals in further versions
+  // terminals: Yup.string().required(
+  //   "Wprowadź dostępne terminale nowego lotniska",
+  // ),
 });

@@ -33,7 +33,7 @@ export const NewAirportForm: React.FC = () => {
     country: "",
     destinationPoint: true,
     startingPoint: false,
-    terminals: [],
+    terminals: ["T1", "T2"],
     airportPhoto: null,
   };
 
@@ -68,7 +68,6 @@ export const NewAirportForm: React.FC = () => {
             );
             formData.append("terminals", String(values.terminals));
             formData.append("airportPhoto", values.airportPhoto || "");
-
             dispatch(createAirports(formData));
           }}
         >
@@ -112,12 +111,13 @@ export const NewAirportForm: React.FC = () => {
                     label="Airport City"
                     variant="outlined"
                   />
-                  <CustomTextField
+                  {/* TODO: Unhide terminals in further versions */}
+                  {/* <CustomTextField
                     className={classes.input}
                     name="terminals"
                     label="Airport Terminals"
                     variant="outlined"
-                  />
+                  /> */}
                 </Grid>
                 <Grid item>
                   <CustomCheckbox

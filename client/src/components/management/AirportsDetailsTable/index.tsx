@@ -58,7 +58,8 @@ export const AirportsDetailsTable: React.FC = () => {
                       <TableCell align="center">Continent</TableCell>
                       <TableCell align="center">Starting Point</TableCell>
                       <TableCell align="center">Destination Point</TableCell>
-                      <TableCell align="center">Terminals</TableCell>
+                      {/* TODO: Unhide terminals in further versions */}
+                      {/* <TableCell align="center">Terminals</TableCell> */}
                     </TableRow>
                   </TableHead>
                   <TableBody>
