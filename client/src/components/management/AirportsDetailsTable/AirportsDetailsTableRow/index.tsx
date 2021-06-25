@@ -17,7 +17,6 @@ export const AirportDetailsTableRow: React.FC<Props> = ({
   country,
   destinationPoint,
   startingPoint,
-  terminals,
 }) => {
   const renderAirportNameCell = (): JSX.Element => (
     <Grid>
@@ -40,7 +39,8 @@ export const AirportDetailsTableRow: React.FC<Props> = ({
       <TableCell align="center">{continent}</TableCell>
       <TableCell align="center">{startingPoint ? "✔" : "❌"}</TableCell>
       <TableCell align="center">{destinationPoint ? "✔" : "❌"}</TableCell>
-      <TableCell align="center">{terminals.join(", ")}</TableCell>
+      {/* TODO: Unhide terminals in further versions */}
+      {/* <TableCell align="center">{terminals.join(", ")}</TableCell> */}
     </TableRow>
   );
 };
