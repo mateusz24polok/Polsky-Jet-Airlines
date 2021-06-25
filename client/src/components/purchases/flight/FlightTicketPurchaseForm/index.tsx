@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form as FormikForm } from "formik";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { SuccessfulPurchasePage } from "@pages/SuccessfulPurchasePage";
+import { IncorrectFlightNumberPage } from "@pages/IncorrectFlightNumberPage";
 import { MultiStepperForm } from "@components/shared/MultiStepperForm";
 import { WeatherInfoAcceptStep } from "@components/purchases/flight/WeatherInfoAcceptStep";
 import { TicketChooseStep } from "@components/purchases/flight/TicketChooseStep";
@@ -145,5 +146,5 @@ export const FlightTicketPurchaseForm: React.FC<Props> = ({ flightId }) => {
     );
   }
 
-  return <Typography>Wybrany lot nie istnieje w bazie PolskyJet</Typography>;
+  return <IncorrectFlightNumberPage flightId={flightId} />;
 };
