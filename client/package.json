@@ -1,6 +1,6 @@
 {
   "name": "polsky-jet-page",
-  "version": "0.0.1",
+  "version": "0.9.5",
   "description": "Project of fake airlines Polsky Jet page with system of tickets reservation",
   "main": "index.js",
   "scripts": {
