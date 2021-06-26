@@ -1,6 +1,6 @@
 {
   "name": "polsky-jet-server",
-  "version": "0.0.1",
+  "version": "0.9.5",
   "description": "Project of server app for fake airlines Polsky Jet page with system of tickets reservation",
   "main": "server/dist/server",
   "typings": "server/dist/server",
