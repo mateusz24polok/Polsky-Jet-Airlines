@@ -8,7 +8,7 @@ export const aboutUs: AboutUs = {
   featureInfoDetails: [
     {
       id: 0,
-      amount: 500,
+      amount: 600,
       info: "szczęśliwych lotów",
       icon: R.images.feautreIcons.Flight,
     },
